@@ -1,31 +1,38 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-06-01
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Secure Hybrid Access to S3 using VPC Endpoints
+# Caerus: A Cinema Seat Booking Platform on AWS
 
 #### Overview
 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+<!-- WHAT GOES HERE:
+Two or three paragraphs. What Caerus does, the one hard problem it solves (no
+seat is ever sold twice, even under concurrent requests), and the shape of the
+deployment: a static React site on S3, an Express API on EC2, PostgreSQL on
+RDS, two endpoints on Lambda behind API Gateway, and CloudWatch over all of it.
+Name the region: ap-southeast-1.
+-->
 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
-
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+{{% notice warning %}}
+⚠️ **Note:** Replace this placeholder with your own writing.
+{{% /notice %}}
 
 #### Content
 
-1. [Workshop overview](5.1-Workshop-overview)
-2. [Prerequiste](5.2-Prerequiste/)
-3. [Access S3 from VPC](5.3-S3-vpc/)
-4. [Access S3 from On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
-6. [Clean up](5.6-Cleanup/)
+1. [Introduction](5.1-Overview/)
+2. [Prerequisites](5.2-Prerequisites/)
+3. [System Design](5.3-Design/)
+4. [Local Development](5.4-Local-Build/)
+5. [Amazon RDS for PostgreSQL](5.5-RDS/)
+6. [Amazon S3](5.6-S3/)
+7. [Amazon EC2 and Deployment](5.7-EC2/)
+8. [Lambda and API Gateway](5.8-Serverless/)
+9. [CloudWatch and SNS](5.9-CloudWatch/)
+10. [Testing](5.10-Testing/)
+11. [Cost and Resource Management](5.11-Cost/)
+12. [Cleaning Up Resources](5.12-Cleanup/)
