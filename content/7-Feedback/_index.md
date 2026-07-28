@@ -1,45 +1,128 @@
 ---
 title: "Sharing and Feedback"
-date: 2024-01-01
+date: 2026-06-01
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
 
-
-
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud AI Journey program. This will help the FCAJ team improve any shortcomings based on the following aspects:
+> The following are my personal reflections on taking part in the First Cloud
+> Journey programme, shared in the hope that they are useful to the team.
 
 ### Overall Evaluation
 
-**1. Working Environment**  
-The working environment is very friendly and open. FCAJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+**1. Working Environment**
 
-**2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+The environment was open and genuinely welcoming. Questions were treated as a
+normal part of learning rather than as an interruption, which mattered a great
+deal in the first weeks when almost everything was unfamiliar. The programme's
+structure - study a service group, then immediately apply it in a hands-on
+exercise - meant I was never learning in the abstract for long. Being able to
+work at my own pace within a weekly framework suited me well, since some topics
+took considerably longer to absorb than others.
 
-**3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+**2. Support from Mentor / Team Admin**
 
-**4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+The guidance was detailed where it needed to be and deliberately restrained
+where it did not. What I valued most was being allowed to struggle with a
+problem before being given the answer: when I was stuck on a networking issue, I
+was pointed toward the right area to investigate rather than handed the
+solution, and I retained far more as a result. The administrative side was
+consistently smooth - materials were available when needed, and questions about
+scheduling and deliverables were answered quickly.
 
-**5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
+**3. Relevance of Work to Academic Major**
 
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+The work aligned closely with my studies while extending them in a direction my
+coursework does not cover. Database theory, networking, and web development were
+all familiar in principle, but applying them to a system that had to be deployed,
+secured, monitored, and paid for was new. The concurrency problem at the centre of
+my project was a particularly good bridge: the theory was something I had studied,
+and the internship turned it into something I had to make work.
+
+**4. Learning & Skill Development Opportunities**
+
+Beyond the AWS services themselves, the programme developed skills I had not
+expected to practise. Writing a specification that another person would build
+against, and being held to it, taught me more about interface design than any
+individual assignment had. So did documenting decisions well enough that they
+could be reviewed later. The requirement to produce a structured report is a
+substantial part of the programme's value, not an administrative afterthought.
+
+**5. Company Culture & Team Spirit**
+
+The culture encouraged asking rather than pretending to know, which is exactly
+the right posture for people encountering a large platform for the first time.
+Working alongside other interns facing the same material made a real difference -
+problems that seemed insurmountable alone were often resolved in a short
+conversation with someone who had hit the same wall the week before.
+
+**6. Internship Policies / Benefits**
+
+<!-- REPLACE this paragraph with your own experience of the programme's
+     practical arrangements: allowances, credits, certification support,
+     scheduling flexibility, or anything else that applied to you. I have
+     deliberately kept it general because I do not know the specifics. -->
+
+The practical arrangements were clear from the outset, and the flexibility around
+scheduling made it possible to balance the programme with university commitments.
 
 ---
 
 ### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+
+**What did you find most satisfying during your internship?**
+
+Watching the concurrency test succeed. Two browsers, the same seat, the same
+moment - one booking confirmed, one rejected with the contested seat named in the
+response. That single result connected a database concept I had only read about
+to a piece of software I had built and deployed myself, and it was the moment the
+whole programme stopped feeling like a sequence of exercises and started feeling
+like engineering.
+
+A close second was the point at which a feature moved from a server to a
+serverless function without the frontend noticing. Seeing that the interface
+contract, not the compute service, is what actually matters was a genuinely
+useful shift in how I think about systems.
+
+**What do you think the company should improve for future interns?**
+
+Two suggestions, offered constructively.
+
+First, cost awareness could come slightly earlier and more concretely. Billing
+and the Free Tier are covered at the start, but the specific traps - resources
+that bill hourly whether or not they are used, unattached addresses, forgotten
+gateways - are the kind of thing most people learn by being surprised. A short,
+blunt list of the components that generate unexpected charges, given in the first
+week, would save a lot of anxiety.
+
+Second, a checkpoint on the report itself around the midpoint would help. The
+report is a significant deliverable, and it is easy to defer it until the
+technical work is finished - at which point reconstructing what happened in week
+three is much harder than it would have been at the time. Even a brief review of
+work-in-progress reports would encourage people to write as they go.
+
+**If recommending to a friend, would you suggest they intern here? Why or why
+not?**
+
+Yes, with one qualification. The programme suits someone prepared to drive their
+own learning: the structure and support are there, but the depth achieved depends
+heavily on how far you push the practical work beyond the minimum. A person
+looking to be taught passively would get less from it than a person willing to
+break things and investigate why.
+
+For anyone in that second group, I would recommend it without hesitation. Few
+opportunities at this stage let you take a system from an empty account to a
+deployed, monitored, publicly reachable application - and then require you to
+explain every decision you made along the way.
 
 ---
 
 ### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+
+**Any other comments (free sharing):**
+
+Thank you to the mentors and the FCJ team for the time and care put into this
+programme. Being given real problems, room to get stuck on them, and support at
+exactly the moment it was needed is a rare combination, and I have learned a
+great deal because of it. I am grateful for the opportunity.

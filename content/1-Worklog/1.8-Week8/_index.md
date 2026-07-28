@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-### Week 8 Objectives: Caerus — Deploying to AWS
+### Week 8 Objectives: Caerus - Deploying to AWS
 
 * Move the database to Amazon RDS and the static site to Amazon S3.
 * Deploy the API to Amazon EC2 and secure the connection between the two.

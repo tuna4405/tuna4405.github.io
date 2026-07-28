@@ -29,8 +29,8 @@ carried out day by day, and what was actually achieved.
 
 **Week 6:** [Serverless, monitoring, and project scoping](1.6-week6/)
 
-**Week 7:** [Caerus — design and local build](1.7-week7/)
+**Week 7:** [Caerus - design and local build](1.7-week7/)
 
-**Week 8:** [Caerus — deploying to AWS](1.8-week8/)
+**Week 8:** [Caerus - deploying to AWS](1.8-week8/)
 
-**Week 9:** [Caerus — serverless, monitoring, and testing](1.9-week9/)
+**Week 9:** [Caerus - serverless, monitoring, and testing](1.9-week9/)

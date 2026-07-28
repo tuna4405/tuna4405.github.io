@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# Caerus — A Cinema Seat Booking Platform
+# Caerus - A Cinema Seat Booking Platform
 ## Guaranteeing Seat Integrity Under Concurrency with AWS Managed Services
 
 ### 1. Executive Summary
@@ -32,8 +32,8 @@ against a shared API contract agreed before any code was written.
 
 #### What's the Problem?
 
-Selling reserved seats is deceptively hard. The naive implementation — read the
-seat's availability, then write a booking — contains a race condition: two
+Selling reserved seats is deceptively hard. The naive implementation - read the
+seat's availability, then write a booking - contains a race condition: two
 requests can both read "available" before either writes, and the cinema sells
 one chair twice. The failure is silent, intermittent, and only appears under the
 exact conditions that matter most, when a popular screening opens and many
@@ -41,7 +41,7 @@ customers converge on the same few good seats.
 
 A student project that ignores this produces a booking system that appears to
 work in a demo and is fundamentally broken in production. A project that
-addresses it has to reason about transactions, isolation, and locking — which is
+addresses it has to reason about transactions, isolation, and locking - which is
 precisely the kind of problem cloud infrastructure is meant to support rather
 than solve on its own.
 
@@ -64,8 +64,8 @@ seat is booked or none is.
 The remaining components are chosen to keep operational cost and effort low. The
 React frontend is a static site served directly from Amazon S3, so there is no
 web server to maintain. The Express API runs on a single Amazon EC2 instance.
-Poster images and generated PDF tickets live in S3. Ticket generation — an
-infrequent, bursty, stateless operation — runs on AWS Lambda behind Amazon API
+Poster images and generated PDF tickets live in S3. Ticket generation - an
+infrequent, bursty, stateless operation - runs on AWS Lambda behind Amazon API
 Gateway rather than consuming capacity on the API instance. Amazon CloudWatch
 collects metrics and application logs, and an alarm publishes to Amazon SNS when
 the booking failure rate exceeds five percent.
@@ -77,7 +77,7 @@ interface customers operate themselves, and it does so with a correctness
 guarantee that can be demonstrated rather than asserted. For the operator, the
 running cost is negligible: the entire architecture sits within the AWS Free
 Tier for the first twelve months, and the components that would eventually
-dominate the bill — the EC2 instance and the RDS instance — are the two that
+dominate the bill - the EC2 instance and the RDS instance - are the two that
 would be resized first if demand grew.
 
 For the team, the project produces transferable evidence of competence across
@@ -103,10 +103,10 @@ time-limited pre-signed download URL.
 - **Amazon EC2**: Hosts the Express API server under `pm2`. A single instance in
   a public subnet handles authentication, event listing, seat maps, booking, and
   cancellation.
-- **Amazon RDS for PostgreSQL**: Stores the five core tables — `users`,
+- **Amazon RDS for PostgreSQL**: Stores the five core tables - `users`,
   `events`, `seats`, `bookings`, and `booking_seats`. Chosen for ACID
   transactions and row-level locking.
-- **Amazon S3**: Three roles across two buckets — static hosting for the React
+- **Amazon S3**: Three roles across two buckets - static hosting for the React
   build, storage for event posters, and storage for generated PDF tickets.
 - **AWS Lambda**: One function generating PDF tickets on demand. Stateless,
   invoked rarely, and billed only while running.
@@ -149,25 +149,25 @@ time-limited pre-signed download URL.
 
 #### Implementation Phases
 
-**Phase 1 — Design the contract (2 days).** Agree the API specification and the
+**Phase 1 - Design the contract (2 days).** Agree the API specification and the
 database schema in a single session before any code is written, and freeze both
 as documents that neither developer changes unilaterally. This is what allows
 the backend and frontend to be built simultaneously rather than sequentially.
 
-**Phase 2 — Parallel local development (5 days).** The backend implements the
+**Phase 2 - Parallel local development (5 days).** The backend implements the
 Express API against a Dockerised PostgreSQL container, including the booking
 transaction. The frontend builds the event list, seat picker, and bookings
 screens against mock JSON files shaped exactly like the agreed responses.
 Integration follows, connecting the interface to the live API and resolving
 mismatches.
 
-**Phase 3 — Migrate to managed AWS services (7 days).** The same migration and
+**Phase 3 - Migrate to managed AWS services (7 days).** The same migration and
 seed SQL files run against RDS with a different connection string. Both S3
 buckets are created and static hosting enabled. The API is deployed to EC2 under
 `pm2`, security groups are narrowed so the database accepts traffic only from
 the application instance, and the production frontend build is published to S3.
 
-**Phase 4 — Serverless, monitoring, and verification (7 days).** Ticket
+**Phase 4 - Serverless, monitoring, and verification (7 days).** Ticket
 generation moves to Lambda behind API Gateway. CloudWatch dashboards, log
 shipping, and the failure-rate alarm are configured. The concurrency test is
 executed against the deployed system, followed by edge-case testing and polish.
@@ -192,16 +192,16 @@ executed against the deployed system, followed by edge-case testing and polish.
 
 The project runs for four weeks inside the wider internship period.
 
-- **Week 1 — Fundamentals and local build.** AWS core concepts, account and IAM
+- **Week 1 - Fundamentals and local build.** AWS core concepts, account and IAM
   setup, the design session, parallel development, and local integration.
   *Milestone: the complete application running on localhost.*
-- **Week 2 — Managed services and deployment.** RDS, S3, and EC2 studied and
+- **Week 2 - Managed services and deployment.** RDS, S3, and EC2 studied and
   then used; the application deployed and reachable on a public address.
   *Milestone: live on AWS.*
-- **Week 3 — Serverless and observability.** Lambda and API Gateway, CloudWatch
+- **Week 3 - Serverless and observability.** Lambda and API Gateway, CloudWatch
   dashboards and alarms, then concurrency and edge-case testing.
   *Milestone: feature-complete and verified.*
-- **Week 4 — Report and demonstration.** Written report, screenshots assembled,
+- **Week 4 - Report and demonstration.** Written report, screenshots assembled,
   demonstration script and backup recording prepared.
   *Milestone: submitted.*
 
@@ -272,7 +272,7 @@ the billing alarm fires.
   developer users so the alarm configuration cannot be disabled accidentally.
 - **Availability**: Accepted rather than mitigated. A single instance is a
   deliberate scope decision appropriate to the project's scale; the report
-  documents what a production deployment would add — a load balancer, an
+  documents what a production deployment would add - a load balancer, an
   auto-scaling group, and a multi-AZ database.
 - **Database exposure**: The database security group accepts connections only
   from the application instance's security group, not from arbitrary addresses.
@@ -302,8 +302,8 @@ with an alarm proven to fire and notify rather than merely configured.
 
 #### Long-term Value
 
-The project produces a working comparison of two compute models — a persistent
-server and an on-demand function — implementing endpoints against the same
+The project produces a working comparison of two compute models - a persistent
+server and an on-demand function - implementing endpoints against the same
 database with identical contracts, which is the clearest available illustration
 of why the compute choice is an operational decision rather than a functional
 one. It also produces an evidence-based argument for relational storage: the
