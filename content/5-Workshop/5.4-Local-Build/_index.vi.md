@@ -10,10 +10,6 @@ pre : " <b> 5.4. </b> "
 
 <!-- Dịch từ bản tiếng Anh sau khi hoàn thành nội dung. -->
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Thay nội dung mẫu này bằng phần viết của bạn.
-{{% /notice %}}
-
 #### Nội dung
 
 - [Backend: Express và PostgreSQL trên Docker](5.4.1-backend/)

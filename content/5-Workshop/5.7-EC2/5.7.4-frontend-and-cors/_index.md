@@ -15,9 +15,7 @@ console error before the fix - it makes the section real.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
+
 
 <!-- ![description](/images/5-Workshop/5.7-EC2/5.7.4-frontend-and-cors/example.png) -->
 

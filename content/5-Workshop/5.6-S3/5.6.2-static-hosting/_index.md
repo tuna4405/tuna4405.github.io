@@ -14,9 +14,7 @@ Screenshot the resulting website endpoint serving the built site.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
+
 
 <!-- ![description](/images/5-Workshop/5.6-S3/5.6.2-static-hosting/example.png) -->
 

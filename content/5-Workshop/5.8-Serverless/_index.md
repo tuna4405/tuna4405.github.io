@@ -13,9 +13,6 @@ Two endpoints move off EC2 to serverless with identical request and response
 shapes, so the frontend never notices the switch.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
 
 #### Content
 

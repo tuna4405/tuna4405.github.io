@@ -18,9 +18,7 @@ RDS, two endpoints on Lambda behind API Gateway, and CloudWatch over all of it.
 Name the region: ap-southeast-1.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+
 
 #### Content
 

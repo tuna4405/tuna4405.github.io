@@ -15,9 +15,7 @@ buckets, then the IAM roles, then the alarms and SNS topic. Finish with a
 screenshot showing no running resources.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+
 
 <!-- Screenshots go in static/images/5-Workshop/5.12-Cleanup/ and are referenced like:
 ![description](/images/5-Workshop/5.12-Cleanup/example.png)

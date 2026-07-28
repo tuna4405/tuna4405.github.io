@@ -13,9 +13,6 @@ Week 1: everything running on localhost before touching AWS. Keep this section
 brief - it is the least AWS-flavoured part of the report.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
 
 #### Content
 

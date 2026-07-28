@@ -11,6 +11,3 @@ pre : " <b> 5.9.2 </b> "
 1. Bước một
 2. Bước hai
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Thay nội dung mẫu này bằng phần viết của bạn.
-{{% /notice %}}

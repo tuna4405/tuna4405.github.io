@@ -13,9 +13,6 @@ The two shared contracts agreed before any code was written, plus the screen
 map. This section is design only - no AWS console work yet.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
 
 #### Content
 

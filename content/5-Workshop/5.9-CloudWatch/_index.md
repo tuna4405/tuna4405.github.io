@@ -13,9 +13,6 @@ Observability across all four compute and data services, plus one alarm that
 actually pages someone.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
 
 #### Content
 

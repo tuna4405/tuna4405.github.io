@@ -13,9 +13,7 @@ Moving the database from a local container to a managed instance. The same two
 SQL files run against RDS with a different connection string.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+
 
 #### Content
 

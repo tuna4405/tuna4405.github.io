@@ -15,9 +15,6 @@ $10 billing alarm. Local tooling: Node 20+, Docker Desktop, ports 5173 / 3000
 / 5433.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
 
 <!-- Screenshots go in static/images/5-Workshop/5.2-Prerequisites/ and are referenced like:
 ![description](/images/5-Workshop/5.2-Prerequisites/example.png)

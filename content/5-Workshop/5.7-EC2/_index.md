@@ -13,9 +13,7 @@ The compute story: the Express API moves from a laptop to an instance, and the
 React build moves to S3. This is where the app becomes public.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+
 
 #### Content
 

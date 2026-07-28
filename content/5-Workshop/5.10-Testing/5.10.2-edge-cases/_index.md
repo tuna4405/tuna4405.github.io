@@ -15,10 +15,6 @@ code, and actual result.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
-
 <!-- ![description](/images/5-Workshop/5.10-Testing/5.10.2-edge-cases/example.png) -->
 
 {{% notice warning %}}

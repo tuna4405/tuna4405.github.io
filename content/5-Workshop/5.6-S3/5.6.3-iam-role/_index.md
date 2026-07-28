@@ -14,9 +14,6 @@ Explain instance-role credentials vs hard-coded keys.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
 
 <!-- ![description](/images/5-Workshop/5.6-S3/5.6.3-iam-role/example.png) -->
 

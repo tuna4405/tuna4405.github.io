@@ -13,9 +13,7 @@ The tests that justify the whole design, run against the deployed system
 rather than localhost.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+
 
 #### Content
 

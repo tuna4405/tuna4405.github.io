@@ -14,9 +14,7 @@ auth and CORS at the gateway.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
+
 
 <!-- ![description](/images/5-Workshop/5.8-Serverless/5.8.3-api-gateway/example.png) -->
 

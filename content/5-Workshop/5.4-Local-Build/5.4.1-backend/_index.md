@@ -15,9 +15,6 @@ and explain why the lock ordering prevents deadlocks.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
 
 <!-- ![description](/images/5-Workshop/5.4-Local-Build/5.4.1-backend/example.png) -->
 

@@ -14,9 +14,6 @@ ALARM state and the email it sent - an alarm only in OK state proves nothing.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
 
 <!-- ![description](/images/5-Workshop/5.9-CloudWatch/5.9.3-alarms/example.png) -->
 

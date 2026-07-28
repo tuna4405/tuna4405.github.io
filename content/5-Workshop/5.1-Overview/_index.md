@@ -14,10 +14,6 @@ problem the project demonstrates: no seat is ever double-booked under
 concurrency. List the AWS services used and why. End with architecture.png.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
-
 <!-- Screenshots go in static/images/5-Workshop/5.1-Overview/ and are referenced like:
 ![description](/images/5-Workshop/5.1-Overview/example.png)
 -->

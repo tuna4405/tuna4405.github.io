@@ -14,9 +14,6 @@ lands in S3, the URL is stored in banner_url, and the event card renders it.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
 
 <!-- ![description](/images/5-Workshop/5.6-S3/5.6.4-verify-upload/example.png) -->
 

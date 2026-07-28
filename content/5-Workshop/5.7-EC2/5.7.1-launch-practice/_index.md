@@ -14,9 +14,7 @@ then show it terminated. Note the same-day termination habit.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
+
 
 <!-- ![description](/images/5-Workshop/5.7-EC2/5.7.1-launch-practice/example.png) -->
 

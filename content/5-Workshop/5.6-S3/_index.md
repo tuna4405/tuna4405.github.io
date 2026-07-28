@@ -13,9 +13,7 @@ Two buckets with different jobs: one serves the React site to the public, one
 holds event posters and generated PDF tickets.
 -->
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+
 
 #### Content
 

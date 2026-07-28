@@ -15,10 +15,6 @@ summary table. Explain why the spec is frozen as a contract.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
-
 <!-- ![description](/images/5-Workshop/5.3-Design/5.3.1-api-spec/example.png) -->
 
 {{% notice warning %}}

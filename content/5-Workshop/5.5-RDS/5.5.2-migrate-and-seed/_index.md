@@ -14,9 +14,6 @@ commands and the output.
 1. Step one
 2. Step two
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
 
 <!-- ![description](/images/5-Workshop/5.5-RDS/5.5.2-migrate-and-seed/example.png) -->
 
