@@ -1,57 +1,30 @@
 ---
 title: "Week 8 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-01
+weight: 8
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 8 Objectives: Caerus — Deploying to AWS
 
-### Week 8 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Move the database to Amazon RDS and the static site to Amazon S3.
+* Deploy the API to Amazon EC2 and secure the connection between the two.
+* Have the application publicly reachable.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Studied RDS and S3 together in the morning <br> - **[Backend lane]** Launched the RDS instance and ran the migration and seed files against it with a changed connection string <br> - **[Frontend lane]** Created both S3 buckets and enabled static website hosting on the site bucket | 20/07/2026 | 20/07/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/> |
+| 3 | - S3 in practice: <br> - **[Backend lane]** Implemented poster upload through the AWS SDK and created the IAM role for the instance to write to the images bucket <br> - **[Frontend lane]** Built the admin upload interface and poster display on event cards <br> - Noted the account constraint that every role name must carry the `caerus-` prefix, so the role was named accordingly | 21/07/2026 | 21/07/2026 | <https://docs.aws.amazon.com/AmazonS3/latest/userguide/> |
+| 4 | - Studied EC2 together <br> - Both team members completed the launch-and-terminate exercise on their own IAM user <br> - Confirmed in the Console afterwards that no instance was left running | 22/07/2026 | 22/07/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 5 | - Deployment: <br> - **[Backend lane]** Launched the EC2 instance, installed Node.js, deployed the API under a process manager, and narrowed the security groups so the database accepts traffic only from the instance's security group <br> - **[Frontend lane]** Built the production React bundle, published it to S3, and pointed it at the EC2 API <br> - Resolved the expected cross-origin failures by configuring permitted origins on the API <br> - Updated the specification: timestamps now represent showtimes in `Asia/Ho_Chi_Minh`, and the event image is defined as a portrait poster | 23/07/2026 | 24/07/2026 | <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS> |
+| 7 | - Buffer: fixed outstanding issues from the deployment and verified the booking flow end to end against the deployed environment <br> - **Milestone reached:** the application live on AWS | 25/07/2026 | 26/07/2026 |  |
 
 ### Week 8 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Migrated from a local Docker database to a managed RDS instance by changing only a connection string, validating the decision to keep migrations as plain SQL files.
+* Published the frontend to S3 static website hosting and the API to EC2, with the two communicating across origins.
+* Configured security groups so the database is reachable only from the application instance rather than from the internet.
+* Resolved cross-origin request failures at the API rather than working around them in the browser.

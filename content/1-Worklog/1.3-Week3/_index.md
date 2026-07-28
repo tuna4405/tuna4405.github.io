@@ -1,57 +1,30 @@
 ---
 title: "Week 3 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-01
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 3 Objectives: Networking with Amazon VPC
 
-### Week 3 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand VPC components and how traffic is routed in and out of a network.
+* Distinguish security groups from network ACLs and know when each applies.
+* Understand VPC endpoints and the cost implications of NAT gateways.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - VPC fundamentals: <br> &emsp; + CIDR blocks and address planning <br> &emsp; + Subnets, and what actually makes a subnet public or private <br> &emsp; + How subnets map onto Availability Zones | 15/06/2026 | 15/06/2026 | <https://docs.aws.amazon.com/vpc/latest/userguide/> |
+| 3 | - Routing and gateways: <br> &emsp; + Route tables and the default local route <br> &emsp; + Internet gateway <br> &emsp; + NAT gateway versus NAT instance, and the hourly cost of a NAT gateway <br> - Noted that a forgotten NAT gateway is one of the most common unexpected charges | 16/06/2026 | 16/06/2026 | <https://docs.aws.amazon.com/vpc/latest/userguide/> |
+| 4 | - Traffic filtering: <br> &emsp; + Security groups: stateful, allow rules only, attached to an interface <br> &emsp; + Network ACLs: stateless, allow and deny, attached to a subnet <br> &emsp; + Referencing one security group from another instead of hard-coding addresses | 17/06/2026 | 17/06/2026 | <https://docs.aws.amazon.com/vpc/latest/userguide/> |
+| 5 | - VPC endpoints: <br> &emsp; + Gateway endpoints for Amazon S3 and DynamoDB <br> &emsp; + Interface endpoints and AWS PrivateLink <br> &emsp; + Why keeping S3 traffic off the public internet matters for both security and data transfer cost | 18/06/2026 | 18/06/2026 | <https://docs.aws.amazon.com/vpc/latest/userguide/> |
+| 6 | - **Practice:** <br> &emsp; + Build a VPC by hand: two subnets, route tables, and an internet gateway <br> &emsp; + Launch an instance into the public subnet and confirm connectivity <br> &emsp; + Tighten a security group and observe the connection failing <br> &emsp; + Delete the VPC and its dependencies in the correct order | 19/06/2026 | 19/06/2026 | <https://docs.aws.amazon.com/vpc/latest/userguide/> |
 
 ### Week 3 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Can build a working VPC from an empty Region and explain the purpose of every component created.
+* Can articulate the practical difference between a security group and a network ACL, and know that referencing a security group by ID is preferable to referencing an IP range.
+* Understand where a gateway endpoint fits in an architecture that moves data between compute and S3.
+* Aware of which networking components carry an hourly charge regardless of traffic, and why they must be deleted after practice.

@@ -1,57 +1,30 @@
 ---
 title: "Week 9 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-01
+weight: 9
 chapter: false
 pre: " <b> 1.9. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 9 Objectives: Caerus — Serverless, Monitoring, and Testing
 
-### Week 9 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Move ticket generation to a Lambda function behind API Gateway.
+* Put dashboards, log collection, and an alarm in place across all services.
+* Prove the concurrency guarantee against the deployed system.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Studied Lambda and API Gateway together <br> - Both team members completed the hello-world function tutorial individually <br> - Reviewed which endpoints are genuinely suited to a function: infrequent, stateless, and bursty | 27/07/2026 | 27/07/2026 | <https://docs.aws.amazon.com/lambda/latest/dg/> |
+| 3 | - Serverless build: <br> - **[Backend lane]** Built the ticket generation function, its execution role, and the API Gateway route; the function renders the PDF, writes it to the tickets bucket, and returns a pre-signed URL <br> - **[Frontend lane]** Wired the download button to the new route and confirmed the response shape is unchanged from the specification <br> - Revised the plan: booking cancellation stays on the API server rather than moving to a function, since it shares the same transaction logic as booking and gains nothing from being split out <br> - Updated the specification change log accordingly | 28/07/2026 | 29/07/2026 | <https://docs.aws.amazon.com/apigateway/latest/developerguide/> |
+| 4 | - Studied CloudWatch together in the morning <br> - **[Backend lane]** Installed the CloudWatch agent on the instance and shipped the API logs to a log group; added instance and database metrics to a dashboard <br> - **[Frontend lane]** Added function and gateway metrics to the same dashboard | 30/07/2026 | 30/07/2026 | <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/> |
+| 5 | - **[Backend lane]** Created the alarm on booking failure rate, wired to an SNS topic delivering email <br> - **[Frontend lane]** Captured screenshots across every service and started the shared report evidence folder <br> - Deliberately triggered the alarm to confirm it fires and notifies, rather than leaving it untested in the OK state | 31/07/2026 | 31/07/2026 | <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/> |
+| 7 | - Testing and polish, working together: <br> &emsp; + The concurrency test: two browsers, the same seat, the same moment — one booking succeeded and the other received a conflict response naming the contested seat <br> &emsp; + Edge cases: cancelling after showtime, exceeding the seat limit per booking, expired tokens, non-admin access to admin routes <br> &emsp; + Refreshed the demonstration data so seeded screenings are in the future | 01/08/2026 | 01/08/2026 |  |
 
 ### Week 9 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Moved an endpoint from a persistent server to an on-demand function without any change visible to the frontend, demonstrating that the compute choice is an operational decision rather than a functional one.
+* Revised an earlier design decision on evidence, keeping cancellation on the API server because splitting it would have duplicated transaction logic for no benefit.
+* Built a dashboard covering compute, database, function, and gateway metrics, with application logs searchable in one place.
+* Proved the no-double-booking guarantee against the deployed system rather than asserting it, with both the successful and the rejected request captured as evidence.

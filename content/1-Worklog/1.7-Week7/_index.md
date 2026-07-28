@@ -1,57 +1,29 @@
 ---
 title: "Week 7 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-01
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 7 Objectives: Caerus — Design and Local Build
 
-### Week 7 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Agree the API specification and database schema as a frozen contract before writing code.
+* Build the backend and frontend in parallel against that contract.
+* Reach a fully working application on localhost.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - Reviewed AWS core concepts together: IAM, Regions and Availability Zones, security groups, Free Tier, billing <br> - **[Backend lane]** Created the shared AWS account, billing alarm, and one IAM user per team member <br> - **[Frontend lane]** Created the GitHub repository and configured branch protection so all work merges through pull requests <br> - Agreed two working habits: terminate practice resources the same day, and tag every resource with an `Owner` value | 13/07/2026 | 13/07/2026 |  |
+| 3 | - Design session — the most important day of the project: <br> &emsp; + Agreed the five-table schema: `users`, `events`, `seats`, `bookings`, `booking_seats` <br> &emsp; + Agreed every endpoint, request and response shape, and the standard error format <br> &emsp; + Decided seats belong to a screening rather than to a physical room <br> &emsp; + Decided prices are stored as integers in Vietnamese dong <br> &emsp; + Froze both documents: neither may be changed unilaterally <br> - **[Backend lane]** Wrote up the database schema document <br> - **[Frontend lane]** Wrote up the API specification and drew the architecture diagram | 14/07/2026 | 14/07/2026 |  |
+| 4 | - Parallel local development: <br> - **[Backend lane]** Express API with PostgreSQL running in Docker; implemented the booking transaction using `SELECT ... FOR UPDATE` with consistent lock ordering <br> - **[Frontend lane]** React application with the event list, seat picker, and bookings screens, built against mock JSON files shaped exactly like the agreed responses <br> - Wrapped every API call in a single client module so switching from mocks to the live API is one change | 15/07/2026 | 17/07/2026 | <https://www.postgresql.org/docs/16/explicit-locking.html> |
+| 6 | - Integration, working together at one machine: one driving, one debugging <br> - Connected the frontend to the live API and resolved the mismatches the mocks had hidden <br> - Tested the booking flow end to end and confirmed a seat map refresh reflects another user's booking <br> - **Milestone reached:** the complete application running on localhost | 18/07/2026 | 19/07/2026 |  |
 
 ### Week 7 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Produced two agreed contract documents that allowed both developers to work simultaneously rather than one waiting on the other.
+* Implemented the booking transaction with row-level locking, the central technical requirement of the project.
+* Built a frontend that was never blocked on backend progress, by developing against mock data shaped to the specification.
+* Completed local integration on schedule, with the whole application demonstrable on localhost.

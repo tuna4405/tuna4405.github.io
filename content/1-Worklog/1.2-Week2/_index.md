@@ -1,57 +1,30 @@
 ---
 title: "Week 2 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-01
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 2 Objectives: Identity and Access Management
 
-### Week 2 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand the IAM identity model and be able to read and write policy documents.
+* Understand why roles are preferred over long-lived access keys.
+* Apply least privilege to a realistic multi-user setup.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - IAM core concepts: <br> &emsp; + Users, groups, roles, and policies <br> &emsp; + Authentication versus authorisation <br> &emsp; + How a request is evaluated: explicit deny, explicit allow, implicit deny | 08/06/2026 | 08/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/> |
+| 3 | - Anatomy of a policy document: <br> &emsp; + `Effect`, `Action`, `Resource`, `Condition` <br> &emsp; + Identity-based versus resource-based policies <br> &emsp; + AWS managed, customer managed, and inline policies <br> - Wildcards and the risks of `Action: "*"` | 09/06/2026 | 09/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/> |
+| 4 | - IAM roles in depth: <br> &emsp; + Trust policy versus permissions policy <br> &emsp; + Assuming a role and temporary credentials via STS <br> &emsp; + Instance profiles: how an EC2 instance obtains credentials without stored keys <br> &emsp; + Service-linked roles and execution roles | 10/06/2026 | 10/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/> |
+| 5 | - **Practice:** <br> &emsp; + Create an IAM group and attach a managed policy <br> &emsp; + Create two IAM users and add them to the group <br> &emsp; + Enforce MFA on both users <br> &emsp; + Deliberately attempt a denied action and read the resulting error <br> &emsp; + Use the IAM policy simulator to test a policy before applying it | 11/06/2026 | 11/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/> |
+| 6 | - Guardrails and governance: <br> &emsp; + Permission boundaries and how they cap a user's maximum permissions <br> &emsp; + Naming and tagging conventions as a governance tool <br> &emsp; + Restricting billing access while leaving cost visibility intact <br> - Self-study: read the IAM security best practice guidance and compared it against my own account setup | 12/06/2026 | 12/06/2026 | <https://docs.aws.amazon.com/IAM/latest/UserGuide/> |
 
 ### Week 2 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Can read a policy JSON document and predict whether a given request will be allowed or denied.
+* Understand why an application running on EC2 should use an instance role rather than embedded access keys, and can explain how the credentials are delivered.
+* Built a working group-and-user setup with least privilege and MFA, and verified the restrictions by testing denied actions rather than assuming them.
+* Understand how permission boundaries and naming conventions can enforce policy at scale.

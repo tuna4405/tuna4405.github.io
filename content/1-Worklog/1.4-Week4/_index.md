@@ -1,57 +1,31 @@
 ---
 title: "Week 4 Worklog"
-date: 2024-01-01
-weight: 1
+date: 2026-06-01
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
 
+### Week 4 Objectives: Compute with Amazon EC2
 
-### Week 4 Objectives:
-
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand instance sizing, pricing models, and storage options.
+* Be able to deploy and keep a web application running on an instance.
+* Understand the concepts behind load balancing and automatic scaling.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2 | - EC2 fundamentals: <br> &emsp; + Instance families and what each is optimised for <br> &emsp; + Instance sizing and which classes are Free Tier eligible <br> &emsp; + Purchasing options: on-demand, reserved, savings plans, and spot | 22/06/2026 | 22/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 3 | - Instance configuration: <br> &emsp; + Amazon Machine Images and where they come from <br> &emsp; + Key pairs and SSH access <br> &emsp; + User data scripts for first-boot configuration <br> &emsp; + Instance metadata service | 23/06/2026 | 23/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 4 | - Storage for instances: <br> &emsp; + EBS volume types and their performance characteristics <br> &emsp; + EBS versus instance store, and what happens to each on stop and terminate <br> &emsp; + Snapshots and restoring from them <br> &emsp; + Elastic IP addresses, and why an unattached one is charged | 24/06/2026 | 24/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 5 | - **Practice:** <br> &emsp; + Launch an instance, connect over SSH, and install Node.js <br> &emsp; + Run a small HTTP server and reach it from a browser <br> &emsp; + Keep the process alive across a reboot using a process manager <br> &emsp; + Terminate the instance the same day and confirm in the Console that nothing remains | 25/06/2026 | 25/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 6 | - Scaling and availability concepts: <br> &emsp; + Elastic Load Balancing and target groups <br> &emsp; + Auto Scaling groups, launch templates, and health checks <br> &emsp; + Vertical versus horizontal scaling <br> - Self-study: considered which of these a small project genuinely needs and which are out of scope | 26/06/2026 | 26/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Can launch, configure, connect to, and terminate an EC2 instance confidently, and can select an appropriate instance class for a given workload.
+* Deployed a running Node.js application on an instance and kept it alive under a process manager.
+* Understand the difference between stopping and terminating an instance, and which storage survives each.
+* Established the habit of terminating practice resources on the same day they are created.
+* Can explain how a load balancer and an auto scaling group would improve availability, and can articulate why a single instance may still be an acceptable choice for a small project.
