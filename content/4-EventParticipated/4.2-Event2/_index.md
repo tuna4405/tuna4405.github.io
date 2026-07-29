@@ -21,7 +21,7 @@ pre: " <b> 4.2. </b> "
 - **Plan V** — *Solution Architect Professional Native App*
   (Pham Tien Thuan Phat, Huynh Hoang Long, Le Minh Nghia, Tran Dai Vi, Nguyen An)
 - **Signal Scout** — *Corporate signal detection platform*
-  (Le Tan Luc, Đo Hoang Hieu, Trieu Quoc Hao, Nguyen Duy Khiem, Nguyen Cong Minh, Nguyen Tran Minh Quan)
+  (Le Tan Luc, Do Hoang Hieu, Trieu Quoc Hao, Nguyen Duy Khiem, Nguyen Cong Minh, Nguyen Tran Minh Quan)
 - **One Team** — *KFC Bot Agent*, winner of the AABW Hackathon
   (Anh Duy, Tran Dong, Doan Trung, Minh Viet, Anshul Roy)
 - **3KA** — *S.H.E.P.H.E.R.D* and the hackathon journey
@@ -85,10 +85,10 @@ non-AWS dependencies:
 
 | | Min | Mid | Max |
 |---|---|---|---|
-| AWS services total | ≈ $17 | ≈ $35 | ≈ $130 |
+| AWS services total | ~ $17 | ~ $35 | ~ $130 |
 | Third-party crawling | ~$35 | ~$30 | ~$200 |
 | Observability tooling | $0–29 | $29 | $29 |
-| **Total** | **≈ $81** | **≈ $94** | **≈ $359** |
+| **Total** | **~ $81** | **~ $94** | **~ $359** |
 
 They then presented a revised, more cost-efficient architecture — showing the
 cost analysis had actually fed back into the design rather than being produced

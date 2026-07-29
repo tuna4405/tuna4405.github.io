@@ -69,7 +69,7 @@ for supply chain; a technical interview with a tech lead or manager working
 through real problems using the STAR structure; and finally a culture-fit
 interview with leadership assessing alignment with core values.
 
-On culture itself, the talk quoted Dr. Giản Tư Trung's definition — that
+On culture itself, the talk quoted Dr. Gian Tu Trung's definition — that
 corporate culture is how a business thinks, lives, and works, or more concretely
 how each individual within it does so. Two contrasting cultures were given as
 examples: **no-blame post-mortem** in technology firms, where a serious incident
@@ -81,7 +81,7 @@ The session closed with a historical arc — Japan's *Wakon Yōsai* principle of
 retaining national identity while mastering Western technique, culminating in
 the Toyota Production System; Korea's Han River miracle and its export-driven
 conglomerates forced to meet strict international standards; and Vietnam's own
-path from isolation through Đổi Mới to connecting to the global internet on 19
+path from isolation through Doi Moi to connecting to the global internet on 19
 November 1997, and from there to FDI, manufacturing, and cloud.
 
 #### Talk 2 — A scalable URL shortening service on AWS
