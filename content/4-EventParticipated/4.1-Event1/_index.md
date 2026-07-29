@@ -21,11 +21,11 @@ pre: " <b> 4.1. </b> "
 
 ### Speakers
 
-- **Mr. Đạt Phạm** — Data Analytics Engineer, and **Mr. Cường Nguyễn** — Process
+- **Mr. Dat Pham** — Data Analytics Engineer, and **Mr. Cuong Nguyen** — Process
   Engineer: *From real practice to culture at multinational corporations*
-- **Đinh Trung Kiên** — Lead developer at a startup, and **Nguyễn Minh Thọ** —
+- **Dinh Trung Kien** — Lead developer at a startup, and **Nguyen Minh Tho** —
   Student: *A scalable URL shortening service on AWS*
-- **Danh Hoàng Hiếu Nghị** — AI Engineer, AWS Community Builder, AWS Student
+- **Danh Hoang Hieu Nghi** — AI Engineer, AWS Community Builder, AWS Student
   Builder Group Leader: *From First Cloud AI Journey to AWS Partner*
 - **Trong H. Truong** — DevOps Engineer at Endava Vietnam: *What does a DevOps
   Engineer really do?*

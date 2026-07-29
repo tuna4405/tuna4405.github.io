@@ -19,13 +19,13 @@ pre: " <b> 4.2. </b> "
 ### Presenting Teams
 
 - **Plan V** — *Solution Architect Professional Native App*
-  (Phạm Tiến Thuận Phát, Huỳnh Hoàng Long, Lê Minh Nghĩa, Trần Đại Vĩ, Nguyễn An)
+  (Pham Tien Thuan Phat, Huynh Hoang Long, Le Minh Nghia, Tran Dai Vi, Nguyen An)
 - **Signal Scout** — *Corporate signal detection platform*
-  (Lê Tấn Lực, Đỗ Hoàng Hiếu, Triệu Quốc Hào, Nguyễn Văn Duy Khiêm, Nguyễn Công Minh, Nguyễn Trần Minh Quân)
+  (Le Tan Luc, Đo Hoang Hieu, Trieu Quoc Hao, Nguyen Duy Khiem, Nguyen Cong Minh, Nguyen Tran Minh Quan)
 - **One Team** — *KFC Bot Agent*, winner of the AABW Hackathon
-  (Anh Duy, Trần Đông, Đoàn Trung, Minh Việt, Anshul Roy)
+  (Anh Duy, Tran Dong, Doan Trung, Minh Viet, Anshul Roy)
 - **3KA** — *S.H.E.P.H.E.R.D* and the hackathon journey
-  (Huỳnh An Khương, Nguyễn Quốc Huy, Ngô Quang Khôi, Hoàng Lê Thành Đức, Đặng Nguyễn Phước Lộc, Đặng Trường Hưng)
+  (Huynh An Khuong, Nguyen Quoc Huy, Ngo Quang Khoi, Hoang Le Thanh Duc, Dang Nguyen Phuoc Loc, Dang Truong Hung)
 
 ---
 
