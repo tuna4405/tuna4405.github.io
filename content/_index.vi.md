@@ -13,7 +13,7 @@ chapter: false
 
 &emsp; **Email:** tuan.pham040405@hcmut.edu.vn
 
-&emsp; **Trường:** Đại học Bách Khoa TP.HCM
+&emsp; **Trường:** Đại học Bách Khoa TP.HCM (BKU)
 
 &emsp; **Ngành:** Khoa học Máy tính
 

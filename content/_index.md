@@ -16,7 +16,7 @@ chapter: false
 
 &emsp; **Email:** tuan.pham040405@hcmut.edu.vn
 
-&emsp; **University:** Ho Chi Minh City University of Technology
+&emsp; **University:** Ho Chi Minh City University of Technology (BKU)
 
 &emsp; **Major:** Computer Science
 
