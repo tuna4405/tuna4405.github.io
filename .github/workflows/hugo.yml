@@ -77,9 +77,9 @@ jobs:
       - name: Compile Vietnamese PDF
         working-directory: report
         run: |
-          latexmk -pdf -interaction=nonstopmode main.tex
-          latexmk -pdf -interaction=nonstopmode main.tex
-          latexmk -pdf -interaction=nonstopmode main.tex
+          latexmk -pdf -f -interaction=nonstopmode main.tex
+          latexmk -pdf -f -interaction=nonstopmode main.tex
+          latexmk -pdf -f -interaction=nonstopmode main.tex
           cp main.pdf ../report_vn.pdf
 
       - name: Compile English PDF
