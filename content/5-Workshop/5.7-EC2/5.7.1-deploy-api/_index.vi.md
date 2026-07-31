@@ -3,26 +3,15 @@ title : "Hạ tầng mạng Private và Instance Đầu Tiên"
 date : 2026-06-01
 weight : 2
 chapter : false
-pre : " <b> 5.7.2 </b> "
+pre : " <b> 5.7.1 </b> "
 ---
-
-#### Vì sao dùng một cặp subnet riêng, không dùng chung với database
-
-Các private subnet của RDS (mục 5.5.1) nằm sau một route table **không** có
-bất kỳ route `0.0.0.0/0` nào cả - đúng đắn đối với RDS, vốn không bao giờ tự
-khởi tạo lưu lượng đi ra, nhưng sai đối với EC2, vốn cần truy cập đi ra ngoài
-cho `npm ci` và vá lỗi hệ điều hành. Dùng chung subnet của database sẽ có
-nghĩa là phải thêm một route internet vào một route table vốn được xây dựng
-có chủ đích là không có route đó, làm vẩn đục một quyết định thiết kế vốn đã
-đúng như đã viết. Một cặp private subnet thứ hai, riêng biệt - mỗi
-Availability Zone một subnet - giữ cho chính sách mạng của hai tầng độc lập
-với nhau ngay cả khi cả hai đều kết thúc ở trạng thái "private" theo nghĩa
-thông thường của từ này.
 
 1. **Tạo hai private subnet cho tầng ứng dụng**, `caerus-app-private-1a`
    (`ap-southeast-1a`) và `caerus-app-private-1b` (`ap-southeast-1b`), với các
    CIDR block không trùng với bất kỳ subnet hiện có nào, kể cả
    `caerus-private-1a`/`1b` của RDS.
+
+![](/images/5-Workshop/5.7-EC2/ec2_private_subnet.png)
 
 2. **Tạo một NAT gateway cho mỗi Availability Zone**, `caerus-nat-1a` và
    `caerus-nat-1b`, mỗi cái trong subnet **public** của đúng AZ đó (một NAT
@@ -30,18 +19,7 @@ thông thường của từ này.
    giờ nằm trong một subnet private), mỗi cái với một Elastic IP mới cấp
    riêng.
 
-   {{% notice note %}}
-   Một NAT gateway cho mỗi AZ, thay vì dùng chung một cái, là một lựa chọn có
-   chủ đích để giữ cho câu chuyện tính khả dụng của tầng compute nhất quán
-   với thiết kế Multi-AZ của database (mục 5.5.1): nếu AZ chứa
-   `caerus-nat-1a` gặp sự cố, `caerus-app-private-1b` vẫn giữ được đường ra
-   độc lập của riêng nó qua `caerus-nat-1b`, thay vì mất luôn cả egress theo
-   AZ kia. Đánh đổi là chi phí NAT theo giờ tăng gần gấp đôi so với dùng
-   chung một gateway - chấp nhận được ở đây vì phía RDS của kiến trúc này đã
-   trả một khoản phí tương đương cho Multi-AZ, và một tầng compute mất truy
-   cập đi ra ngay khi một AZ trục trặc sẽ làm suy yếu chính cam kết Multi-AZ
-   đó.
-   {{% /notice %}}
+![](/images/5-Workshop/5.7-EC2/ec2_nat.png)
 
 3. **Tạo một route table cho mỗi AZ**, `caerus-app-private-rt-1a` (route
    `0.0.0.0/0` → `caerus-nat-1a`) và `caerus-app-private-rt-1b` (route
@@ -64,23 +42,16 @@ thông thường của từ này.
    công khai theo chủ đích - load balancer ở mục 5.7.5 sẽ là thứ duy nhất
    từng gọi trực tiếp tới nó.
 
-6. **Đóng gói backend ở local** và đưa qua deploy bucket thay vì `git clone`
-   trực tiếp lên instance, để instance không bao giờ cần đến GitHub
-   credentials của riêng nó:
+![](/images/5-Workshop/5.7-EC2/ec2_launch.png)
 
-   ```powershell
-   robocopy backend "$env:TEMP\deploy" /E /XD node_modules .git /XF .env
-   Compress-Archive -Path "$env:TEMP\deploy\*" -DestinationPath "$env:TEMP\backend.zip" -Force
-   ```
-
-   Upload `backend.zip` lên `caerus-backend`.
-
-7. **Kết nối qua Session Manager**, không phải EC2 Instance Connect - instance
+6. **Kết nối qua Session Manager**, không phải EC2 Instance Connect - instance
    không có IP công khai để Instance Connect có thể chạm tới ngay từ đầu. EC2
    Console → chọn `caerus-server-1` → **Connect → Session Manager →
-   Connect**, hoặc `aws ssm start-session --target <instance-id>` từ một
-   terminal đã cấu hình AWS CLI. Phiên làm việc mở ra với user `ssm-user`;
-   chuyển sang `ec2-user` trước để quyền sở hữu file và process `pm2` khởi
+   Connect
+   
+![](/images/5-Workshop/5.7-EC2/ec2_ssm.png)
+
+   quyền sở hữu file và process `pm2` khởi
    động ở dưới khớp với đúng account mà bất kỳ tự động hoá nào sau này mong
    đợi:
 
@@ -93,7 +64,7 @@ thông thường của từ này.
    npm ci --omit=dev
    ```
 
-8. **Tạo `.env`** - file duy nhất không bao giờ nằm trong file zip và không
+7. **Tạo `.env`** - file duy nhất không bao giờ nằm trong file zip và không
    bao giờ nằm trong version control:
 
    ```ini
@@ -106,7 +77,7 @@ thông thường của từ này.
    S3_BUCKET_TICKETS=caerus-tickets-dev
    ```
 
-9. **Chạy dưới `pm2`** để process sống sót qua việc mất kết nối và khởi động
+8. **Chạy dưới `pm2`** để process sống sót qua việc mất kết nối và khởi động
    lại:
 
    ```bash
@@ -116,7 +87,7 @@ thông thường của từ này.
    pm2 save
    ```
 
-10. **Kiểm tra từ bên trong session trước**:
+9. **Kiểm tra từ bên trong session trước**:
 
     ```bash
     curl http://localhost:3000/api/v1/health

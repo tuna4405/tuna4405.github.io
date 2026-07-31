@@ -24,13 +24,14 @@ và sau đó một instance thứ hai cùng một Application Load Balancer - th
 phần đầu tiên trong toàn bộ chuỗi này thực sự mở một đường vào từ internet
 công khai, có chủ đích, tại đúng một điểm duy nhất. Đây là phần mà ứng dụng
 trở nên truy cập được từ bất kỳ đâu, trong khi các instance phục vụ nó vẫn
-không thể truy cập được từ bất kỳ đâu ngoại trừ đúng load balancer đó.
+không thể truy cập được từ bất kỳ đâu ngoại trừ đúng load balancer đó - và,
+cuối cùng, là phần mà database cùng các bucket S3, vốn là hạ tầng nằm im cho
+tới lúc này, nhận được truy vấn thật đầu tiên và object thật đầu tiên của
+chúng.
 
 #### Nội dung
 
-- [Thực hành khởi tạo và huỷ instance](5.7.1-launch-practice/)
-- [Hạ tầng mạng Private và Instance Đầu Tiên](5.7.2-deploy-api/)
-- [Siết chặt Security Group](5.7.3-security-groups/)
-- [Build frontend và xử lý CORS](5.7.4-frontend-and-cors/)
-- [Load Balancer và Instance Thứ Hai](5.7.5-load-balancer/)
-- [CloudFront: Một Domain HTTPS Duy Nhất cho Tất Cả](5.7.6-cloudfront/)
+- [Hạ tầng mạng Private và Instance Đầu Tiên](5.7.1-deploy-api/)
+- [Siết chặt Security Group](5.7.2-security-groups/)
+- [Load Balancer và Instance Thứ Hai](5.7.3-load-balancer/)
+- [CloudFront: Một Domain HTTPS Duy Nhất cho Tất Cả](5.7.4-cloudfront/)

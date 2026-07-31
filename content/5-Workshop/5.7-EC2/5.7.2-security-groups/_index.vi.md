@@ -3,7 +3,7 @@ title : "Siết chặt Security Group"
 date : 2026-06-01
 weight : 3
 chapter : false
-pre : " <b> 5.7.3 </b> "
+pre : " <b> 5.7.2 </b> "
 ---
 
 Hai security group, được tạo ra trước cả khi những tài nguyên chúng bảo vệ tồn
@@ -46,14 +46,5 @@ thay thế, hoặc phải nới rộng ra một dải đủ lớn tới mức tr
 rule tham chiếu theo security group thì không bao giờ cần cập nhật, và luôn
 giữ đúng mức chặt chẽ "chỉ ứng dụng này mới truy cập được database này" trong
 suốt thời gian cả hai group còn tồn tại.
-
-{{% notice note %}}
-Không có kiểu "cửa thoát hiểm" nào như "nếu mất quyền truy cập SSH, sửa rule
-về lại My IP" trong dự án này, vì chưa từng có rule nào gắn quyền truy cập
-với một địa chỉ IP ngay từ đầu. Việc mất IP ở nhà, đổi mạng, hay bàn giao dự
-án cho một thành viên mới không thay đổi gì cách các instance này được truy
-cập tới - Systems Manager xác thực qua IAM, không phải qua việc kết nối xuất
-phát từ đâu.
-{{% /notice %}}
 
 <!-- ![caerus-ec2-sg with zero inbound rules, and caerus-rds-sg admitting 5432 from caerus-ec2-sg](/images/5-Workshop/5.7-EC2/5.7.3-security-groups/example.png) -->

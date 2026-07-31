@@ -3,16 +3,8 @@ title : "Load Balancer and a Second Instance"
 date : 2026-06-01
 weight : 5
 chapter : false
-pre : " <b> 5.7.5 </b> "
+pre : " <b> 5.7.3 </b> "
 ---
-
-A single EC2 instance is a single point of failure - fine for the first
-working deployment, worth improving once it is stable. This section adds a
-second instance in a different Availability Zone and an Application Load
-Balancer in front of both. It is also the first point in the entire project
-where the compute tier gains an actual path in from the public internet -
-everything up to now has been reachable only from inside a Session Manager
-session or through the SSM tunnel from section 5.7.4.
 
 1. **Launch a second instance**, `caerus-server-2`, identical to
    `caerus-server-1` in AMI, instance type, `caerus-ec2-sg`, and IAM instance

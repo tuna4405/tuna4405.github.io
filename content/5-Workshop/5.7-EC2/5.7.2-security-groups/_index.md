@@ -3,7 +3,7 @@ title : "Lock Down Security Groups"
 date : 2026-06-01
 weight : 3
 chapter : false
-pre : " <b> 5.7.3 </b> "
+pre : " <b> 5.7.2 </b> "
 ---
 
 Two security groups, created before the resources they protect even existed
@@ -47,13 +47,6 @@ security-group-referencing rule needs updating never, and stays exactly as
 tight as "only this application can reach this database" for as long as the
 two groups exist.
 
-{{% notice note %}}
-There is no "if SSH access is lost, edit the rule back to My IP" escape hatch
-in this project, because there was never a rule tying access to an IP address
-to begin with. Losing a home IP address, switching networks, or handing the
-project to a new team member changes nothing about how these instances are
-reached - Systems Manager authorizes through IAM, not through where the
-connection happens to originate.
-{{% /notice %}}
+
 
 <!-- ![caerus-ec2-sg with zero inbound rules, and caerus-rds-sg admitting 5432 from caerus-ec2-sg](/images/5-Workshop/5.7-EC2/5.7.3-security-groups/example.png) -->

@@ -24,14 +24,14 @@ second instance and an Application Load Balancer - the first component in
 this whole chain that actually opens a path in from the public internet, on
 purpose, in exactly one place. This is the section where the application
 becomes reachable from anywhere, while the instances serving it stay
-reachable from nowhere but that one load balancer.
+reachable from nowhere but that one load balancer - and, finally, the section
+where the database and the S3 buckets, both idle infrastructure until now,
+see their first real query and their first real object.
 
 #### Content
 
-- [Launch and Terminate Practice](5.7.1-launch-practice/)
-- [Private Networking and the First Instance](5.7.2-deploy-api/)
-- [Lock Down Security Groups](5.7.3-security-groups/)
-- [Frontend Build and CORS](5.7.4-frontend-and-cors/)
-- [Load Balancer and a Second Instance](5.7.5-load-balancer/)
-- [CloudFront: One HTTPS Domain for Everything](5.7.6-cloudfront/)
+- [Private Networking and the First Instance](5.7.1-deploy-api/)
+- [Lock Down Security Groups](5.7.2-security-groups/)
+- [Load Balancer and a Second Instance](5.7.3-load-balancer/)
+- [CloudFront: One HTTPS Domain for Everything](5.7.4-cloudfront/)
 

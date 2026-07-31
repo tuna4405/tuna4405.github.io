@@ -3,7 +3,7 @@ title : "CloudFront: Adding the API to the Same Domain"
 date : 2026-06-01
 weight : 6
 chapter : false
-pre : " <b> 5.7.6 </b> "
+pre : " <b> 5.7.4 </b> "
 ---
 
 The frontend has been served through the CloudFront distribution created in
@@ -70,20 +70,3 @@ a targeted rule override, not disabling WAF: open the Web ACL → the
 action to **Count** instead of the inherited **Block**, leaving every other
 rule in the group (SQLi, XSS, known-bad-input patterns) still enforced.
 
-{{% notice note %}}
-This is also a reminder that CloudFront's custom error responses apply to
-the *entire distribution*, not just the origin they were written for - a
-403/404 from the API origin gets the same SPA-fallback treatment as a 403/404
-from the S3 origin. There is no per-behavior override for this in the
-standard console flow; it is a real limitation worth designing around rather
-than a misconfiguration to fix.
-{{% /notice %}}
-
-{{% notice note %}}
-After this section, a direct call to `<alb-dns-name>` still exists as a URL,
-but it is not the one anything should use going forward - the distribution
-domain is now the single front door for the whole application, HTTPS
-included.
-{{% /notice %}}
-
-<!-- ![CloudFront distribution behaviors: /api/* to the ALB origin, Default(*) to the S3 origin](/images/5-Workshop/5.7-EC2/5.7.6-cloudfront/example.png) -->

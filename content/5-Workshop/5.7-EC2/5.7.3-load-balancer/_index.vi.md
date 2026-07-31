@@ -3,16 +3,8 @@ title : "Load Balancer và Instance Thứ Hai"
 date : 2026-06-01
 weight : 5
 chapter : false
-pre : " <b> 5.7.5 </b> "
+pre : " <b> 5.7.3 </b> "
 ---
-
-Một EC2 instance duy nhất là một điểm lỗi đơn (single point of failure) - ổn
-cho lần triển khai hoạt động đầu tiên, nhưng đáng để cải thiện một khi nó đã
-ổn định. Phần này thêm một instance thứ hai ở một Availability Zone khác và
-một Application Load Balancer đặt trước cả hai. Đây cũng là điểm đầu tiên
-trong toàn bộ dự án mà tầng compute có được một đường vào thực sự từ internet
-công khai - mọi thứ cho tới lúc này chỉ có thể truy cập được từ bên trong một
-phiên Session Manager hoặc qua đường hầm SSM ở mục 5.7.4.
 
 1. **Khởi tạo một instance thứ hai**, `caerus-server-2`, giống hệt
    `caerus-server-1` về AMI, instance type, `caerus-ec2-sg`, và IAM instance

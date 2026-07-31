@@ -1,9 +1,9 @@
 ---
-title : "CloudFront: Adding the API to the Same Domain"
+title : "CloudFront: Thêm API vào Cùng Một Domain"
 date : 2026-06-01
 weight : 6
 chapter : false
-pre : " <b> 5.7.6 </b> "
+pre : " <b> 5.7.4 </b> "
 ---
 
 Frontend đã được phục vụ qua CloudFront distribution tạo ở mục 5.6.2 từ
@@ -70,20 +70,5 @@ rule có mục tiêu cụ thể, không phải tắt WAF: mở Web ACL → rule 
 `AWSManagedRulesCommonRuleSet` → override action của `SizeRestrictions_BODY`
 thành **Count** thay vì **Block** kế thừa mặc định, để mọi rule khác trong
 group đó (SQLi, XSS, các mẫu input xấu đã biết) vẫn được thực thi.
-
-{{% notice note %}}
-Đây cũng là một lời nhắc rằng các custom error response của CloudFront áp
-dụng cho *toàn bộ distribution*, không chỉ origin mà chúng được viết cho -
-một lỗi 403/404 từ origin API sẽ nhận cùng cách xử lý SPA-fallback như một
-lỗi 403/404 từ origin S3. Không có override theo từng behavior cho việc này
-trong luồng console tiêu chuẩn; đây là một hạn chế thực sự đáng để thiết kế
-xung quanh hơn là một lỗi cấu hình cần sửa.
-{{% /notice %}}
-
-{{% notice note %}}
-Sau phần này, việc gọi trực tiếp tới `<alb-dns-name>` vẫn còn tồn tại như một
-URL, nhưng đó không phải cái nên được dùng nữa từ đây trở đi - domain của
-distribution giờ là cửa ngõ duy nhất cho toàn bộ ứng dụng, bao gồm cả HTTPS.
-{{% /notice %}}
 
 <!-- ![CloudFront distribution behaviors: /api/* to the ALB origin, Default(*) to the S3 origin](/images/5-Workshop/5.7-EC2/5.7.6-cloudfront/example.png) -->
