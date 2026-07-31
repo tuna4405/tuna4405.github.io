@@ -6,39 +6,54 @@ chapter : false
 pre : " <b> 5.7.3 </b> "
 ---
 
-Hai security group, được tạo ra từ trước cả khi những tài nguyên mà chúng bảo vệ
-tồn tại (mục 5.5.1 và 5.7.2 đều đã nhắc tên `caerus-rds-sg` và `caerus-ec2-sg` từ
-trước):
+Hai security group, được tạo ra trước cả khi những tài nguyên chúng bảo vệ tồn
+tại (mục 5.5.1 và 5.7.2 đều đã tham chiếu trước tên `caerus-rds-sg` và
+`caerus-ec2-sg`):
 
-**`caerus-ec2-sg`** - instance ứng dụng:
+**`caerus-ec2-sg`** - instance của application, được tạo ra **không có bất kỳ
+rule inbound nào**:
 
 | Type | Port | Source |
 |---|---|---|
-| SSH | 22 | My IP |
-| Custom TCP | 3000 | My IP |
+| *(không có)* | - | - |
 
-**`caerus-rds-sg`** - tạo ra rỗng, rồi được thêm đúng một rule khi `caerus-ec2-sg`
-đã tồn tại để tham chiếu tới:
+Chưa có gì cần cho phép, và không có gì cần được cho phép cả. Việc quản trị đi
+qua Systems Manager, thứ chạm tới instance qua một kết nối *đi ra* xuyên qua
+các NAT gateway từ mục 5.7.2 - không rule inbound, không key pair, liên quan
+tại bất kỳ thời điểm nào. Việc kiểm tra trong lúc phát triển đi qua một đường
+hầm SSM port-forwarding (cũng được khởi tạo từ phía đi ra). Lưu lượng inbound
+duy nhất mà instance ứng dụng này từng cần là lưu lượng ứng dụng từ load
+balancer, và load balancer đó chưa tồn tại cho tới mục 5.7.5 - nên group này
+mang đúng số 0 rule cho tới khi mục đó thêm vào đúng một rule: Custom TCP,
+port 3000, source là **security group `caerus-alb-sg`**.
+
+**`caerus-rds-sg`** - được tạo ra trống, sau đó chỉ được cấp đúng một rule khi
+`caerus-ec2-sg` đã tồn tại để tham chiếu tới:
 
 | Type | Port | Source (trước) | Source (sau) |
 |---|---|---|---|
-| PostgreSQL | 5432 | *(không có rule - không thể tiếp cận)* | `caerus-ec2-sg` |
+| PostgreSQL | 5432 | *(chưa có rule - không thể truy cập)* | `caerus-ec2-sg` |
 
-Trường **Source** của rule chính là security group của EC2, được chọn theo tên ngay
-trong console, chứ không phải một khối CIDR hay một địa chỉ IP. Đây là điểm đáng nói
-thẳng ra: RDS cho qua traffic từ *bất kỳ instance nào đang mang security group đó*,
-bất kể hôm nay instance ấy tình cờ có địa chỉ IP nào. Một rule dựa trên IP sẽ phải
-cập nhật mỗi lần instance bị dừng rồi khởi động lại, hoặc sẽ phải nới rộng tới mức
-một dải IP vô nghĩa; còn một rule tham chiếu security group thì không bao giờ phải
-cập nhật, và luôn chặt đúng ở mức "chỉ ứng dụng này mới chạm được tới cơ sở dữ liệu
-này" chừng nào hai group đó còn tồn tại.
+**Source** của rule này chính là security group của EC2, được chọn theo tên
+trong console, không phải một CIDR block hay một địa chỉ IP - và điều này
+đúng bất kể `caerus-ec2-sg` có mang rule inbound nào của riêng nó hay không,
+vì một rule tham chiếu theo security group khớp theo tư cách thành viên của
+group đó, không phải theo việc group đó cho phép những gì. Đây là điểm đáng
+nói rõ ràng: RDS chấp nhận lưu lượng từ *bất kỳ instance nào mang security
+group đó*, bất kể instance đó hiện đang có địa chỉ IP nào, hay thậm chí có IP
+hay không. Một rule dựa trên IP sẽ cần cập nhật mỗi khi một instance được
+thay thế, hoặc phải nới rộng ra một dải đủ lớn tới mức trở nên vô nghĩa; một
+rule tham chiếu theo security group thì không bao giờ cần cập nhật, và luôn
+giữ đúng mức chặt chẽ "chỉ ứng dụng này mới truy cập được database này" trong
+suốt thời gian cả hai group còn tồn tại.
 
 {{% notice note %}}
-Nếu có lúc nào mất quyền truy cập SSH sau khi địa chỉ IP ở nhà thay đổi, cách sửa
-nằm ngay trong khung này: sửa Source của rule SSH về lại "My IP" để console phân
-giải lại địa chỉ hiện tại. Bản thân rule này chỉ là tạm thời - mục 5.7.7 sẽ gỡ bỏ nó
-hoàn toàn khi các instance chuyển sang private subnet và chuyển sang dùng Systems
-Manager Session Manager để quản trị.
+Không có kiểu "cửa thoát hiểm" nào như "nếu mất quyền truy cập SSH, sửa rule
+về lại My IP" trong dự án này, vì chưa từng có rule nào gắn quyền truy cập
+với một địa chỉ IP ngay từ đầu. Việc mất IP ở nhà, đổi mạng, hay bàn giao dự
+án cho một thành viên mới không thay đổi gì cách các instance này được truy
+cập tới - Systems Manager xác thực qua IAM, không phải qua việc kết nối xuất
+phát từ đâu.
 {{% /notice %}}
 
-<!-- ![caerus-rds-sg inbound rules, before (empty) and after (5432 from caerus-ec2-sg)](/images/5-Workshop/5.7-EC2/5.7.3-security-groups/example.png) -->
+<!-- ![caerus-ec2-sg with zero inbound rules, and caerus-rds-sg admitting 5432 from caerus-ec2-sg](/images/5-Workshop/5.7-EC2/5.7.3-security-groups/example.png) -->

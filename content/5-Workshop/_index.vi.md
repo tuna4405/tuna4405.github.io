@@ -11,28 +11,29 @@ pre: " <b> 5. </b> "
 #### Tổng quan
 
 Caerus là một nền tảng đặt ghế xem phim: khách hàng duyệt các suất chiếu, chọn
-ghế trên một sơ đồ ghế trực tiếp, đặt tối đa sáu ghế trong một giao dịch, hủy vé
-trước giờ chiếu, và tải vé PDF; quản trị viên tạo suất chiếu và tải ảnh poster
-lên. Yêu cầu duy nhất định hình mọi quyết định khác trong workshop này là **một
-ghế không bao giờ được bán hai lần**, kể cả khi hai khách hàng bấm vào cùng một
-ghế trong cùng một khoảnh khắc - đó cũng là lý do giao dịch đặt vé, chiến lược
-khóa (locking), và bài kiểm thử concurrency đều được dành hẳn một mục riêng chứ
-không chỉ được nhắc thoáng qua.
+ghế trên sơ đồ ghế 6x10 theo thời gian thực, đặt tối đa sáu ghế trong một
+transaction, hủy vé trước giờ chiếu, và tải vé PDF; quản trị viên tạo suất
+chiếu và tải lên hình ảnh poster. Yêu cầu duy nhất chi phối mọi quyết định
+khác trong workshop này là **một ghế không bao giờ được bán hai lần**, ngay
+cả khi hai khách hàng cùng click vào một ghế trong cùng một thời điểm - đây
+là lý do vì sao booking transaction, chiến lược locking, và bài kiểm thử
+concurrency đều được dành riêng một mục chứ không chỉ nhắc qua loa.
 
-Bản triển khai chạy hoàn toàn trong **ap-southeast-1** và tiến hóa theo từng
-chặng xuyên suốt workshop chứ không xuất hiện hoàn chỉnh ngay từ đầu: một trang
-React tĩnh trên Amazon S3, một API Express trên Amazon EC2 đứng sau Application
-Load Balancer với hai instance trải trên hai Availability Zone, PostgreSQL trên
-Amazon RDS chạy Multi-AZ bên trong private subnet, Amazon CloudFront (kèm AWS
-WAF) đặt trước cả trang web lẫn API để có HTTPS trên một tên miền duy nhất, và
-Amazon CloudWatch cùng SNS theo dõi toàn bộ. Bản thân tầng compute cuối cùng
-hoàn toàn riêng tư: cả hai instance EC2 nằm sau một NAT gateway, không có public
-IP và không mở cổng SSH nào, được quản trị thay vào đó qua AWS Systems Manager
-Session Manager - đúng thế trận vận hành mà cơ sở dữ liệu đã có từ mục 5.5.4, và
-vì cùng một lý do.
+Việc triển khai chạy hoàn toàn trong **ap-southeast-1** và phát triển theo
+từng giai đoạn xuyên suốt workshop này thay vì xuất hiện hoàn chỉnh ngay từ
+đầu: một trang web React tĩnh trên Amazon S3, một API Express trên Amazon
+EC2 phía sau một Application Load Balancer với hai instance trải trên hai
+Availability Zone, PostgreSQL trên Amazon RDS chạy Multi-AZ bên trong một
+private subnet, Amazon CloudFront (kèm AWS WAF) đứng trước cả trang web lẫn
+API để phục vụ HTTPS trên một domain duy nhất, và Amazon CloudWatch cùng SNS
+theo dõi toàn bộ hệ thống. Bản thân lớp compute cuối cùng hoàn toàn private:
+cả hai EC2 instance đều nằm sau một NAT gateway, không có public IP và
+không mở bất kỳ cổng SSH nào, thay vào đó được quản trị thông qua AWS Systems
+Manager Session Manager - cùng tư thế vận hành mà database đã có ở mục
+5.5.1, đạt được vì cùng một lý do.
 
-Mỗi mục dưới đây xây tiếp lên trạng thái mà mục trước để lại. Hãy đi theo đúng
-thứ tự trong lần đọc đầu tiên.
+Mỗi mục bên dưới xây dựng dựa trên trạng thái để lại từ mục trước đó. Hãy
+làm theo đúng thứ tự trong lần đầu tiên thực hiện.
 
 #### Nội dung
 
@@ -47,4 +48,4 @@ thứ tự trong lần đọc đầu tiên.
 9. [Kiểm thử](5.9-Testing/)
 10. [Quản lý chi phí và tài nguyên](5.10-Cost/)
 11. [Dọn dẹp tài nguyên](5.11-Cleanup/)
-12. [Tài liệu tham khảo](5.12-References/)
+12. [Repository, trang web, và video demo](5.12-Links-and-Demo/)

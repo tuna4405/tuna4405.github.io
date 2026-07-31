@@ -1,9 +1,9 @@
 ---
 title : "Alarms and Notifications"
 date : 2026-06-01
-weight : 3
+weight : 2
 chapter : false
-pre : " <b> 5.8.3 </b> "
+pre : " <b> 5.8.2 </b> "
 ---
 
 1. **Create an SNS topic**, `caerus-alerts`, Standard type, with an email
@@ -38,4 +38,4 @@ resulting email as evidence; either one alone is a weaker claim than both
 together.
 {{% /notice %}}
 
-<!-- ![Alarm in ALARM state in the console, alongside the SNS notification email](/images/5-Workshop/5.8-CloudWatch/5.8.3-alarms/example.png) -->
+<!-- ![Alarm in ALARM state in the console, alongside the SNS notification email](/images/5-Workshop/5.8-CloudWatch/5.8.2-alarms/example.png) -->

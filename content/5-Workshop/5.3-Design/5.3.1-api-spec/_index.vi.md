@@ -6,33 +6,37 @@ chapter : false
 pre : " <b> 5.3.1 </b> "
 ---
 
-Một bản đặc tả API chỉ có ích với vai trò hợp đồng khi cả hai phía đều yên tâm rằng
-nó sẽ không xê dịch dưới chân mình. Bản đặc tả của Caerus là một tài liệu Markdown
-duy nhất, với một quy tắc đặt ngay đầu trang: không ai được tự ý sửa, và mọi thay
-đổi - kể cả những thay đổi diễn ra về sau, sau khi đã triển khai, chẳng hạn việc
-chuyển tầng compute phía dưới của một endpoint từ Lambda trở lại EC2 - đều được ghi
-vào một bảng change-log kèm ngày tháng và lý do, không bao giờ bị sửa đi một cách
-âm thầm. Chính kỷ luật ấy đã cho phép backend và frontend được xây song song ở mục
-5.4: frontend viết code dựa trên các cấu trúc trong bản đặc tả với những file JSON
-giả lập từ trước khi API thật tồn tại, và ngày tích hợp trở thành chuyện nối hai
-nửa vốn đã đúng lại với nhau, chứ không phải chuyện đi khám phá xem phía bên kia đã
-thực sự làm ra cái gì.
+Một đặc tả API chỉ hữu ích như một hợp đồng (contract) nếu cả hai bên đều
+có thể tin tưởng rằng nó sẽ không thay đổi bất ngờ dưới chân mình. Đặc tả
+của Caerus là một tài liệu Markdown duy nhất với một quy tắc ở đầu tài
+liệu: không ai được thay đổi nó một cách đơn phương, và mọi thay đổi - kể
+cả những thay đổi được thực hiện sau này, sau khi đã deploy, chẳng hạn như
+chuyển compute nền tảng của một endpoint từ Lambda trở về EC2 - đều được
+ghi lại trong một bảng change-log kèm ngày tháng và lý do, không bao giờ bị
+chỉnh sửa âm thầm. Kỷ luật đó chính là điều cho phép backend và frontend
+được xây dựng song song trong mục 5.4: frontend viết code dựa theo cấu trúc
+của đặc tả cùng với các file JSON giả (mock) trước khi API thật tồn tại, và
+ngày tích hợp (integration day) là để kết nối hai nửa đã đúng sẵn từ trước
+chứ không phải để khám phá xem phía bên kia thực sự đã xây dựng những gì.
 
-**Các quy ước, thống nhất một lần và không bàn lại theo từng endpoint:**
+**Các quy ước, được thống nhất một lần và không xem xét lại theo từng
+endpoint:**
 
 - Mọi request body và response body đều là JSON.
-- Dấu thời gian được truyền theo chuẩn ISO 8601 ở múi giờ UTC, nhưng mọi giờ chiếu
-  mà chúng đại diện đều là một suất chiếu theo `Asia/Ho_Chi_Minh`. Việc lưu trữ và
-  định dạng trên đường truyền vẫn giữ UTC; chỉ khâu diễn giải và hiển thị mới đổi
-  sang giờ địa phương, và bộ lọc `?date` trên danh sách sự kiện được hiểu là một
-  ngày theo lịch Việt Nam, không phải theo UTC.
-- Tiền luôn là một số nguyên đơn vị đồng Việt Nam. Không bao giờ là số thực, và
-  không bao giờ là chuỗi.
-- Xác thực dùng JWT bearer token đặt trong header `Authorization`; token là không
-  trong suốt (opaque) đối với client và mang theo id cùng role của người dùng.
+- Timestamp được truyền đi dưới dạng ISO 8601 theo UTC, nhưng mỗi giờ chiếu
+  mà chúng đại diện là một suất chiếu theo múi giờ `Asia/Ho_Chi_Minh`. Việc
+  lưu trữ và định dạng truyền tải (wire format) luôn giữ UTC; chỉ việc diễn
+  giải và hiển thị mới chuyển sang giờ địa phương, và filter `?date` trên
+  danh sách sự kiện được diễn giải như một ngày theo lịch Việt Nam, không
+  phải theo UTC.
+- Tiền luôn là một số nguyên tính bằng đồng Việt Nam. Không bao giờ là số
+  thực (float), và không bao giờ là chuỗi (string).
+- Xác thực (authentication) sử dụng JWT bearer token trong header
+  `Authorization`; token là opaque đối với client và mang id cùng role của
+  user.
 
-**Cấu trúc lỗi chuẩn.** Mọi thất bại, bất kể ở endpoint nào, đều trả về cùng một
-lớp vỏ:
+**Cấu trúc lỗi chuẩn.** Mọi thất bại, bất kể endpoint nào, đều trả về cùng
+một envelope:
 
 ```json
 {
@@ -44,18 +48,18 @@ lớp vỏ:
 }
 ```
 
-Client phân nhánh theo `code`, không bao giờ theo `message` - thông điệp là dành
-cho con người, còn mã là dành cho chương trình.
+Client xử lý rẽ nhánh dựa theo `code`, không bao giờ dựa theo `message` -
+message là dành cho con người, code là dành cho chương trình.
 
 | Code | HTTP status | Ý nghĩa |
 |---|---|---|
-| `VALIDATION_ERROR` | 400 | Request body không qua được bước kiểm tra hợp lệ |
-| `UNAUTHORIZED` | 401 | Token thiếu, sai định dạng, hoặc đã hết hạn |
-| `FORBIDDEN` | 403 | Đã xác thực, nhưng không được phép với tài nguyên này |
-| `NOT_FOUND` | 404 | Tài nguyên không tồn tại, hoặc người gọi không có quyền biết là nó tồn tại |
+| `VALIDATION_ERROR` | 400 | Request body không vượt qua được validation |
+| `UNAUTHORIZED` | 401 | Token bị thiếu, sai định dạng, hoặc đã hết hạn |
+| `FORBIDDEN` | 403 | Đã xác thực, nhưng không được phép truy cập tài nguyên này |
+| `NOT_FOUND` | 404 | Tài nguyên không tồn tại, hoặc bên gọi không có quyền biết nó tồn tại |
 | `SEAT_ALREADY_BOOKED` | 409 | Một hoặc nhiều ghế được yêu cầu đã bị người khác đặt trước |
-| `BOOKING_NOT_CANCELLABLE` | 409 | Booking đã bị hủy, hoặc giờ chiếu đã trôi qua |
-| `EMAIL_ALREADY_EXISTS` | 409 | Email đăng ký đã được sử dụng |
+| `BOOKING_NOT_CANCELLABLE` | 409 | Booking đã bị hủy trước đó, hoặc suất chiếu đã qua |
+| `EMAIL_ALREADY_EXISTS` | 409 | Email đăng ký đã được đăng ký trước đó |
 
 **Tóm tắt các endpoint:**
 
@@ -65,13 +69,13 @@ cho con người, còn mã là dành cho chương trình.
 | POST | `/auth/login` | - | Lấy JWT |
 | GET | `/events` | - | Liệt kê các suất chiếu sắp tới |
 | GET | `/events/:id` | - | Chi tiết suất chiếu |
-| POST | `/events` | admin | Tạo suất chiếu (tự sinh 60 ghế) |
-| POST | `/events/:id/banner` | admin | Tải ảnh poster lên |
+| POST | `/events` | admin | Tạo suất chiếu (tự động sinh 60 ghế) |
+| POST | `/events/:id/banner` | admin | Tải lên hình ảnh poster |
 | GET | `/events/:id/seats` | - | Sơ đồ ghế |
-| POST | `/bookings` | user | Đặt ghế (nguyên tử, tối đa 6) |
-| GET | `/bookings` | user | Các vé tôi đã đặt |
-| GET | `/bookings/:id` | user | Chi tiết booking |
-| DELETE | `/bookings/:id` | user | Hủy booking |
+| POST | `/bookings` | user | Đặt ghế (atomic, tối đa 6 ghế) |
+| GET | `/bookings` | user | Các lượt đặt của tôi |
+| GET | `/bookings/:id` | user | Chi tiết lượt đặt |
+| DELETE | `/bookings/:id` | user | Hủy lượt đặt |
 | POST | `/bookings/:id/ticket` | user | Tạo và tải vé PDF |
 
-<!-- ![Excerpt of the frozen api-spec.md, showing the error shape and one endpoint definition](/images/5-Workshop/5.3-Design/5.3.1-api-spec/example.png) -->
+<!-- ![Trích đoạn của api-spec.md đã đóng băng, thể hiện cấu trúc lỗi và định nghĩa một endpoint](/images/5-Workshop/5.3-Design/5.3.1-api-spec/example.png) -->

@@ -44,17 +44,4 @@ pre : " <b> 5.6.3 </b> "
    launching in section 5.7.2 (or afterwards, via Actions → Security →
    Modify IAM role, on an already-running instance).
 
-**Why an instance role instead of an access key in `.env`.** An access key
-pasted into an environment file is a long-lived secret that has to be
-generated, distributed to every developer, rotated on a schedule, and kept
-out of version control by discipline alone. An instance role has none of
-that: the AWS SDK on the instance calls the instance metadata service, gets
-short-lived temporary credentials scoped to exactly this role's policy, and
-refreshes them automatically before they expire - there is no secret to
-leak, because there is no long-lived secret at all. The only reason
-`getSignedImageUrl()` (used to hand out a time-limited download link for a
-private object) works without the caller ever seeing raw AWS credentials is
-that it signs the URL using these same instance-role credentials, on the
-instance, and only the resulting signed URL leaves the server.
 
-<!-- ![Inline policy attached to caerus-ec2-s3-role](/images/5-Workshop/5.6-S3/5.6.3-iam-role/example.png) -->

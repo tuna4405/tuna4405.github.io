@@ -8,74 +8,83 @@ pre : " <b> 5.1. </b> "
 
 #### Tổng quan
 
-Caerus là một ứng dụng đặt ghế xem phim. Mỗi suất chiếu có bố cục cố định 6x10 -
-sáu hàng, mỗi hàng mười ghế - và một khách hàng có thể giữ tối đa sáu ghế trong
-một lần đặt. Quản trị viên tạo suất chiếu và đính kèm ảnh poster; khách hàng duyệt
-các suất chiếu sắp tới, mở sơ đồ ghế, đặt vé, xem lại các vé đã đặt, hủy trước giờ
-chiếu, và tải vé PDF.
+Caerus là một ứng dụng đặt ghế xem phim. Mỗi suất chiếu có sơ đồ cố định
+6x10 - sáu hàng, mười ghế mỗi hàng - và một khách hàng có thể giữ tối đa
+sáu ghế trong một lượt đặt. Quản trị viên tạo suất chiếu và đính kèm hình
+ảnh poster; khách hàng duyệt các suất chiếu sắp tới, mở sơ đồ ghế, đặt vé,
+xem các lượt đặt của mình, hủy trước giờ chiếu, và tải vé PDF.
 
-Bài toán mà dự án này thực sự minh họa không phải là đặt ghế theo kiểu CRUD - mà là
-điều gì xảy ra khi hai khách hàng chọn cùng một ghế tại cùng một khoảnh khắc. Một
-cách cài đặt ngây thơ sẽ đọc tình trạng còn trống của ghế rồi ghi booking thành hai
-bước tách rời, để lại một khe cửa mà trong đó cả hai request đều đọc thấy "còn
-trống" trước khi bất kỳ bên nào commit. Rạp bán một chiếc ghế hai lần, một cách âm
-thầm, và chỉ xảy ra đúng dưới những điều kiện tải mà một rạp phim thật sự quan tâm.
-Mọi quyết định kiến trúc nằm sau điều này - việc chọn cơ sở dữ liệu quan hệ, row
-lock `SELECT ... FOR UPDATE` bên trong giao dịch đặt vé, và bài kiểm thử concurrency
-riêng ở [Kiểm thử](/5-Workshop/5.9-Testing/) - đều tồn tại để đóng khe cửa ấy lại.
+Vấn đề mà dự án này thực sự minh họa không phải là đặt ghế theo kiểu CRUD -
+mà là điều gì xảy ra khi hai khách hàng chọn cùng một ghế tại cùng một thời
+điểm. Một cách triển khai đơn giản sẽ đọc tình trạng còn trống của ghế rồi
+sau đó ghi một booking như hai bước riêng biệt, để lại một khoảng hở trong
+đó cả hai request đều đọc thấy "còn trống" trước khi bất kỳ request nào
+commit. Rạp phim bán một chiếc ghế hai lần, một cách âm thầm, và chỉ xảy ra
+đúng trong điều kiện tải mà một rạp phim thật sự quan tâm. Mọi quyết định
+kiến trúc phía sau điều này - việc chọn relational database, row lock
+`SELECT ... FOR UPDATE` bên trong booking transaction, và bài kiểm thử
+concurrency riêng trong [Kiểm thử](/5-Workshop/5.9-Testing/) - đều tồn tại
+để khép lại khoảng hở đó.
 
-**Các dịch vụ AWS được dùng, và vì sao:**
+**Các dịch vụ AWS được sử dụng, và lý do:**
 
 - **Amazon EC2** - chạy API Express dưới `pm2`, hai instance trải trên hai
-  Availability Zone để API sống sót khi mất một instance, đặt trong private subnet,
-  không có public IP và hoàn toàn không mở SSH vào.
-- **NAT Gateway** - cho các instance trong private subnet quyền truy cập internet
-  chỉ theo chiều outbound để chạy `npm ci` và vá lỗi hệ điều hành, mà không bao giờ
-  nhận một kết nối đi vào.
-- **AWS Systems Manager** - Session Manager cung cấp shell tương tác vào cả hai
-  instance để triển khai và debug, đi qua đúng đường outbound mà NAT gateway đã có
-  sẵn, thay thế hoàn toàn cho SSH.
-- **Amazon RDS for PostgreSQL** - năm bảng cốt lõi (`users`, `events`, `seats`,
-  `bookings`, `booking_seats`), được chọn chính vì khả năng khóa ở mức dòng và các
-  đảm bảo giao dịch; triển khai Multi-AZ bên trong private subnet riêng của nó,
-  tách khỏi private subnet của các instance EC2, nhờ đó cơ sở dữ liệu hoàn toàn
-  không có đường ra internet.
-- **Amazon S3** - static hosting cho trang React đã build (riêng tư, chỉ phục vụ
-  qua CloudFront), nơi lưu poster sự kiện, nơi lưu vé PDF được sinh ra, và một
-  bucket thứ tư chỉ dùng để tạm chứa gói triển khai backend.
-- **Application Load Balancer** - điểm vào duy nhất cho traffic API tới cả hai
-  instance EC2, thay cho một rule security group trước đây vốn cho phép traffic từ
-  "IP của tôi" bằng một rule chỉ cho phép traffic từ load balancer.
-- **Amazon CloudFront** - một distribution, một tên miền HTTPS, định tuyến `/api/*`
-  tới load balancer và mọi thứ còn lại tới bucket S3 chứa trang web theo mẫu đường
-  dẫn, với origin access control khóa bucket lại chỉ cho CloudFront truy cập.
-- **AWS WAF** - gắn vào CloudFront distribution, soi mọi request theo các managed
-  rule group ngay tại biên trước khi nó chạm tới load balancer hay origin S3.
-- **Amazon CloudWatch và SNS** - một dashboard bao quát EC2, RDS, và load balancer,
-  một log group cho ứng dụng, và các alarm gửi cảnh báo qua email thay vì nằm im ở
-  trạng thái OK.
-- **AWS IAM** - một instance role cho EC2, thu hẹp đúng vào các prefix S3 và quyền
-  Systems Manager mà nó cần, mọi tên role đều mang tiền tố `caerus-` mà tài khoản
-  bắt buộc.
-- **Amazon VPC** - VPC mặc định được mở rộng thêm một cặp private subnet cho các
-  instance EC2, một cặp private subnet riêng cho cơ sở dữ liệu, và một gateway
-  endpoint để traffic từ EC2 tới S3 không bao giờ rời khỏi mạng của AWS.
+  Availability Zone để API sống sót khi mất một instance, nằm trong private
+  subnet, không có public IP và không mở cổng SSH inbound nào cả.
+- **NAT Gateway** - cho phép các instance trong private subnet đó có quyền
+  truy cập internet chỉ theo chiều outbound để chạy `npm ci` và vá lỗi hệ
+  điều hành, mà không bao giờ chấp nhận một kết nối inbound nào.
+- **AWS Systems Manager** - Session Manager cung cấp quyền truy cập shell
+  tương tác đến cả hai instance để triển khai và debug qua cùng đường
+  outbound mà NAT gateway đã cung cấp, thay thế hoàn toàn SSH.
+- **Amazon RDS cho PostgreSQL** - năm bảng cốt lõi (`users`, `events`,
+  `seats`, `bookings`, `booking_seats`), được chọn đặc biệt vì row-level
+  locking và các đảm bảo transactional; được triển khai Multi-AZ bên trong
+  private subnet riêng của nó, tách biệt với các private subnet của EC2
+  instance, để database hoàn toàn không có route ra internet.
+- **Amazon S3** - lưu trữ tĩnh cho trang React đã build (private, chỉ được
+  phục vụ thông qua CloudFront), lưu trữ poster sự kiện, lưu trữ vé PDF
+  được tạo ra, và một bucket thứ tư chỉ dùng để chứa tạm gói triển khai
+  backend.
+- **Application Load Balancer** - điểm vào duy nhất cho lưu lượng API trên
+  cả hai EC2 instance, thay thế một quy tắc security group trước đây cho
+  phép lưu lượng từ "my IP" bằng một quy tắc chỉ cho phép lưu lượng từ load
+  balancer.
+- **Amazon CloudFront** - một distribution, một domain HTTPS, định tuyến
+  `/api/*` đến load balancer và mọi thứ còn lại đến S3 site bucket theo mẫu
+  đường dẫn (path pattern), với origin access control khóa bucket chỉ cho
+  phép CloudFront truy cập.
+- **AWS WAF** - gắn vào CloudFront distribution, kiểm tra mọi request theo
+  các managed rule group ngay tại edge trước khi request đến được load
+  balancer hoặc S3 origin.
+- **Amazon CloudWatch và SNS** - một dashboard bao quát EC2, RDS, và load
+  balancer, một application log group, và các alarm gửi cảnh báo qua email
+  thay vì nằm im lặng ở trạng thái OK.
+- **AWS IAM** - một instance role cho EC2 được giới hạn phạm vi đúng bằng
+  các S3 prefix và quyền Systems Manager mà nó cần, mọi tên role đều mang
+  tiền tố `caerus-` mà tài khoản bắt buộc áp dụng.
+- **Amazon VPC** - VPC mặc định được mở rộng thêm một cặp private subnet
+  cho các EC2 instance, một cặp private subnet riêng cho database, và một
+  gateway endpoint để lưu lượng EC2-đến-S3 không bao giờ rời khỏi mạng AWS.
 
-Việc tạo vé - render PDF rồi ghi vào S3 - chạy in-process ngay bên trong chính API
-Express chứ không phải như một function riêng; nó từng được xây và triển khai dưới
-dạng một AWS Lambda function từ sớm rồi chủ động được đưa trở lại, khi khối lượng
-công việc hóa ra quá nhỏ để xứng đáng với một deployable thứ hai mang theo IAM role
-và bước deploy riêng. Kiến trúc bên dưới là trạng thái cuối cùng, trong đó không
-còn Lambda nào.
+Việc tạo vé - render PDF và ghi nó vào S3 - chạy trong cùng tiến trình
+(in-process) bên trong chính API Express đó, không phải như một hàm riêng
+biệt; nó từng được xây dựng và triển khai như một hàm AWS Lambda từ giai
+đoạn đầu và được cố tình chuyển về lại khi khối lượng công việc hóa ra quá
+nhỏ để biện minh cho một deployable thứ hai với IAM role và bước deploy
+riêng của nó. Kiến trúc bên dưới là trạng thái cuối cùng, không còn Lambda
+trong đó.
 
-Sơ đồ kiến trúc bên dưới là trạng thái cuối cùng mà workshop này đi tới, chứ không
-phải điểm khởi đầu - các mục tiếp theo dựng nó lên theo đúng thứ tự mà sơ đồ được
-đọc: cơ sở dữ liệu và lưu trữ trước, rồi đến compute, rồi tới các tầng mạng riêng tư
-và CDN, cuối cùng là khả năng quan sát.
+Sơ đồ kiến trúc bên dưới là trạng thái cuối cùng mà workshop này đi đến,
+không phải điểm khởi đầu - các mục tiếp theo xây dựng nó theo đúng thứ tự
+mà sơ đồ thể hiện: database trước, rồi đến storage cùng với CDN phục vụ nó
+ngay từ bản build đầu tiên được deploy, rồi đến compute và lớp networking
+riêng tư xung quanh nó, rồi đến observability.
 
-![Kiến trúc cuối cùng của Caerus](/images/5-Workshop/5.1-Overview/architecture.png)
+![Caerus final architecture](/images/5-Workshop/5.1-Overview/architecture.png)
 
-<!-- NOTE for the report author: use the reviewed architecture diagram, with
-the frontend S3 bucket relabelled "S3 (Frontend)" rather than "Static
-Website" - static website hosting on that bucket was disabled once
-CloudFront + OAC took over in section 5.7.6. -->
+<!-- LƯU Ý cho tác giả báo cáo: sử dụng sơ đồ kiến trúc đã được rà soát, với
+bucket S3 phía frontend được gắn nhãn là "S3 (Frontend, private)" thay vì
+"Static Website" - static website hosting không bao giờ được bật cho bucket
+đó; nó chỉ được đọc bởi CloudFront thông qua Origin Access Control kể từ
+mục 5.6.2. -->

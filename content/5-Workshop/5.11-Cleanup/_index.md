@@ -12,9 +12,9 @@ Teardown has to happen in dependency order, or the console simply refuses
 the delete - a security group still referenced by a running instance, or a
 target group still attached to a load balancer, cannot be removed out of
 turn. The order below is outermost-to-innermost: the CDN and load-balancing
-layer added last in section 5.7 comes down first, compute and data come
-down next, and the IAM/monitoring scaffolding that everything else depended
-on comes down last.
+layer at the edge of the architecture comes down first, compute and data
+come down next, and the IAM/monitoring scaffolding that everything else
+depended on comes down last.
 
 1. **CloudFront**: select the distribution, **Disable**, wait for the status
    to reach *Deployed* in its disabled state, then **Delete**. Delete the
@@ -25,16 +25,13 @@ on comes down last.
    order.
 3. **Both EC2 instances**: terminate, then confirm in the console that
    neither remains in any state (including "stopped," which still incurs
-   EBS storage cost even while not billing for compute). Also **deregister
-   the AMIs** created in section 5.7.7 and **delete their backing EBS
-   snapshots** - an AMI and its snapshot keep costing storage indefinitely
-   after the instance they were cloned from is gone, and are easy to forget
-   precisely because they were a one-time step rather than something
-   revisited regularly.
-4. **NAT Gateway**: delete `caerus-nat` first, then **release its Elastic
-   IP** once the gateway is gone - an EIP not attached to anything running
-   bills continuously, unlike one attached to an active NAT gateway or
-   instance.
+   EBS storage cost even while not billing for compute). There are no AMIs to
+   clean up here - both instances were launched directly into their private
+   subnets from the start (section 5.7.2), never cloned from a running one.
+4. **NAT Gateways**: delete `caerus-nat-1a` and `caerus-nat-1b`, then
+   **release each one's Elastic IP** once its gateway is gone - an EIP not
+   attached to anything running bills continuously, unlike one attached to an
+   active NAT gateway or instance.
 5. **RDS**: delete the instance. If the data is disposable seed data, skip
    the final snapshot; if it should be preserved, take one explicitly rather
    than relying on the default.
@@ -47,8 +44,9 @@ on comes down last.
 9. **Security groups**: `caerus-alb-sg`, `caerus-ec2-sg`, `caerus-rds-sg` -
    deletable now that nothing references them.
 10. **VPC additions**: both private subnet pairs - the database's from
-    section 5.5.4 and the application tier's from section 5.7.7 - along
-    with their two route tables and the DB subnet group. None of these cost
+    section 5.5.1 (one shared route table, plus the DB subnet group) and the
+    application tier's from section 5.7.2 (two route tables, one per
+    Availability Zone, matching its two NAT gateways). None of these cost
     anything to leave in place on their own, but remove them too for a
     genuinely clean account if the project is fully finished rather than
     paused.

@@ -6,8 +6,9 @@ chapter : false
 pre : " <b> 5.4.1 </b> "
 ---
 
-1. **Khởi động PostgreSQL 16 trong Docker**, ánh xạ ra cổng 5433 của máy chủ để nó
-   không bao giờ đụng độ với một PostgreSQL đã cài sẵn trên máy lập trình viên:
+1. **Khởi động PostgreSQL 16 trong Docker**, map ra cổng 5433 trên host để
+   nó không bao giờ xung đột với một PostgreSQL đã cài sẵn trên máy của
+   developer:
 
    ```yaml
    services:
@@ -25,13 +26,14 @@ pre : " <b> 5.4.1 </b> "
      pgdata:
    ```
 
-2. **Nạp schema và dữ liệu seed** dưới dạng các file `.sql` thuần, chạy bằng `psql`
-   - đúng hai file đó về sau sẽ chạy y nguyên trên RDS ở mục 5.5, và đó chính là lý
-   do duy nhất để giữ migration ở dạng SQL thay vì giấu sau một công cụ migration
-   của ORM với phụ thuộc runtime riêng của nó.
+2. **Nạp schema và dữ liệu seed** dưới dạng các file `.sql` thuần túy, chạy
+   bằng `psql` - cùng hai file này sẽ chạy không thay đổi trên RDS sau này
+   ở mục 5.5, đó chính là toàn bộ lý do vì sao giữ migration ở dạng SQL
+   thay vì đặt sau một công cụ migration của ORM với dependency runtime
+   riêng của nó.
 
-3. **Cài đặt giao dịch đặt vé** - đoạn code duy nhất mà cả dự án tồn tại để làm cho
-   đúng:
+3. **Triển khai booking transaction** - đoạn code duy nhất mà cả dự án này
+   tồn tại để làm cho đúng:
 
    ```sql
    BEGIN;
@@ -52,20 +54,22 @@ pre : " <b> 5.4.1 </b> "
    COMMIT;
    ```
 
-**Vì sao `ORDER BY id` quan trọng không kém `FOR UPDATE`.** Bản thân `FOR UPDATE`
-chỉ ngăn hai giao dịch cùng nghĩ rằng một ghế đang trống; nó không ngăn được
-deadlock. Nếu giao dịch A yêu cầu ghế `[12, 13]` còn giao dịch B yêu cầu `[13, 12]`
-tại cùng một khoảnh khắc, thì khi không có thứ tự khóa cố định, mỗi bên có thể rơi
-vào cảnh đang giữ đúng cái khóa mà bên kia cần. Sắp xếp các id ghế trước khi khóa
-nghĩa là mọi giao dịch đều lấy khóa theo cùng một trình tự bất kể client gửi lên
-theo thứ tự nào, nhờ đó hai giao dịch không bao giờ tạo thành một vòng chờ lẫn
-nhau.
+**Vì sao `ORDER BY id` quan trọng không kém `FOR UPDATE`.** Chỉ riêng
+`FOR UPDATE` ngăn hai transaction cùng nghĩ rằng một ghế đang trống; nó
+không ngăn được deadlock. Nếu transaction A yêu cầu các ghế `[12, 13]` và
+transaction B yêu cầu `[13, 12]` cùng một thời điểm, nếu không có một thứ
+tự lock cố định thì mỗi transaction có thể kết thúc bằng việc giữ đúng lock
+mà transaction kia đang cần. Sắp xếp các seat id trước khi lock có nghĩa là
+mọi transaction đều lấy lock theo cùng một trình tự bất kể thứ tự mà client
+gửi lên, nên hai transaction không bao giờ có thể tạo thành một chu trình
+chờ đợi lẫn nhau.
 
-Như một lớp bảo hiểm rẻ tiền phòng khi về sau có một nhánh code nào đó đi vòng qua
-hẳn cơ chế khóa, câu `UPDATE` cuối cùng kiểm tra lại `status = 'available'` và tầng
-service khẳng định số dòng bị ảnh hưởng phải khớp với số ghế được yêu cầu - dưới
-khóa thì điều này không bao giờ có thể sai, nên nếu nó sai thật thì đó là một tín
-hiệu rất lớn rằng có thứ gì đó ở phía trên đã bỏ qua giao dịch, chứ không phải một
-trạng thái cần xử lý êm đẹp.
+Như một lớp bảo hiểm rẻ tiền phòng khi có một đường code trong tương lai bỏ
+qua hoàn toàn lock, `UPDATE` cuối cùng kiểm tra lại `status = 'available'`
+và service layer khẳng định số dòng bị ảnh hưởng khớp với số ghế được yêu
+cầu - dưới lock thì điều này không bao giờ có thể thất bại, nên nếu nó
+từng xảy ra, đó là một tín hiệu rất lớn cho thấy có gì đó ở phía trên đã bỏ
+qua transaction, chứ không phải một trạng thái cần xử lý một cách nhẹ
+nhàng.
 
-<!-- ![Local docker-compose and psql session loading the schema](/images/5-Workshop/5.4-Local-Build/5.4.1-backend/example.png) -->
+<!-- ![Phiên docker-compose và psql cục bộ đang nạp schema](/images/5-Workshop/5.4-Local-Build/5.4.1-backend/example.png) -->

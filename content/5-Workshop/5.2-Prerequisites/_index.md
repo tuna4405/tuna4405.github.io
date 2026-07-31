@@ -58,6 +58,35 @@ permissions.
 			"Resource": "*"
 		},
 		{
+			"Sid": "StartSession",
+			"Effect": "Allow",
+			"Action": "ssm:StartSession",
+			"Resource": [
+				"arn:aws:ec2:*:*:instance/*",
+				"arn:aws:ssm:*:*:document/SSM-SessionManagerRunShell"
+			]
+		},
+		{
+			"Sid": "SessionVisibility",
+			"Effect": "Allow",
+			"Action": [
+				"ssm:DescribeSessions",
+				"ssm:GetConnectionStatus",
+				"ssm:DescribeInstanceProperties",
+				"ec2:DescribeInstances"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "EndOwnSession",
+			"Effect": "Allow",
+			"Action": [
+				"ssm:TerminateSession",
+				"ssm:ResumeSession"
+			],
+			"Resource": "arn:aws:ssm:*:*:session/${aws:username}-*"
+		},
+		{
 			"Effect": "Allow",
 			"Action": "wafv2:*",
 			"Resource": "*"

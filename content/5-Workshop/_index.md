@@ -29,7 +29,7 @@ and Amazon CloudWatch with SNS watching all of it. The compute layer itself
 ends up fully private: both EC2 instances sit behind a NAT gateway with no
 public IP and no SSH port open at all, administered instead through AWS
 Systems Manager Session Manager - the same operational posture the database
-already has in section 5.5.4, arrived at for the same reason.
+already has in section 5.5.1, arrived at for the same reason.
 
 Each section below builds on the state left by the one before it. Follow them
 in order the first time through.
@@ -47,4 +47,4 @@ in order the first time through.
 9. [Testing](5.9-Testing/)
 10. [Cost and Resource Management](5.10-Cost/)
 11. [Cleaning Up Resources](5.11-Cleanup/)
-12. [References](5.12-References/)
+12. [Repository, Live Site, and Demo](5.12-Links-and-Demo/)

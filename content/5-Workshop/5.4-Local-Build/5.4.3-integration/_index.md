@@ -23,6 +23,13 @@ pre : " <b> 5.4.3 </b> "
    Then open the same seat map in a second browser tab and confirm a seat
    booked in the first tab shows as unavailable after a refresh in the
    second - a first, informal look at the concurrency guarantee that gets a
-   real test in section 5.9.
+   real test in section 5.10.
+
+{{% notice note %}}
+This is the last point in the project where "it works" can be checked in
+seconds on localhost. From section 5.5 onward, every verification step
+involves at least one network hop to AWS, so it is worth being genuinely
+confident in this milestone before moving on.
+{{% /notice %}}
 
 <!-- ![Working seat picker against the local API, booked seats greyed out](/images/5-Workshop/5.4-Local-Build/5.4.3-integration/example.png) -->

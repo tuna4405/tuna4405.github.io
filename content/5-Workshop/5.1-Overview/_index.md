@@ -75,12 +75,14 @@ Lambda in it.
 
 The architecture diagram below is the end state this workshop arrives at, not
 the starting point - the sections that follow build it up in the same order
-the diagram reads: database and storage first, then compute, then the private
-networking and CDN layers, then observability.
+the diagram reads: database first, then storage together with the CDN that
+fronts it from the very first deployed build, then compute and the private
+networking around it, then observability.
 
-![Caerus final architecture](/images/5-Workshop/5.1-Overview/architecture.png)
+![](/images/5-Workshop/5.1-Overview/architecture.png)
 
 <!-- NOTE for the report author: use the reviewed architecture diagram, with
-the frontend S3 bucket relabelled "S3 (Frontend)" rather than "Static
-Website" - static website hosting on that bucket was disabled once
-CloudFront + OAC took over in section 5.7.6. -->
+the frontend S3 bucket labelled "S3 (Frontend, private)" rather than "Static
+Website" - static website hosting is never enabled on that bucket; it is
+read only by CloudFront via Origin Access Control from section 5.6.2
+onward. -->

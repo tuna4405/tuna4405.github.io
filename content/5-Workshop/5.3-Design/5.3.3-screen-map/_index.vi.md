@@ -6,27 +6,35 @@ chapter : false
 pre : " <b> 5.3.3 </b> "
 ---
 
-Hai lối đi xuyên qua cùng một tập màn hình, phân biệt bằng `role` trên JWT chứ
-không phải bằng một ứng dụng riêng.
+Hai luồng đi qua cùng một tập hợp màn hình, được phân biệt bởi `role` trên
+JWT chứ không phải bởi một ứng dụng riêng biệt.
 
-**Lối đi của khách hàng:**
+**Luồng khách hàng (customer path):**
 
-| Màn hình | Gọi tới |
+| Màn hình | Gọi |
 |---|---|
 | Trang chủ (danh sách sự kiện) | `GET /events` |
 | Chi tiết sự kiện | `GET /events/:id`, `GET /events/:id/seats` |
 | Chọn ghế / xác nhận đặt vé | `POST /bookings` |
-| Vé của tôi | `GET /bookings` |
-| Chi tiết booking | `GET /bookings/:id`, `DELETE /bookings/:id`, `POST /bookings/:id/ticket` |
+| Lượt đặt của tôi | `GET /bookings` |
+| Chi tiết lượt đặt | `GET /bookings/:id`, `DELETE /bookings/:id`, `POST /bookings/:id/ticket` |
 | Đăng nhập / Đăng ký | `POST /auth/login`, `POST /auth/register` |
 
-**Lối đi của admin** (cùng màn hình đăng nhập, token mang `role: "admin"`):
+**Luồng admin (admin path)** (cùng màn hình đăng nhập, `role: "admin"`
+trên token):
 
-| Màn hình | Gọi tới |
+| Màn hình | Gọi |
 |---|---|
 | Quản lý suất chiếu (danh sách) | `GET /events` |
 | Tạo suất chiếu | `POST /events` |
-| Tải poster lên | `POST /events/:id/banner` |
+| Tải lên poster | `POST /events/:id/banner` |
 
+{{% notice note %}}
+Có chủ đích không có màn hình "chỉnh sửa suất chiếu" hay "xóa suất chiếu".
+Một khi ghế đã tồn tại cho một sự kiện, việc thay đổi hình dạng của nó một
+cách hồi tố là một vấn đề khó hơn nhiều so với việc tạo một sự kiện mới -
+nằm ngoài phạm vi của dự án này, và đáng để nói rõ điều đó thay vì để lại
+một khoảng trống âm thầm trong bản đồ màn hình.
+{{% /notice %}}
 
-![Bản đồ màn hình: lối đi của khách hàng và lối đi của admin](/images/5-Workshop/5.3-Design/5.3.3-screen-map/caerus_screen_map.png)
+![Screen map: customer path and admin path](/images/5-Workshop/5.3-Design/5.3.3-screen-map/caerus_screen_map.png)

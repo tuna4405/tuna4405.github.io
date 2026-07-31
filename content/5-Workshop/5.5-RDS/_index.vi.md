@@ -8,17 +8,17 @@ pre : " <b> 5.5. </b> "
 
 #### Tổng quan
 
-Đưa cơ sở dữ liệu ra khỏi một container cục bộ, trong trường hợp đơn giản, chỉ là
-đổi một connection string: đúng hai file `001_init.sql` và `seed.sql` ấy chạy y
-nguyên trên một instance RDS được quản lý. Mục này trình bày trường hợp đơn giản
-đó trước (các mục 5.5.1-5.5.3), rồi đi xa hơn những gì kế hoạch ban đầu đòi hỏi:
-bật Multi-AZ để tự động failover và dời instance vào một private subnet hoàn toàn
-không có đường ra internet (mục 5.5.4) - đồng thời nói thẳng về những điểm kỳ quặc
-của AWS đã khiến phần thứ hai khó hơn mức đáng lẽ phải có.
+Phần này chỉ thuần về hạ tầng: dựng lên một instance PostgreSQL được quản lý
+với những thuộc tính mà một triển khai thực tế cần - Multi-AZ để tự động
+failover, và một private subnet hoàn toàn không có đường ra internet - thay
+vì bắt đầu đơn giản rồi mới nâng cấp sau. Chưa có gì chạy trên database này
+cả; không có compute nào trong VPC có thể chạm tới nó cho tới khi mục 5.7 tồn
+tại, và việc chạy `001_init.sql` và `seed.sql` từ máy của developer sẽ có
+nghĩa là phải mở `caerus-rds-sg` cho một IP cá nhân chỉ để rồi vứt bỏ rule đó
+ngay sau đó. Bước đó - cùng với lần kiểm tra end-to-end thực sự đầu tiên xem
+schema và seed data có hoạt động hay không - diễn ra đúng một lần, từ bên
+trong chính instance ứng dụng, ở mục 5.7.7.
 
 #### Nội dung
 
 - [Khởi tạo DB Instance](5.5.1-launch-instance/)
-- [Chạy migration và seed](5.5.2-migrate-and-seed/)
-- [Kiểm tra kết nối](5.5.3-verify/)
-- [Multi-AZ và Private Subnet](5.5.4-multi-az-and-private-subnet/)

@@ -8,24 +8,29 @@ pre : " <b> 5.7. </b> "
 
 #### Tổng quan
 
-Câu chuyện về tầng compute, kể theo đúng thứ tự nó đã thực sự diễn ra: một lần khởi
-chạy thực hành trên IAM user cá nhân, một instance EC2 duy nhất được triển khai và
-truy cập được, một security group được siết chặt quanh nó, frontend được trỏ vào nó
-kèm việc xử lý lỗi CORS phát sinh - và chỉ khi mọi thứ đó đã vững, mới đến một
-instance thứ hai cùng một Application Load Balancer đứng trước cả hai, rồi Amazon
-CloudFront đứng trước cả load balancer lẫn bucket S3 chứa trang web, và cuối cùng
-chính các instance được dời hẳn ra khỏi internet công cộng, vào các private subnet
-nằm sau một NAT gateway và được quản trị qua Systems Manager thay cho SSH. Đây là
-mục mà ứng dụng thôi chỉ truy cập được từ máy của lập trình viên và trở thành truy
-cập được từ bất cứ đâu - trong khi chính các instance phục vụ nó lại trở thành chỉ
-tiếp cận được từ đúng một nơi là load balancer.
+Vị trí mạng của tầng compute là một quyết định được đưa ra trước khi instance
+đầu tiên từng khởi tạo, không phải một bài học rút ra sau đó: private subnet,
+một NAT gateway cho mỗi Availability Zone, và Systems Manager để quản trị đều
+đã sẵn sàng trước khi `caerus-server-1` tồn tại - giống hệt cách mục 5.5.1 đặt
+RDS vào private subnet ngay từ lần khởi tạo đầu tiên thay vì như một lần di
+chuyển sau này. Không instance nào trong dự án này từng có IP công khai hay
+một port SSH đang mở. Câu chuyện được kể ở đây là một lần khởi tạo thực hành
+trên một IAM user cá nhân, hạ tầng mạng private được xây cho tầng ứng dụng,
+một instance duy nhất được triển khai vào đó và được quản trị hoàn toàn qua
+Session Manager, một security group bắt đầu không có bất kỳ rule inbound nào
+vì chưa có gì cần tới nó, frontend được trỏ tới instance đó qua một đường hầm
+SSM để bắt lỗi CORS không thể tránh khỏi trước khi có bất kỳ traffic thật nào,
+và sau đó một instance thứ hai cùng một Application Load Balancer - thành
+phần đầu tiên trong toàn bộ chuỗi này thực sự mở một đường vào từ internet
+công khai, có chủ đích, tại đúng một điểm duy nhất. Đây là phần mà ứng dụng
+trở nên truy cập được từ bất kỳ đâu, trong khi các instance phục vụ nó vẫn
+không thể truy cập được từ bất kỳ đâu ngoại trừ đúng load balancer đó.
 
 #### Nội dung
 
 - [Thực hành khởi tạo và huỷ instance](5.7.1-launch-practice/)
-- [Triển khai API với pm2](5.7.2-deploy-api/)
+- [Hạ tầng mạng Private và Instance Đầu Tiên](5.7.2-deploy-api/)
 - [Siết chặt Security Group](5.7.3-security-groups/)
 - [Build frontend và xử lý CORS](5.7.4-frontend-and-cors/)
 - [Load Balancer và Instance Thứ Hai](5.7.5-load-balancer/)
-- [CloudFront: Một Domain HTTPS Duy Nhất](5.7.6-cloudfront/)
-- [Private Subnets, NAT, và Systems Manager](5.7.7-private-subnet-nat/)
+- [CloudFront: Một Domain HTTPS Duy Nhất cho Tất Cả](5.7.6-cloudfront/)

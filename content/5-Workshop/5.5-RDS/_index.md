@@ -8,19 +8,18 @@ pre : " <b> 5.5. </b> "
 
 #### Overview
 
-Moving the database off a local container is, in the simple case, changing a
-connection string: the same `001_init.sql` and `seed.sql` files run unchanged
-against a managed RDS instance. This section covers that simple case first
-(sections 5.5.1-5.5.3), then goes further than the original plan required:
-enabling Multi-AZ for automatic failover and moving the instance into a
-private subnet with no route to the internet at all (section 5.5.4) - and is
-honest about the AWS quirks that made the second part harder than it should
-have been.
+This section is infrastructure only: standing up a managed PostgreSQL
+instance with the properties a real deployment needs - Multi-AZ for
+automatic failover, and a private subnet with no route to the internet at
+all - rather than starting simple and upgrading later. Nothing runs against
+the database yet; there is no compute anywhere in the VPC able to reach it
+until section 5.7 exists, and running `001_init.sql` and `seed.sql` from a
+developer's own machine would mean opening `caerus-rds-sg` to a personal IP
+just to throw the rule away afterward. That step - and the first real
+end-to-end check that the schema and seed data actually work - happens once,
+from inside the application instance itself, in section 5.7.7.
 
 #### Content
 
 - [Launch the DB Instance](5.5.1-launch-instance/)
-- [Run the Migration and Seed](5.5.2-migrate-and-seed/)
-- [Verify the Connection](5.5.3-verify/)
-- [Multi-AZ and the Private Subnet](5.5.4-multi-az-and-private-subnet/)
 

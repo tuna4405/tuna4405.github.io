@@ -6,52 +6,71 @@ chapter : false
 pre : " <b> 5.7.4 </b> "
 ---
 
-1. **Trỏ frontend sang API đã triển khai** bằng cách đặt `VITE_API_BASE_URL` trong
-   `frontend/.env` thành `http://<ec2-public-ip>:3000/api/v1`, rồi build và tải
-   lên:
+`caerus-server-1` không có IP công khai, nên chưa gì trên internet - kể cả
+frontend đã chạy trên CloudFront từ mục 5.6.2 - có thể chạm tới nó được. Load
+balancer, thứ cuối cùng mở ra một đường vào thực sự, chưa tồn tại cho tới mục
+5.7.5, nhưng vấn đề CORS mà nó rồi sẽ phơi bày ra thì rẻ hơn nhiều để tìm và
+sửa ngay bây giờ, ở local, thay vì phát hiện ra lần đầu tiên trên traffic
+production.
+
+1. **Mở lại đường hầm SSM port-forwarding từ mục 5.7.2** ở một terminal, giữ
+   nó chạy, và trỏ một dev server frontend *cục bộ* tới đường hầm đó thay vì
+   build cho CloudFront:
+
+   ```ini
+   # frontend/.env
+   VITE_API_BASE_URL=http://localhost:3000/api/v1
+   ```
 
    ```bash
    cd frontend
-   npm run build
+   npm run dev
    ```
 
-   Tải *nội dung bên trong* `dist/` lên `caerus-frontend-web` (lời cảnh báo ở mục
-   5.6.2 về việc đừng kéo thả cả thư mục vẫn áp dụng ở đây).
+2. **Mở dev server trên trình duyệt (`http://localhost:5173`) và chờ các
+   lệnh gọi API vẫn thất bại**, bất kể đã có đường hầm. Console của trình
+   duyệt sẽ hiển thị một thông báo đại loại như:
 
-2. **Mở website endpoint của trang và hãy chờ đợi nó lỗi.** Console của trình duyệt
-   sẽ hiện ra đại ý như sau:
+   > Access to fetch at `http://localhost:3000/api/v1/events` from origin
+   > `http://localhost:5173` has been blocked by CORS policy: No
+   > 'Access-Control-Allow-Origin' header is present on the requested
+   > resource.
 
-   > Access to fetch at `http://<ec2-ip>:3000/api/v1/events` from origin
-   > `http://caerus-frontend-web.s3-website-ap-southeast-1.amazonaws.com`
-   > has been blocked by CORS policy: No 'Access-Control-Allow-Origin'
-   > header is present on the requested resource.
+   Đây là điều được dự đoán trước, không phải một lỗi đáng ngạc nhiên - dev
+   server và API được tunnel vẫn là hai origin khác nhau (khác port cũng
+   được tính là khác origin), và trình duyệt thực thi same-origin policy
+   thay mặt cho *frontend*, bất kể backend có ý định cho phép điều gì, và bất
+   kể đường hầm SSM bên dưới chỉ là một chi tiết hạ tầng mà trình duyệt không
+   bao giờ nhìn thấy.
 
-   Đây là điều đã lường trước, không phải một lỗi để phải bất ngờ - trang web và API
-   nằm ở hai origin khác nhau (khác hẳn host), và trình duyệt cưỡng chế chính sách
-   same-origin thay mặt cho *frontend*, bất kể phía backend có ý định cho phép những
-   gì.
-
-3. **Sửa ở phía backend**, chứ không phải bằng cách đấu với trình duyệt: `app.js`
-   liệt kê chính xác các origin được phép gọi API.
+3. **Sửa ở phía backend**, không phải bằng cách chống lại trình duyệt:
+   `app.js` whitelist chính xác (các) origin được phép gọi API.
 
    ```js
    const allowedOrigins = [
-     'http://caerus-frontend-web.s3-website-ap-southeast-1.amazonaws.com',
+     'https://<distribution-domain>',
      'http://localhost:5173',
    ];
    app.use(cors({ origin: allowedOrigins }));
    ```
 
+   Domain của CloudFront distribution được đưa vào danh sách này ngay từ bây
+   giờ dù chưa có gì chạm tới được nó theo kiểu end-to-end cho tới mục 5.7.5 -
+   origin mà trình duyệt cuối cùng sẽ gửi không bao giờ thay đổi, chỉ có địa
+   chỉ của backend là thay đổi, nên sẽ không cần làm lại gì ở đây sau này.
+
    {{% notice warning %}}
-   Hãy ghi đúng **region** trong chuỗi này. Một dòng whitelist sai region
-   (`us-east-1` chép từ một ví dụ thay vì `ap-southeast-1` mà dự án thực sự dùng)
-   nhìn thoáng qua thì thấy đúng nhưng lại lỗi với đúng thông báo CORS y hệt, khiến
-   nó trở thành một sai sót rất dễ bị đẩy lên và hơi khó chịu để phát hiện - nếu gặp
-   trường hợp này, hãy đối chiếu thanh địa chỉ của trình duyệt với chuỗi trong
-   `app.js` từng ký tự một.
+   Ghi đúng **origin** trong danh sách này - scheme, host, và không có dấu
+   gạch chéo ở cuối. Một mục gần đúng nhưng không giống hệt (sai scheme, một
+   domain cũ được copy từ một giai đoạn trước đó) nhìn qua có vẻ đúng và vẫn
+   thất bại với đúng lỗi CORS y hệt, điều này khiến nó thực sự là một lỗi dễ
+   vô tình đưa lên production và hơi khó phát hiện ra - nếu gặp trường hợp
+   này, hãy so sánh thanh địa chỉ của trình duyệt với chuỗi trong `app.js`
+   từng ký tự một.
    {{% /notice %}}
 
-4. **Triển khai lại backend** (lặp lại các bước liên quan ở mục 5.7.2) rồi tải lại
-   trang - đúng cái request đã lỗi ở bước 2 giờ đã thành công.
+4. **Triển khai lại backend** (lặp lại các bước liên quan ở mục 5.7.2, qua
+   cùng phiên SSM) và tải lại `http://localhost:5173` - cùng request đã thất
+   bại ở bước 2 giờ sẽ thành công, kể cả qua đường hầm.
 
-<!-- ![Browser console showing the CORS error, and the same request succeeding after the fix](/images/5-Workshop/5.7-EC2/5.7.4-frontend-and-cors/example.png) -->
+<!-- ![Browser console showing the CORS error against the SSM-tunneled backend, and the same request succeeding after the fix](/images/5-Workshop/5.7-EC2/5.7.4-frontend-and-cors/example.png) -->
