@@ -28,11 +28,5 @@ the JWT rather than by a separate application.
 | Create screening | `POST /events` |
 | Upload poster | `POST /events/:id/banner` |
 
-{{% notice note %}}
-There is deliberately no "edit screening" or "delete screening" screen. Once
-seats exist for an event, changing its shape retroactively is a much harder
-problem than creating a new one - out of scope for this project, and worth
-saying so explicitly rather than leaving a silent gap in the screen map.
-{{% /notice %}}
 
 ![Screen map: customer path and admin path](/images/5-Workshop/5.3-Design/5.3.3-screen-map/caerus_screen_map.png)

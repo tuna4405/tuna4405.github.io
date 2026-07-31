@@ -29,12 +29,5 @@ trên token):
 | Tạo suất chiếu | `POST /events` |
 | Tải lên poster | `POST /events/:id/banner` |
 
-{{% notice note %}}
-Có chủ đích không có màn hình "chỉnh sửa suất chiếu" hay "xóa suất chiếu".
-Một khi ghế đã tồn tại cho một sự kiện, việc thay đổi hình dạng của nó một
-cách hồi tố là một vấn đề khó hơn nhiều so với việc tạo một sự kiện mới -
-nằm ngoài phạm vi của dự án này, và đáng để nói rõ điều đó thay vì để lại
-một khoảng trống âm thầm trong bản đồ màn hình.
-{{% /notice %}}
 
 ![Screen map: customer path and admin path](/images/5-Workshop/5.3-Design/5.3.3-screen-map/caerus_screen_map.png)
