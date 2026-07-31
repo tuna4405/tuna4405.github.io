@@ -1,9 +1,9 @@
 ---
 title : "Kiểm thử"
 date : 2026-06-01
-weight : 10
+weight : 9
 chapter : false
-pre : " <b> 5.10. </b> "
+pre : " <b> 5.9. </b> "
 ---
 
 #### Tổng quan
@@ -14,6 +14,6 @@ pre : " <b> 5.10. </b> "
 
 #### Nội dung
 
-- [Kiểm thử đặt trùng ghế](5.10.1-concurrency/)
-- [Các trường hợp biên](5.10.2-edge-cases/)
+- [Kiểm thử đặt trùng ghế](5.9.1-concurrency/)
+- [Các trường hợp biên](5.9.2-edge-cases/)
 

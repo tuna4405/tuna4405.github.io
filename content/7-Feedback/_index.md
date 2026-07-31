@@ -1,6 +1,6 @@
 ---
 title: "Sharing and Feedback"
-date: 2026-06-01
+date: 2026-06-15
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
@@ -84,23 +84,6 @@ A close second was the point at which a feature moved from a server to a
 serverless function without the frontend noticing. Seeing that the interface
 contract, not the compute service, is what actually matters was a genuinely
 useful shift in how I think about systems.
-
-**What do you think the company should improve for future interns?**
-
-Two suggestions, offered constructively.
-
-First, cost awareness could come slightly earlier and more concretely. Billing
-and the Free Tier are covered at the start, but the specific traps - resources
-that bill hourly whether or not they are used, unattached addresses, forgotten
-gateways - are the kind of thing most people learn by being surprised. A short,
-blunt list of the components that generate unexpected charges, given in the first
-week, would save a lot of anxiety.
-
-Second, a checkpoint on the report itself around the midpoint would help. The
-report is a significant deliverable, and it is easy to defer it until the
-technical work is finished - at which point reconstructing what happened in week
-three is much harder than it would have been at the time. Even a brief review of
-work-in-progress reports would encourage people to write as they go.
 
 **If recommending to a friend, would you suggest they intern here? Why or why
 not?**

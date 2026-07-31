@@ -6,24 +6,25 @@ chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-### Week 7 Objectives: Caerus - Design and Local Build
+### Week 7 Objectives: Caerus - Testing, Report, and Submission
 
-* Agree the API specification and database schema as a frozen contract before writing code.
-* Build the backend and frontend in parallel against that contract.
-* Reach a fully working application on localhost.
+* Prove the no-double-booking guarantee against the deployed system, not just assert it.
+* Verify the documented edge cases against the real environment.
+* Assemble and submit the final report.
 
 ### Tasks to be carried out this week:
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Reviewed AWS core concepts together: IAM, Regions and Availability Zones, security groups, Free Tier, billing <br> - Created the shared AWS account, billing alarm, and one IAM user per team member <br> - Created the GitHub repository and configured branch protection so all work merges through pull requests <br> - Agreed two working habits: terminate practice resources the same day, and tag every resource with an `Owner` value | 13/07/2026 | 13/07/2026 |  |
-| 3 | - Design session - the most important day of the project: <br> &emsp; + Agreed the five-table schema: `users`, `events`, `seats`, `bookings`, `booking_seats` <br> &emsp; + Agreed every endpoint, request and response shape, and the standard error format <br> &emsp; + Decided seats belong to a screening rather than to a physical room <br> &emsp; + Decided prices are stored as integers in Vietnamese dong <br> &emsp; + Froze both documents: neither may be changed unilaterally <br> - Wrote up the database schema document <br> - Wrote up the API specification and drew the architecture diagram | 14/07/2026 | 14/07/2026 |  |
-| 4 | - Parallel local development: <br> - Express API with PostgreSQL running in Docker; implemented the booking transaction using `SELECT ... FOR UPDATE` with consistent lock ordering <br> - React application with the event list, seat picker, and bookings screens, built against mock JSON files shaped exactly like the agreed responses <br> - Wrapped every API call in a single client module so switching from mocks to the live API is one change | 15/07/2026 | 17/07/2026 | <https://www.postgresql.org/docs/16/explicit-locking.html> |
-| 6 | - Integration, working together at one machine: one driving, one debugging <br> - Connected the frontend to the live API and resolved the mismatches the mocks had hidden <br> - Tested the booking flow end to end and confirmed a seat map refresh reflects another user's booking <br> - **Milestone reached:** the complete application running on localhost | 18/07/2026 | 19/07/2026 |  |
+| 2 | - The concurrency test: two browser sessions, logged in as two different users, selecting the same seat on the same screening and submitting as close together as possible <br> - Confirmed one request received `201 Created` and the other a `409 SEAT_ALREADY_BOOKED` naming the contested seat, and that the seat map afterward showed the seat booked exactly once | 27/07/2026 | 27/07/2026 | |
+| 3 | - Edge-case testing against the deployed system: cancelling after showtime, cancelling an already-cancelled booking, booking more than six seats, an expired or malformed token, a non-admin calling an admin route, and downloading a ticket for a cancelled booking <br> - Recorded the actual observed status code and error code for each row against the specification, rather than leaving the table as a checklist | 28/07/2026 | 28/07/2026 | |
+| 4 | - Assembled the report structure and began writing, working from the frozen specification, the worklog, and the actual architecture as built <br> - Went back through every AWS console used across the project and captured the screenshots the report references | 29/07/2026 | 29/07/2026 | |
+| 5 | - **Published Blog 1** (AWS Budgets and Cost Anomaly Detection, from Week 2's self-study) and **Blog 3** (AWS Config and Conformance Packs, from Week 3's self-study) to the AWS Study Group community <br> - Finished writing the report content, including the cost section reflecting the architecture's real monthly run-rate rather than a Free Tier estimate that no longer applied | 30/07/2026 | 30/07/2026 | <https://www.facebook.com/groups/awsstudygroupfcj/permalink/2229088634522763/> |
+| 6 | - Final review of the report and the deployed system together, correcting the few places where the two had drifted apart during the week's changes <br> - Recorded a demonstration video as a backup in case of a live failure during presentation <br> - **Milestone reached:** report submitted | 31/07/2026 | 31/07/2026 | |
 
 ### Week 7 Achievements:
 
-* Produced two agreed contract documents that allowed both developers to work simultaneously rather than one waiting on the other.
-* Implemented the booking transaction with row-level locking, the central technical requirement of the project.
-* Built a frontend that was never blocked on backend progress, by developing against mock data shaped to the specification.
-* Completed local integration on schedule, with the whole application demonstrable on localhost.
+* Proved the project's central claim - a seat can never be sold twice - against the real deployed system, with both the successful and the rejected request captured as evidence.
+* Verified every documented edge case against the deployed environment rather than trusting the specification alone.
+* Published the remaining two blog posts of the internship, closing out the reading that began as self-study in Weeks 2 and 3.
+* Submitted a report whose architecture, cost, and testing sections all describe the system exactly as it was actually built and run, not as it was originally planned seven weeks earlier.

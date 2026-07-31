@@ -1,13 +1,13 @@
 ---
 title: "Self-Assessment"
-date: 2026-06-01
+date: 2026-06-15
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
 During my internship at **Amazon Web Services Viet Nam Company Limited** from
-**01/06/2026** to **15/08/2026**, as part of the Workforce Bootcamp - First
+**15/06/2026** to **14/08/2026**, as part of the Workforce Bootcamp - First
 Cloud Journey programme, I had the opportunity to move from studying cloud
 computing in theory to designing, building, and operating a complete system on
 AWS.
@@ -17,7 +17,7 @@ identity and access management, networking, compute, storage, databases,
 serverless, and monitoring - with a practical exercise attached to each. The
 final weeks were spent applying all of it to **Caerus**, a cinema seat booking
 platform built by a two-person team and deployed across Amazon EC2, Amazon RDS,
-Amazon S3, AWS Lambda, Amazon API Gateway, and Amazon CloudWatch.
+Amazon S3, API Gateway and Amazon CloudWatch.
 
 Through this work I improved my skills in cloud architecture and service
 selection, relational database design, transactional programming and
@@ -67,13 +67,6 @@ following criteria:
   is a transaction problem. I learned to lock the contested rows explicitly,
   order the locks consistently to avoid deadlocks, and then prove the guarantee
   with a deliberate two-client race rather than assuming it held.
-
-* **Revising decisions on evidence.** Partway through the serverless phase we
-  had planned to move booking cancellation to a Lambda function. On review it
-  became clear that cancellation shares its transaction logic with booking and
-  would have to be duplicated for no operational benefit, so we kept it on the
-  API server and recorded the reasoning. Changing a plan when the evidence
-  changes is something I want to keep doing.
 
 * **Cost discipline.** Setting a billing alarm before provisioning anything,
   tagging every resource with an owner, and terminating practice resources the

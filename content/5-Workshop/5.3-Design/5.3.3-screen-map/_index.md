@@ -6,20 +6,27 @@ chapter : false
 pre : " <b> 5.3.3 </b> "
 ---
 
-<!-- WHAT GOES HERE:
-Customer path vs admin path. Embed caerus_screen_map.png. Note which endpoint
-each screen calls.
--->
+Two paths through the same set of screens, distinguished by the `role` on
+the JWT rather than by a separate application.
 
-1. Step one
-2. Step two
+**Customer path:**
 
-{{% notice note %}}
-An aside the reader needs at this point.
-{{% /notice %}}
+| Screen | Calls |
+|---|---|
+| Home (event list) | `GET /events` |
+| Event detail | `GET /events/:id`, `GET /events/:id/seats` |
+| Seat selection / confirm booking | `POST /bookings` |
+| My bookings | `GET /bookings` |
+| Booking detail | `GET /bookings/:id`, `DELETE /bookings/:id`, `POST /bookings/:id/ticket` |
+| Login / Register | `POST /auth/login`, `POST /auth/register` |
 
-<!-- ![description](/images/5-Workshop/5.3-Design/5.3.3-screen-map/example.png) -->
+**Admin path** (same login screen, `role: "admin"` on the token):
 
-{{% notice warning %}}
-⚠️ **Note:** Replace this placeholder with your own writing.
-{{% /notice %}}
+| Screen | Calls |
+|---|---|
+| Manage screenings (list) | `GET /events` |
+| Create screening | `POST /events` |
+| Upload poster | `POST /events/:id/banner` |
+
+
+![Screen map: customer path and admin path](/images/5-Workshop/5.3-Design/5.3.3-screen-map/caerus_screen_map.png)

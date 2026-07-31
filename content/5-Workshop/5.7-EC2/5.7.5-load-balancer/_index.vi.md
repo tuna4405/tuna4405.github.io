@@ -1,14 +1,12 @@
 ---
-title : "Lambda huỷ đặt vé"
+title : "Load Balancer và Instance Thứ Hai"
 date : 2026-06-01
-weight : 1
+weight : 5
 chapter : false
-pre : " <b> 5.8.1 </b> "
+pre : " <b> 5.7.5 </b> "
 ---
 
 <!-- Dịch từ bản tiếng Anh sau khi hoàn thành nội dung. -->
 
 1. Bước một
 2. Bước hai
-
-

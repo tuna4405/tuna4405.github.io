@@ -8,10 +8,14 @@ pre : " <b> 5.3. </b> "
 
 #### Overview
 
-<!-- WHAT GOES HERE:
-The two shared contracts agreed before any code was written, plus the screen
-map. This section is design only - no AWS console work yet.
--->
+Before either developer wrote a line of application code, the team agreed and
+froze two documents: the API specification and the database schema. "Frozen"
+meant literally that - neither document could be changed by one person
+without the other's agreement, and every later change is recorded in each
+document's own changelog rather than silently edited in place. This section
+covers both contracts plus the screen map that ties them to what a user
+actually sees. There is no AWS Console work in this section; everything here
+is design that has to be right before section 5.4 starts building against it.
 
 
 #### Content

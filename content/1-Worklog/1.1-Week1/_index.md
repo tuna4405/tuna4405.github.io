@@ -6,27 +6,26 @@ chapter: false
 pre: " <b> 1.1. </b> "
 ---
 
-### Week 1 Objectives: Orientation and Cloud Fundamentals
+### Week 1 Objectives: Orientation and Project Definition
 
 * Meet the First Cloud Journey cohort and understand the programme structure, rules, and deliverables.
-* Understand what cloud computing is and how AWS organises its global infrastructure.
-* Create and secure a personal AWS account, and put cost controls in place before using any service.
+* Form the two-person team and choose a project whose central problem cannot be solved by the application layer alone.
+* Freeze the API endpoint list and the database schema together, before writing any code.
 
 ### Tasks to be carried out this week:
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - Orientation session: introduction to the First Cloud Journey programme <br> - Read and take notes on the internship rules, deliverables, and report requirements | 01/06/2026 | 01/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Cloud computing fundamentals: <br> &emsp; + On-premises vs cloud: capital versus operating expenditure <br> &emsp; + Service models: IaaS, PaaS, SaaS <br> &emsp; + Deployment models: public, private, hybrid <br> - The AWS Shared Responsibility Model: what AWS secures versus what the customer secures | 02/06/2026 | 02/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - AWS global infrastructure: <br> &emsp; + Regions, Availability Zones, and edge locations <br> &emsp; + How to choose a Region: latency, cost, and data residency <br> - Overview of the main service categories: compute, storage, database, networking, monitoring <br> - Decided on `ap-southeast-1` (Singapore) as the working Region for the whole internship | 03/06/2026 | 03/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Accounts and billing: <br> &emsp; + Root user versus IAM user, and why the root user should not be used daily <br> &emsp; + AWS Free Tier: the difference between always-free, 12-month, and trial offers <br> - **Practice:** <br> &emsp; + Create an AWS Free Tier account <br> &emsp; + Enable MFA on the root user <br> &emsp; + Explore the Billing dashboard and Cost Explorer <br> &emsp; + Create a billing alarm so any unexpected charge is noticed early | 04/06/2026 | 04/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 6 | - Tour of the AWS Management Console: navigation, Region selector, service search <br> - AWS CLI: installation, credential configuration, profiles, output formats <br> - **Practice:** <br> &emsp; + Install and configure the AWS CLI <br> &emsp; + Verify identity with `aws sts get-caller-identity` <br> &emsp; + List Regions and describe available services from the command line | 05/06/2026 | 05/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 7 | - The AWS Well-Architected Framework: an overview of the six pillars <br> - Self-study: reviewed the week's notes and prepared questions on IAM for next week | 06/06/2026 | 06/06/2026 | <https://aws.amazon.com/architecture/well-architected/> |
+| 2 | - Orientation session: introduction to the First Cloud Journey programme, rules, deliverables, and report requirements <br> - Formed the two-person team and agreed a working split: one backend lane, one frontend lane, both developed in parallel against a shared contract | 15/06/2026 | 15/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 3 | - Reviewed candidate project ideas and picked a cinema seat booking platform, because selling reserved seats under concurrency exercises transactional integrity rather than simple CRUD <br> - Named the project Caerus <br> - Read around the problem space: a case study on how SeatGeek, a real ticketing platform, structures authorization and rate limiting for many tenants at once - purely as background reading at this stage, not something Caerus needs, since it is a single-tenant application with no multi-tenant rate limiting requirement | 16/06/2026 | 16/06/2026 | <https://aws.amazon.com/blogs/architecture/how-seatgeek-uses-aws-to-control-authorization-authentication-and-rate-limiting-in-a-multi-tenant-saas-application/> |
+| 4 | - Defined the core problem precisely: two customers selecting the same seat at the same instant must never both succeed <br> - Drafted the full list of API endpoints needed: auth, event listing and detail, seat map, booking, cancellation, ticket download, admin event creation, admin poster upload | 17/06/2026 | 17/06/2026 | |
+| 5 | - Drafted the database schema alongside the endpoint list, in the same session rather than afterward, since the two depend on each other: five tables - `users`, `events`, `seats`, `bookings`, `booking_seats` <br> - Decided seats belong to a screening rather than to a physical room, so availability is unambiguous per showing <br> - Decided prices are stored as integers in Vietnamese dong, never floats | 18/06/2026 | 18/06/2026 | |
+| 6 | - Agreed the request/response shape and standard error format for every endpoint, and the row-locking approach for the booking transaction (`SELECT ... FOR UPDATE`) <br> - Froze both documents - the API specification and the database schema - as a rule that neither developer changes unilaterally from this point on | 19/06/2026 | 19/06/2026 | |
+| 7 | - Self-study: reviewed the frozen documents once more for gaps before treating them as final, and read ahead on IAM in preparation for next week | 20/06/2026 | 20/06/2026 | |
 
 ### Week 1 Achievements:
 
-* Understood the fundamental cloud service and deployment models, and can explain where responsibility sits between AWS and the customer.
-* Can explain the relationship between Regions, Availability Zones, and edge locations, and justify a Region choice on latency and cost grounds.
-* Created a working AWS Free Tier account with MFA enabled on the root user.
-* Configured a billing alarm before provisioning any billable resource, establishing cost awareness as a habit rather than an afterthought.
-* Installed and configured the AWS CLI and used it to inspect account and Region information alongside the Console.
+* Formed a two-person team with a clear backend/frontend split that allows parallel work from the very first week of building.
+* Chose a project whose defining requirement - no seat ever sold twice - cannot be met by the application layer alone, and can explain why.
+* Produced two frozen contract documents (API specification and database schema) agreed in the same session, before a single line of code was written.
+* Read a real-world case study on multi-tenant authorization purely as exploratory background, and can explain why its specific mechanisms (tiered usage plans, per-tenant API keys) do not apply to a single-tenant project like Caerus.

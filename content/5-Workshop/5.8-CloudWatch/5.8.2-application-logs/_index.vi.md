@@ -3,7 +3,7 @@ title : "Đẩy log ứng dụng"
 date : 2026-06-01
 weight : 2
 chapter : false
-pre : " <b> 5.9.2 </b> "
+pre : " <b> 5.8.2 </b> "
 ---
 
 <!-- Dịch từ bản tiếng Anh sau khi hoàn thành nội dung. -->
