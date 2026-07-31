@@ -10,8 +10,29 @@ pre: " <b> 5. </b> "
 
 #### Tổng quan
 
-<!-- Dịch từ bản tiếng Anh sau khi hoàn thành nội dung. -->
+Caerus là một nền tảng đặt ghế xem phim: khách hàng duyệt các suất chiếu, chọn
+ghế trên một sơ đồ ghế trực tiếp, đặt tối đa sáu ghế trong một giao dịch, hủy vé
+trước giờ chiếu, và tải vé PDF; quản trị viên tạo suất chiếu và tải ảnh poster
+lên. Yêu cầu duy nhất định hình mọi quyết định khác trong workshop này là **một
+ghế không bao giờ được bán hai lần**, kể cả khi hai khách hàng bấm vào cùng một
+ghế trong cùng một khoảnh khắc - đó cũng là lý do giao dịch đặt vé, chiến lược
+khóa (locking), và bài kiểm thử concurrency đều được dành hẳn một mục riêng chứ
+không chỉ được nhắc thoáng qua.
 
+Bản triển khai chạy hoàn toàn trong **ap-southeast-1** và tiến hóa theo từng
+chặng xuyên suốt workshop chứ không xuất hiện hoàn chỉnh ngay từ đầu: một trang
+React tĩnh trên Amazon S3, một API Express trên Amazon EC2 đứng sau Application
+Load Balancer với hai instance trải trên hai Availability Zone, PostgreSQL trên
+Amazon RDS chạy Multi-AZ bên trong private subnet, Amazon CloudFront (kèm AWS
+WAF) đặt trước cả trang web lẫn API để có HTTPS trên một tên miền duy nhất, và
+Amazon CloudWatch cùng SNS theo dõi toàn bộ. Bản thân tầng compute cuối cùng
+hoàn toàn riêng tư: cả hai instance EC2 nằm sau một NAT gateway, không có public
+IP và không mở cổng SSH nào, được quản trị thay vào đó qua AWS Systems Manager
+Session Manager - đúng thế trận vận hành mà cơ sở dữ liệu đã có từ mục 5.5.4, và
+vì cùng một lý do.
+
+Mỗi mục dưới đây xây tiếp lên trạng thái mà mục trước để lại. Hãy đi theo đúng
+thứ tự trong lần đọc đầu tiên.
 
 #### Nội dung
 

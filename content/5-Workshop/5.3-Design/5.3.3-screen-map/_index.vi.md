@@ -6,11 +6,27 @@ chapter : false
 pre : " <b> 5.3.3 </b> "
 ---
 
-<!-- Dịch từ bản tiếng Anh sau khi hoàn thành nội dung. -->
+Hai lối đi xuyên qua cùng một tập màn hình, phân biệt bằng `role` trên JWT chứ
+không phải bằng một ứng dụng riêng.
 
-1. Bước một
-2. Bước hai
+**Lối đi của khách hàng:**
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Thay nội dung mẫu này bằng phần viết của bạn.
-{{% /notice %}}
+| Màn hình | Gọi tới |
+|---|---|
+| Trang chủ (danh sách sự kiện) | `GET /events` |
+| Chi tiết sự kiện | `GET /events/:id`, `GET /events/:id/seats` |
+| Chọn ghế / xác nhận đặt vé | `POST /bookings` |
+| Vé của tôi | `GET /bookings` |
+| Chi tiết booking | `GET /bookings/:id`, `DELETE /bookings/:id`, `POST /bookings/:id/ticket` |
+| Đăng nhập / Đăng ký | `POST /auth/login`, `POST /auth/register` |
+
+**Lối đi của admin** (cùng màn hình đăng nhập, token mang `role: "admin"`):
+
+| Màn hình | Gọi tới |
+|---|---|
+| Quản lý suất chiếu (danh sách) | `GET /events` |
+| Tạo suất chiếu | `POST /events` |
+| Tải poster lên | `POST /events/:id/banner` |
+
+
+![Bản đồ màn hình: lối đi của khách hàng và lối đi của admin](/images/5-Workshop/5.3-Design/5.3.3-screen-map/caerus_screen_map.png)

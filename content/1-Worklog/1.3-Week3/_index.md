@@ -6,27 +6,27 @@ chapter: false
 pre: " <b> 1.3. </b> "
 ---
 
-### Week 3 Objectives: Compute, Storage, and Managed Databases
+### Week 3 Objectives: Compute, Storage, and Managed Database Services
 
-* Understand EC2 instance sizing, storage, and how to keep a web process running on an instance.
-* Understand S3 well enough to use it for static hosting and for private, presigned uploads.
-* Understand managed relational databases and the locking guarantees a booking system depends on.
+* Get to grips with EC2 instance sizing and storage, and with keeping a web process alive on an instance.
+* Learn enough about S3 to put it to work for static hosting and for private uploads served through presigned URLs.
+* Understand managed relational databases and the locking guarantees that a booking system leans on.
 
 ### Tasks to be carried out this week:
 
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | --- | --- | --- | --- |
-| 2 | - EC2 fundamentals: <br> &emsp; + Instance families and Free Tier eligible sizes <br> &emsp; + Amazon Machine Images, key pairs, and SSH access <br> &emsp; + EBS volume types, and what happens to a volume on stop versus terminate <br> - **Practice:** launched an instance, connected over SSH, installed Node.js, and kept a small HTTP server alive under a process manager | 29/06/2026 | 29/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
-| 3 | - Load balancing and scaling concepts (studied, not yet built): Elastic Load Balancing, target groups, health checks, and why a single instance is an acceptable starting point for a small project but not an ending point <br> - Terminated the practice instance the same day and confirmed nothing was left running | 30/06/2026 | 30/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
-| 4 | - Amazon S3 fundamentals: <br> &emsp; + Buckets, objects, keys, and the flat namespace <br> &emsp; + Block Public Access and bucket policies <br> &emsp; + Static website hosting <br> &emsp; + Pre-signed URLs for time-limited access to a private object, and CORS configuration on a bucket | 01/07/2026 | 01/07/2026 | <https://docs.aws.amazon.com/AmazonS3/latest/userguide/> |
-| 5 | - Amazon RDS: <br> &emsp; + Supported engines, instance classes, and what the managed service takes over (patching, backups, failover) <br> &emsp; + Multi-AZ deployments, subnet groups, and public accessibility <br> &emsp; + VPC gateway endpoints for S3, and why keeping that traffic off the public internet matters for both security and cost | 02/07/2026 | 02/07/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/> |
-| 6 | - Database concepts underpinning a booking system: <br> &emsp; + ACID properties and transaction isolation levels <br> &emsp; + Pessimistic locking with `SELECT ... FOR UPDATE`, ordered consistently to avoid deadlocks, versus optimistic concurrency control <br> - **Practice:** launched an RDS PostgreSQL instance, connected from a local client, and created a table | 03/07/2026 | 03/07/2026 | <https://www.postgresql.org/docs/16/transaction-iso.html> |
-| 7 | - Self-study: read about AWS Config and Conformance Packs - recording a resource's configuration over time and evaluating it against rule sets - as a way to catch exactly the kind of console default (a bucket left public, a security group left open) that is easy to click past when moving quickly | 04/07/2026 | 04/07/2026 | <https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html> |
+| 2 | - EC2 fundamentals: <br> &emsp; + Instance families and the sizes that qualify for the Free Tier <br> &emsp; + Amazon Machine Images, key pairs, and SSH access <br> &emsp; + EBS volume types, and what becomes of a volume on stop as against terminate <br> - **Practice:** launched an instance, connected to it over SSH, installed Node.js, and kept a small HTTP server alive under a process manager | 29/06/2026 | 29/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 3 | - Load balancing and scaling concepts (studied at this point, not yet built): Elastic Load Balancing, target groups, health checks, and why one instance is a reasonable place for a small project to start from but not to finish at <br> - Terminated the practice instance that same day and checked that nothing had been left running | 30/06/2026 | 30/06/2026 | <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/> |
+| 4 | - Amazon S3 fundamentals: <br> &emsp; + Buckets, objects, keys, and the flat namespace <br> &emsp; + Block Public Access and bucket policies <br> &emsp; + Static website hosting <br> &emsp; + Pre-signed URLs granting time-limited access to a private object, and CORS configuration on a bucket | 01/07/2026 | 01/07/2026 | <https://docs.aws.amazon.com/AmazonS3/latest/userguide/> |
+| 5 | - Amazon RDS: <br> &emsp; + The engines on offer, the instance classes, and the work the managed service assumes on your behalf (patching, backups, failover) <br> &emsp; + Multi-AZ deployments, subnet groups, and public accessibility <br> &emsp; + VPC gateway endpoints for S3, and what keeping that traffic away from the public internet buys you in both security and cost | 02/07/2026 | 02/07/2026 | <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/> |
+| 6 | - The database concepts a booking system rests on: <br> &emsp; + ACID properties and transaction isolation levels <br> &emsp; + Pessimistic locking via `SELECT ... FOR UPDATE`, taken in a consistent order so deadlocks do not arise, set against optimistic concurrency control <br> - **Practice:** launched an RDS PostgreSQL instance, connected to it from a local client, and created a table | 03/07/2026 | 03/07/2026 | <https://www.postgresql.org/docs/16/transaction-iso.html> |
+| 7 | - Self-study: read up on AWS Config and Conformance Packs - recording how a resource is configured over time and checking it against rule sets - as a way of catching precisely the kind of console default (a bucket left public, a security group left open) that is easy to click straight past when moving at speed | 04/07/2026 | 04/07/2026 | <https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html> |
 
 ### Week 3 Achievements:
 
-* Can launch, configure, connect to, and terminate an EC2 instance, and can keep a Node.js process running under a process manager.
-* Can configure a bucket for static hosting and explain pre-signed URLs as a way to share private objects without making a bucket public.
-* Can launch an RDS instance, connect to it, and explain what the managed service handles automatically.
-* Can explain ACID, isolation levels, and row-level locking, and identified `SELECT ... FOR UPDATE` as the mechanism the booking transaction needs.
-* Aware of which networking and compute components carry an hourly charge regardless of traffic, ahead of designing the deployed architecture.
+* Able to launch, configure, connect to, and terminate an EC2 instance, and to keep a Node.js process alive under a process manager.
+* Able to set a bucket up for static hosting and to explain pre-signed URLs as a means of sharing private objects with no need to make a bucket public.
+* Able to launch an RDS instance, connect to it, and describe what the managed service takes care of on its own.
+* Able to explain ACID, isolation levels, and row-level locking, having identified `SELECT ... FOR UPDATE` as the mechanism the booking transaction calls for.
+* Aware of which networking and compute components bill by the hour whatever the traffic, in advance of designing the deployed architecture.
