@@ -23,5 +23,4 @@ chứ không phải từ việc giám sát nó.
 #### Nội dung
 
 - [Xây dựng dashboard](5.8.1-dashboard/)
-- [Đẩy log ứng dụng](5.8.2-application-logs/)
-- [Cảnh báo và thông báo](5.8.3-alarms/)
+- [Cảnh báo và thông báo](5.8.2-alarms/)

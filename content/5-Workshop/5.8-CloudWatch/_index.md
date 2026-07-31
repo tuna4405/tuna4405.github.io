@@ -22,6 +22,5 @@ Management](/5-Workshop/5.10-Cost/)), not from monitoring it.
 #### Content
 
 - [Build the Dashboard](5.8.1-dashboard/)
-- [Ship Application Logs](5.8.2-application-logs/)
-- [Alarms and Notifications](5.8.3-alarms/)
+- [Alarms and Notifications](5.8.2-alarms/)
 
