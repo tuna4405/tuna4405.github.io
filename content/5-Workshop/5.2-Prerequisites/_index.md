@@ -45,11 +45,9 @@ permissions.
 				"elasticloadbalancing:DeleteLoadBalancer",
 				"elasticloadbalancing:DeleteTargetGroup",
 				"elasticloadbalancing:AddTags",
-				"ec2-instance-connect:SendSSHPublicKey",
 				"ec2:*",
 				"rds:*",
 				"s3:*",
-				"apigateway:*",
 				"cloudwatch:*",
 				"logs:*",
 				"sns:*",
@@ -156,10 +154,7 @@ permissions.
 			"Resource": "arn:aws:iam::857481978603:role/caerus-*",
 			"Condition": {
 				"StringEquals": {
-					"iam:PassedToService": [
-						"ec2.amazonaws.com",
-						"lambda.amazonaws.com"
-					]
+					"iam:PassedToService": "ec2.amazonaws.com"
 				}
 			}
 		},
@@ -172,9 +167,7 @@ permissions.
 				"StringEquals": {
 					"iam:AWSServiceName": [
 						"rds.amazonaws.com",
-						"monitoring.rds.amazonaws.com",
-						"apigateway.amazonaws.com",
-						"ops.apigateway.amazonaws.com"
+						"monitoring.rds.amazonaws.com"
 					]
 				}
 			}
@@ -249,8 +242,10 @@ permissions.
 ```
 
 
-**Naming and tagging conventions**, enforced by a permission boundary rather
-than left as a suggestion:
+**Naming and tagging conventions**, enforced by the resource-scoped `caerus-*`
+ARN patterns in `ManageCaerusRolesOnly` and `PassCaerusRolesToComputeOnly`
+above - not a separate IAM permission boundary, just the group's own policy
+refusing to match any other name - rather than left as a suggestion:
 
 - Every IAM role name must start with `caerus-` (`caerus-ec2-s3-role`) -
   creating a role under any other name fails with an unhelpful `AccessDenied`
