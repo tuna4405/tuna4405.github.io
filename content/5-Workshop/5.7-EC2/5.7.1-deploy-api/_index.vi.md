@@ -27,6 +27,8 @@ pre : " <b> 5.7.1 </b> "
    chính là toàn bộ lý do hai tầng dùng các subnet riêng biệt. Gắn mỗi route
    table với đúng subnet tương ứng ở bước 1.
 
+![](/images/5-Workshop/5.7-EC2/ec2_rt.png)
+
 4. **Cấp quyền Systems Manager** trên role của EC2 instance
    (`caerus-ec2-s3-role`, mục 5.6.3): gắn AWS-managed policy
    `AmazonSSMManagedInstanceCore`. Đây là thứ cho phép SSM Agent vốn đã chạy
