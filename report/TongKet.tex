@@ -1,23 +1,193 @@
-\vspace{1cm}
+\subsection{Kỹ năng và kiến thức thu nhận được}
+
+Trong kỳ thực tập tại \textbf{Công ty TNHH Amazon Web Services Việt Nam}, từ
+\textbf{15/06/2026} đến \textbf{14/08/2026}, thuộc chương trình Workforce
+Bootcamp -- First Cloud Journey, tôi đã chuyển từ việc học điện toán đám mây
+trên lý thuyết sang thiết kế, xây dựng, và vận hành một hệ thống hoàn chỉnh
+trên AWS.
+
+Sáu tuần đầu được dành để đi qua các nhóm dịch vụ cốt lõi -- quản lý danh tính
+và truy cập, mạng, compute, lưu trữ, cơ sở dữ liệu, serverless, và giám sát --
+mỗi nhóm đều kèm theo một bài thực hành. Những tuần cuối được dành để áp dụng
+toàn bộ những điều đó vào \textbf{Caerus}, một nền tảng đặt ghế xem phim do một
+nhóm hai người xây dựng và triển khai trên Amazon EC2, Amazon RDS, Amazon S3,
+API Gateway và Amazon CloudWatch.
+
+Những kỹ năng cụ thể tôi thu nhận được từ chương trình gồm:
+
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+    \item \textbf{Kiến trúc đám mây và lựa chọn dịch vụ.} Tôi đã có thể thiết
+    kế một kiến trúc nhiều dịch vụ và biện luận cho từng lựa chọn dịch vụ bằng
+    cách đặt nó cạnh một phương án thay thế cụ thể, thay vì chọn theo mặc định.
+
+    \item \textbf{Thiết kế cơ sở dữ liệu quan hệ, lập trình giao dịch và kiểm
+    soát concurrency.} Đặt ghế trong điều kiện concurrency hoá ra là một bài
+    toán giao dịch chứ không phải bài toán giao diện hay hạ tầng: khóa tường
+    minh những dòng đang bị tranh chấp, lấy khóa theo một thứ tự nhất quán để
+    tránh deadlock, rồi chứng minh rằng cam kết đó thực sự đúng.
+
+    \item \textbf{Thiết kế API và làm việc dựa trên một bản hợp đồng.} Việc
+    thống nhất bản đặc tả API và schema cơ sở dữ liệu trước khi viết bất kỳ dòng
+    code nào chính là điều cho phép hai người cùng xây dựng song song thay vì
+    người này phải chờ người kia.
+
+    \item \textbf{Triển khai và cấu hình bảo mật mạng}, bao gồm security group,
+    việc đặt tài nguyên vào đúng subnet, và định tuyến kết nối giữa chúng.
+
+    \item \textbf{Khả năng quan sát và quản lý chi phí.} Dashboard và alarm cho
+    vế thứ nhất; billing alarm, tag chủ sở hữu, và terminate tài nguyên thực
+    hành ngay trong ngày cho vế thứ hai.
+
+    \item \textbf{Viết tài liệu kỹ thuật.} Ghi lại các quyết định kiến trúc và
+    quy trình vận hành sao cho một người không có mặt lúc đó vẫn theo được.
+\end{itemize}
+
+Về tinh thần làm việc, tôi bám sát lịch trình đã thống nhất từ đầu dự án, duy
+trì những thói quen hằng ngày mà nhóm đã cam kết -- terminate tài nguyên thực
+hành ngay trong ngày và gắn tag chủ sở hữu cho mọi tài nguyên -- và nêu vấn đề
+với đồng đội từ sớm thay vì tự mình xoay xở vòng qua chúng.
+
+\subsection{Những điều đã làm tốt}
+
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+    \item \textbf{Độ rộng của việc học.} Tôi bắt đầu chương trình mà không có
+    kinh nghiệm thực tế nào với AWS và kết thúc nó với khả năng thiết kế một
+    kiến trúc nhiều dịch vụ và bảo vệ được từng lựa chọn dịch vụ.
+
+    \item \textbf{Làm việc dựa trên một bản hợp đồng.} Việc đóng băng bản đặc tả
+    API và schema cơ sở dữ liệu ngay từ đầu là quyết định duy nhất giữ cho dự án
+    đúng tiến độ. Khâu tích hợp trở thành chuyện sửa vài điểm lệch nhỏ thay vì
+    hòa giải hai thiết kế không tương thích.
+
+    \item \textbf{Giải đúng bài toán mà dự án thực sự nói về.} Tôi kiểm chứng
+    cam kết về concurrency bằng một cuộc chạy đua hai client có chủ đích thay vì
+    mặc định rằng nó đúng.
+
+    \item \textbf{Kỷ luật về chi phí.} Việc đặt một billing alarm trước khi khởi
+    tạo bất cứ thứ gì, gắn tag chủ sở hữu cho mọi tài nguyên, và terminate tài
+    nguyên thực hành ngay trong ngày đã khiến chi phí không bao giờ trở thành
+    một vấn đề phải xử lý về sau.
+\end{itemize}
+
+\subsection{Những điều cần cải thiện}
+
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+    \item \textbf{Chủ động vượt ra ngoài kế hoạch.} Tôi thực thi lịch trình đã
+    thống nhất một cách đáng tin cậy, nhưng lại có xu hướng làm hết danh sách
+    công việc thay vì nhìn xa hơn và đề xuất cải tiến trước khi chúng trở thành
+    bắt buộc. Nhiều vấn đề mà nhóm gặp trong lúc triển khai vốn có thể lường
+    trước, và lẽ ra tôi nên nêu chúng ra ngay ở khâu thiết kế thay vì phát hiện
+    ra khi đang chịu áp lực thời gian.
+
+    \item \textbf{Giao tiếp và thuyết trình.} Tôi thoải mái khi giải thích các
+    quyết định kỹ thuật bằng văn bản, nhưng kém tự tin hơn khi trình bày chúng
+    bằng lời trước một người chưa đọc tài liệu. Đây là kỹ năng tôi muốn phát
+    triển nhất trong thời gian tới.
+
+    \item \textbf{Chiều sâu vượt ra ngoài con đường chạy được.} Việc triển khai
+    vẫn làm tay chứ chưa tự động hóa, hạ tầng được tạo qua console chứ chưa định
+    nghĩa dưới dạng code, và kiểm thử tự động mới giới hạn ở trường hợp
+    concurrency chứ chưa phủ rộng ra toàn bộ API.
+
+    \item \textbf{Kiến trúc ở mức production.} Ứng dụng chạy trên một instance
+    duy nhất trong một public subnet. Tôi hiểu một bản triển khai vững vàng hơn
+    sẽ cần những gì -- private subnet với truy cập theo phiên, một load
+    balancer, một auto scaling group, và một cơ sở dữ liệu multi-AZ -- nhưng tôi
+    chưa từng tự tay dựng lên, nên hiểu biết của tôi về những mẫu đó vẫn còn ở
+    mức khái niệm chứ chưa phải thực hành.
+
+    \item \textbf{Ước lượng thời gian.} Các ước lượng ban đầu của tôi cho khâu
+    triển khai và cấu hình cross-origin đều lạc quan. Những ngày dự phòng cài
+    sẵn trong kế hoạch đã hấp thụ được phần vượt tiến độ, nhưng bản thân khả
+    năng ước lượng thì vẫn cần cải thiện.
+\end{itemize}
+
+\subsection{Tự đánh giá}
+
+Để nhìn lại kỳ thực tập một cách khách quan, tôi tự đánh giá theo các tiêu chí
+sau:
 
 \begin{center}
-\begin{minipage}[t]{0.4\textwidth}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{7.2cm}ccc@{}}
+\toprule
+\textbf{STT} & \textbf{Tiêu chí} & \textbf{Tốt} & \textbf{Khá} & \textbf{TB} \\
+\midrule
+1  & Kiến thức \& kỹ năng chuyên môn & $\checkmark$ & $\square$ & $\square$ \\
+2  & Khả năng học hỏi                & $\checkmark$ & $\square$ & $\square$ \\
+3  & Tính chủ động                   & $\square$ & $\checkmark$ & $\square$ \\
+4  & Tinh thần trách nhiệm           & $\checkmark$ & $\square$ & $\square$ \\
+5  & Tính kỷ luật                    & $\checkmark$ & $\square$ & $\square$ \\
+6  & Tinh thần cầu tiến              & $\checkmark$ & $\square$ & $\square$ \\
+7  & Giao tiếp                       & $\square$ & $\checkmark$ & $\square$ \\
+8  & Làm việc nhóm                   & $\checkmark$ & $\square$ & $\square$ \\
+9  & Tác phong chuyên nghiệp         & $\checkmark$ & $\square$ & $\square$ \\
+10 & Kỹ năng giải quyết vấn đề       & $\checkmark$ & $\square$ & $\square$ \\
+11 & Đóng góp cho dự án/nhóm         & $\checkmark$ & $\square$ & $\square$ \\
+12 & Đánh giá tổng thể               & $\checkmark$ & $\square$ & $\square$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Cảm nhận cá nhân}
+
+Chính cách tổ chức của chương trình là điều làm cho bước nhảy từ lý thuyết sang
+thực hành trở nên khả thi. Sáu tuần đi qua các nhóm dịch vụ cốt lõi, mỗi nhóm
+kèm một bài thực hành, cho tôi đủ nền tảng để những tuần cuối được dành cho một
+hệ thống thật thay vì dành để học cách dùng console. Việc được yêu cầu xây dựng
+một sản phẩm từ đầu đến cuối, và phải biện luận cho kiến trúc chứ không chỉ lắp
+ghép nó, hữu ích hơn nhiều so với bất kỳ bài hướng dẫn riêng lẻ nào về một dịch
+vụ.
+
+Điều tôi không ngờ mình lại coi trọng đến vậy là kỷ luật vận hành mà chương
+trình yêu cầu ngay từ ngày đầu: đặt billing alarm trước khi khởi tạo bất cứ thứ
+gì, gắn tag chủ sở hữu cho mọi tài nguyên, và terminate tài nguyên thực hành
+ngay trong ngày. Những thói quen đó gần như không tốn công duy trì nhưng đã loại
+bỏ hẳn một nhóm vấn đề khỏi dự án. Đây là phần tôi tin mình sẽ mang theo vào mọi
+dự án về sau.
+
+Việc làm việc theo cặp dạy cho tôi phần còn lại. Thống nhất một hợp đồng giao
+diện trước khi viết code không phải là thủ tục rườm rà; đó chính là điều cho
+phép hai người xây dựng song song. Tôi xin cảm ơn cán bộ hướng dẫn tại doanh
+nghiệp và cán bộ hướng dẫn của khoa đã đồng hành cùng chúng tôi trong suốt kỳ
+thực tập.
+
+\vspace{0.8cm}
+
+% Giữ ba ô chữ ký trên cùng một hàng để không bị ngắt sang trang khác nhau.
+\noindent
+\begin{minipage}[t]{0.31\textwidth}
     \centering
     \textbf{Sinh viên}\\[0.2cm]
     % (Kí và ghi rõ họ tên)
 
-    \vspace{2.5cm}
+    \vspace{2.2cm}
 
-    \rule{0.8\linewidth}{0.4pt}
+    \rule{0.9\linewidth}{0.4pt}\\[0.15cm]
+    {\small Phạm Minh Tuấn\\ 2353265}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.4\textwidth}
+\begin{minipage}[t]{0.31\textwidth}
     \centering
-    \textbf{Người đại diện doanh nghiệp}\\[0.2cm]
+    \textbf{Sinh viên}\\[0.2cm]
     % (Kí và ghi rõ họ tên)
 
-    \vspace{2.5cm}
+    \vspace{2.2cm}
 
-    \rule{0.8\linewidth}{0.4pt}
+    \rule{0.9\linewidth}{0.4pt}\\[0.15cm]
+    {\small Nguyễn Thành Tài\\ 2353062}
 \end{minipage}
-\end{center}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \textbf{Người đại diện}\\\textbf{doanh nghiệp}\\[0.2cm]
+    % (Kí và ghi rõ họ tên)
+
+    \vspace{1.85cm}
+
+    \rule{0.9\linewidth}{0.4pt}
+\end{minipage}

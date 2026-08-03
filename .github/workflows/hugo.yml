@@ -60,7 +60,8 @@ jobs:
       - name: Verify LaTeX packages
         run: |
           echo "=== Checking key packages ==="
-          for pkg in vntex mathptmx fancyhdr mdframed pdfpages float listings; do
+          for pkg in vntex mathptmx fancyhdr mdframed pdfpages float listings \
+                     calc textcomp fancyvrb framed upquote; do
             if kpsewhich ${pkg}.sty > /dev/null 2>&1; then
               echo "  $pkg: found"
             else

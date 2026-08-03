@@ -42,6 +42,10 @@
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
 \usepackage{listings}
 
+% Macros/environments assumed by the LaTeX that Pandoc generates
+% (\real, Shaded, Highlighting, the *Tok commands, \tightlist).
+\input{pandoc-preamble}
+
 \IfFileExists{grffile.sty}{\usepackage{grffile}}{}
 
 \graphicspath{{../static/images/}}
@@ -161,26 +165,27 @@ captionpos=b,
 \\{\textbf{{\LARGE THỰC TẬP NGOÀI TRƯỜNG}}}
 \\
 \\
-\textbf{\Large HỌC KỲ ...... NĂM HỌC .......................} \\
+\textbf{\Large HỌC KỲ 253 NĂM HỌC 2025-2026} \\
 \end{tabular}
 \end{center}
 \vspace{0.5cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
-    \item \Large \textbf{NGÀNH: ..................................................}
-    \item \Large \textbf{CHƯƠNG TRÌNH ĐÀO TẠO: .............................................}
+    \item \Large \textbf{NGÀNH: Khoa học Máy tính}
+    \item \Large \textbf{CHƯƠNG TRÌNH ĐÀO TẠO: OISP}
 \end{itemize}
 \vspace{0.7cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
     \item \Large \textbf{ĐƠN VỊ/ DOANH NGHIỆP NHẬN THỰC TẬP:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Công ty TNHH Amazon Web Services Việt Nam}
     \item \Large \textbf{CÁN BỘ HƯỚNG DẪN CHUYÊN MÔN TRỰC TIẾP CỦA ĐƠN VỊ/ DOANH NGHIỆP:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Lữ Hoàn Thiện}
     \item \Large \textbf{CÁN BỘ HƯỚNG DẪN/ GIÁM SÁT/ CHẤM ĐIỂM BÁO CÁO CỦA KHOA (CBHD/CBGS/CĐBC):}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Vũ Ngọc Tú}
     \item \Large \textbf{SINH VIÊN THỰC HIỆN (SVTH):}
-    \\ \Large \textbf{HỌ VÀ TÊN: ..............................} \textbf{MSSV:..................}
+    \\ \Large \textbf{HỌ VÀ TÊN: PHẠM MINH TUẤN} \textbf{MSSV: 2353265}
+    \\ \Large \textbf{HỌ VÀ TÊN: NGUYỄN THÀNH TÀI} \textbf{MSSV: 2353062}
 \end{itemize}
 \vspace{0.5cm}
 \begin{center}
@@ -198,10 +203,5 @@ captionpos=b,
 
 \newpage
 \section{Tổng kết}
-\begin{itemize}
-    \item Kết thúc kỳ thực tập, SV thu nhận được những kỹ năng/ kiến thức gì?
-    \item Cảm nhận cá nhân: về DN, về chương trình thực tập?
-    \item SV ký và ghi rõ họ tên (chữ ký sống/ trực tiếp bằng bút màu xanh).
-\end{itemize}
 \input{TongKet}
 \end{document}

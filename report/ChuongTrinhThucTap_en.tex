@@ -1,19 +1,22 @@
-\section{Internship Program}
-
-% \thispagestyle{empty}
-
-
+% Form D2 is attached as-is. The section heading is registered straight into
+% the ToC (and onto the first attached page) instead of being typeset with
+% \section, which would otherwise be flushed onto a page of its own by the
+% \clearpage that \includepdf performs.
+% addtotoc steps the section counter and writes the number itself.
 \IfFileExists{form/formD2.pdf}{
-  \includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{form/formD2.pdf}
+  \includepdf[
+    pages=-,
+    addtotoc={1,section,1,Internship Program,sec:internship-program},
+    pagecommand={\thispagestyle{empty}}
+  ]{form/formD2.pdf}
 }{
-    \pagebreak
+    \refstepcounter{section}
+    \phantomsection
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}Internship Program}
     \begin{center}
         \textit{Attach form D2 here}
     \end{center}
     \pagebreak
 }
-
-\thispagestyle{fancy}
-\setcounter{page}{\thepage}
 
 \endinput

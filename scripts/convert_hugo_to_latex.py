@@ -581,11 +581,18 @@ def preprocess_markdown(content, meta=None):
     content = re.sub(r"\s*\{\{%\s*/notice\s*%\}\}", r"\n:::\n", content)
 
     content = content.replace("&emsp;", r"\qquad ")
-    content = content.replace("\u2705", r"\checkmark")
+    # These are math-mode symbols; \checkmark outside $...$ is a LaTeX error.
+    content = content.replace("\u2705", r"$\checkmark$")
     content = content.replace("\u2610", r"$\square$")
     content = re.sub(r"⚠\ufe0f?", "!", content)
     content = content.replace("\u26a0", "!")
     content = content.replace("\u2192", r"$\rightarrow$")
+    content = content.replace("\u2265", r"$\geq$")
+    content = content.replace("\u2264", r"$\leq$")
+    content = content.replace("\u2260", r"$\neq$")
+    # Not $\times$: Pandoc refuses to close inline math on a "$" that is
+    # immediately followed by a digit, and "\u00d7" here is always written as "\u00d72".
+    content = content.replace("\u00d7", r"\texttimes{}")
 
     return content
 # ---------------------------------------------------------------------------

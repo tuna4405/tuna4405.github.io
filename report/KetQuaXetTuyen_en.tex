@@ -1,19 +1,20 @@
-\section{Admission Results}
-
-% \thispagestyle{empty}
-
+% Form D3 is attached as-is. See ChuongTrinhThucTap_en.tex for why the heading
+% is not typeset with \section.
+% addtotoc steps the section counter and writes the number itself.
 \IfFileExists{form/formD3.pdf}{
-  \includepdf[pages=-,pagecommand={\thispagestyle{empty}}]{form/formD3.pdf}
+  \includepdf[
+    pages=-,
+    addtotoc={1,section,1,Admission Results,sec:admission-results},
+    pagecommand={\thispagestyle{empty}}
+  ]{form/formD3.pdf}
 }{
-    \pagebreak
+    \refstepcounter{section}
+    \phantomsection
+    \addcontentsline{toc}{section}{\protect\numberline{\thesection}Admission Results}
     \begin{center}
         \textit{Attach form D3 here}
     \end{center}
     \pagebreak
 }
-
-
-\thispagestyle{fancy}
-\setcounter{page}{\thepage}
 
 \endinput

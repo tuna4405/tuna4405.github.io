@@ -42,6 +42,10 @@
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true}
 \usepackage{listings}
 
+% Macros/environments assumed by the LaTeX that Pandoc generates
+% (\real, Shaded, Highlighting, the *Tok commands, \tightlist).
+\input{pandoc-preamble}
+
 \IfFileExists{grffile.sty}{\usepackage{grffile}}{}
 
 \graphicspath{{../static/images/}}
@@ -166,13 +170,14 @@ captionpos=b,
 \begin{itemize}
 \renewcommand\labelitemi{--}
     \item \Large \textbf{COMPANY / INTERNSHIP UNIT:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Công ty TNHH Amazon Web Services Việt Nam}
     \item \Large \textbf{DIRECT SUPERVISOR AT THE COMPANY:}
-    \\ \Large \textbf{...............................................................................}
+    \\ \Large \textbf{Lu Hoan Thien}
     \item \Large \textbf{FACULTY SUPERVISOR / GRADER:}
-    \\ \Large \textbf{...............................................................................}
-    \item \Large \textbf{STUDENT:}
+    \\ \Large \textbf{Vu Ngoc Tu}
+    \item \Large \textbf{STUDENTS:}
     \\ \Large \textbf{FULL NAME: PHAM MINH TUAN} \textbf{STUDENT ID: 2353265}
+    \\ \Large \textbf{FULL NAME: NGUYEN THANH TAI} \textbf{STUDENT ID: 2353062}
 \end{itemize}
 \vspace{0.5cm}
 \begin{center}
@@ -181,6 +186,10 @@ captionpos=b,
 \end{titlepage}
 
 \newpage
+% vntex sets the Vietnamese caption names; override them for the English report.
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
 \tableofcontents
 \newpage
 
@@ -190,10 +199,5 @@ captionpos=b,
 
 \newpage
 \section{Summary}
-\begin{itemize}
-    \item After the internship, what skills/knowledge did you gain?
-    \item Personal reflections: about the company, about the internship program?
-    \item Student's signature and full name (live signature / direct signature in blue ink).
-\end{itemize}
 \input{TongKet_en}
 \end{document}

@@ -1,23 +1,190 @@
-\vspace{1cm}
+\subsection{Skills and knowledge gained}
+
+During my internship at \textbf{Amazon Web Services Viet Nam Company Limited},
+from \textbf{15/06/2026} to \textbf{14/08/2026}, as part of the Workforce
+Bootcamp -- First Cloud Journey programme, I moved from studying cloud computing
+in theory to designing, building, and operating a complete system on AWS.
+
+The first six weeks were spent working through the core service groups --
+identity and access management, networking, compute, storage, databases,
+serverless, and monitoring -- with a practical exercise attached to each. The
+final weeks were spent applying all of it to \textbf{Caerus}, a cinema seat
+booking platform built by a two-person team and deployed across Amazon EC2,
+Amazon RDS, Amazon S3, API Gateway and Amazon CloudWatch.
+
+The concrete skills I take away from the programme are:
+
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+    \item \textbf{Cloud architecture and service selection.} I can now design a
+    multi-service architecture and justify each service choice against a
+    specific alternative, rather than choosing by default.
+
+    \item \textbf{Relational database design, transactional programming, and
+    concurrency control.} Seat booking under concurrency turned out to be a
+    transaction problem rather than a user-interface or infrastructure problem:
+    lock the contested rows explicitly, acquire the locks in a consistent order
+    to avoid deadlocks, and then prove the guarantee holds.
+
+    \item \textbf{API design and working from a contract.} Agreeing the API
+    specification and the database schema before writing any code is what
+    allowed two people to build simultaneously instead of one waiting on the
+    other.
+
+    \item \textbf{Deployment and network security configuration}, including
+    security groups, subnet placement, and the routing that connects them.
+
+    \item \textbf{Observability and cost management.} Dashboards and alarms for
+    the former; billing alarms, owner tags, and same-day teardown of practice
+    resources for the latter.
+
+    \item \textbf{Technical documentation.} Writing up architecture decisions
+    and operating procedures so that someone who was not in the room can follow
+    them.
+\end{itemize}
+
+In terms of work ethic, I kept to the schedule agreed at the start of the
+project, maintained the daily habits the team committed to -- terminating
+practice resources the same day and tagging every resource with its owner --
+and raised problems with my teammate early rather than working around them
+alone.
+
+\subsection{What went well}
+
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+    \item \textbf{Learning breadth.} I began the programme with no practical AWS
+    experience and finished it able to design a multi-service architecture and
+    defend each service choice.
+
+    \item \textbf{Working from a contract.} Freezing the API specification and
+    the database schema up front was the single decision that kept the project
+    on schedule. Integration became a matter of fixing small mismatches rather
+    than reconciling two incompatible designs.
+
+    \item \textbf{Solving the problem the project was actually about.} I
+    verified the concurrency guarantee with a deliberate two-client race instead
+    of assuming it held.
+
+    \item \textbf{Cost discipline.} Setting a billing alarm before provisioning
+    anything, tagging every resource with an owner, and terminating practice
+    resources the same day meant cost never became a problem that had to be
+    dealt with retrospectively.
+\end{itemize}
+
+\subsection{What I would do differently}
+
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+    \item \textbf{Proactiveness beyond the plan.} I executed the agreed schedule
+    reliably, but tended to work through the task list rather than looking ahead
+    and proposing improvements before they became necessary. Several issues we
+    hit during deployment were foreseeable, and I should have raised them at
+    design time instead of discovering them under time pressure.
+
+    \item \textbf{Communication and presentation.} I am comfortable explaining
+    technical decisions in writing, but less confident presenting them verbally
+    to an audience that has not read the documents. This is the skill I would
+    most like to develop next.
+
+    \item \textbf{Depth beyond the working path.} Deployment is manual rather
+    than automated, infrastructure was created through the console rather than
+    defined as code, and automated testing is limited to the concurrency case
+    rather than covering the API broadly.
+
+    \item \textbf{Production-grade architecture.} The application runs on a
+    single instance in a public subnet. I understand what a more robust
+    deployment would involve -- private subnets with session-based access, a
+    load balancer, an auto scaling group, and a multi-AZ database -- but I have
+    not yet built one, so my knowledge of those patterns is conceptual rather
+    than practical.
+
+    \item \textbf{Estimating time.} My original estimates for deployment and
+    cross-origin configuration were optimistic. The buffer days built into the
+    plan absorbed the overrun, but the estimates themselves need to improve.
+\end{itemize}
+
+\subsection{Self-assessment}
+
+To reflect objectively on the internship period, I evaluate myself against the
+following criteria:
 
 \begin{center}
-\begin{minipage}[t]{0.4\textwidth}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c>{\raggedright\arraybackslash}p{7.2cm}ccc@{}}
+\toprule
+\textbf{No.} & \textbf{Criteria} & \textbf{Good} & \textbf{Fair} & \textbf{Average} \\
+\midrule
+1  & Professional knowledge \& skills & $\checkmark$ & $\square$ & $\square$ \\
+2  & Ability to learn                 & $\checkmark$ & $\square$ & $\square$ \\
+3  & Proactiveness                    & $\square$ & $\checkmark$ & $\square$ \\
+4  & Sense of responsibility          & $\checkmark$ & $\square$ & $\square$ \\
+5  & Discipline                       & $\checkmark$ & $\square$ & $\square$ \\
+6  & Progressive mindset              & $\checkmark$ & $\square$ & $\square$ \\
+7  & Communication                    & $\square$ & $\checkmark$ & $\square$ \\
+8  & Teamwork                         & $\checkmark$ & $\square$ & $\square$ \\
+9  & Professional conduct             & $\checkmark$ & $\square$ & $\square$ \\
+10 & Problem-solving skills           & $\checkmark$ & $\square$ & $\square$ \\
+11 & Contribution to project/team     & $\checkmark$ & $\square$ & $\square$ \\
+12 & Overall                          & $\checkmark$ & $\square$ & $\square$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Personal reflections}
+
+The shape of the programme is what made the jump from theory to practice
+possible. Six weeks of guided work through the core service groups, each with a
+practical exercise, gave me enough ground to stand on that the final weeks could
+be spent on a real system rather than on learning the console. Being asked to
+build something end to end, and to justify the architecture rather than simply
+assemble it, was far more instructive than any single service tutorial.
+
+What I did not expect to value as much as I do is the operational discipline the
+programme insisted on from day one: set the billing alarm before provisioning
+anything, tag every resource with its owner, and terminate practice resources
+the same day. Those habits cost almost nothing to maintain and removed an entire
+category of problem from the project. They are the part of this internship I
+expect to carry into every project afterwards.
+
+Working in a pair taught me the rest. Agreeing an interface contract before
+writing code is not process overhead; it is what let two people build in
+parallel. I would like to thank my supervisor at the company and my faculty
+supervisor for their guidance throughout the internship.
+
+\vspace{0.8cm}
+
+% Kept in one row so the three signatures never split across a page break.
+\noindent
+\begin{minipage}[t]{0.31\textwidth}
     \centering
     \textbf{Student}\\[0.2cm]
     % (Signature and full name)
 
-    \vspace{2.5cm}
+    \vspace{2.2cm}
 
-    \rule{0.8\linewidth}{0.4pt}
+    \rule{0.9\linewidth}{0.4pt}\\[0.15cm]
+    {\small Pham Minh Tuan\\ 2353265}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.4\textwidth}
+\begin{minipage}[t]{0.31\textwidth}
     \centering
-    \textbf{Company Representative}\\[0.2cm]
+    \textbf{Student}\\[0.2cm]
     % (Signature and full name)
 
-    \vspace{2.5cm}
+    \vspace{2.2cm}
 
-    \rule{0.8\linewidth}{0.4pt}
+    \rule{0.9\linewidth}{0.4pt}\\[0.15cm]
+    {\small Nguyen Thanh Tai\\ 2353062}
 \end{minipage}
-\end{center}
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \textbf{Company}\\\textbf{Representative}\\[0.2cm]
+    % (Signature and full name)
+
+    \vspace{1.85cm}
+
+    \rule{0.9\linewidth}{0.4pt}
+\end{minipage}

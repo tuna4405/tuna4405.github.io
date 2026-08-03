@@ -4,6 +4,9 @@ date: 2026-06-15
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
+# Kept on the website, but excluded from the LaTeX report: this content is
+# carried into the report's Summary section instead (report/TongKet_en.tex).
+includeInReport: false
 ---
 
 During my internship at **Amazon Web Services Viet Nam Company Limited** from

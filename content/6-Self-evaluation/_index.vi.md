@@ -4,6 +4,9 @@ date: 2026-06-15
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
+# Vẫn giữ trên website, nhưng không đưa vào báo cáo LaTeX: nội dung này được
+# chuyển vào phần Tổng kết của báo cáo (report/TongKet.tex).
+includeInReport: false
 ---
 
 Trong kỳ thực tập tại **Công ty TNHH Amazon Web Services Việt Nam** từ
