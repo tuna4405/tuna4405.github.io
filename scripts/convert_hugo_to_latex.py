@@ -244,6 +244,92 @@ def filter_markdown_tables(content, keep_columns):
 
     return "\n".join(out)
 
+START_DATE_COLUMNS = {"start date", "ngày bắt đầu", "ngay bat dau"}
+END_DATE_COLUMNS = {
+    "completion date", "complete date", "ngày hoàn thành", "ngay hoan thanh",
+}
+MERGED_DATE_HEADER = "Time"
+
+
+def shorten_date(value):
+    """23/06/2026 -> 23/06. Anything else is passed through untouched."""
+    match = re.match(r"^\s*(\d{1,2}/\d{1,2})/\d{2,4}\s*$", value or "")
+    return match.group(1) if match else (value or "").strip()
+
+
+def merge_date_columns(content):
+    """Fold a table's Start Date / Completion Date pair into one Time column.
+
+    Two full dates cost roughly a third of the table width, and in the worklog
+    they almost always hold the same day, so "23/06/2026 | 23/06/2026" is
+    rewritten as a single "23/06-23/06" cell.
+    """
+    lines = content.splitlines()
+    out = []
+    i = 0
+
+    while i < len(lines):
+        is_table_start = (
+            i + 1 < len(lines)
+            and split_markdown_table_row(lines[i]) is not None
+            and is_markdown_table_separator(lines[i + 1])
+        )
+
+        if not is_table_start:
+            out.append(lines[i])
+            i += 1
+            continue
+
+        header = split_markdown_table_row(lines[i])
+        sep = split_markdown_table_row(lines[i + 1])
+        names = [normalize_col_name(h) for h in header]
+
+        start_idx = next(
+            (n for n, name in enumerate(names) if name in START_DATE_COLUMNS), None
+        )
+        end_idx = next(
+            (n for n, name in enumerate(names) if name in END_DATE_COLUMNS), None
+        )
+
+        if start_idx is None or end_idx is None:
+            out.append(lines[i])
+            i += 1
+            continue
+
+        drop = max(start_idx, end_idx)
+        keep = min(start_idx, end_idx)
+
+        def collapse(cells):
+            merged = [c for n, c in enumerate(cells) if n != drop]
+            first = shorten_date(cells[start_idx] if start_idx < len(cells) else "")
+            last = shorten_date(cells[end_idx] if end_idx < len(cells) else "")
+
+            if first and last:
+                merged[keep] = f"{first}-{last}"
+            else:
+                merged[keep] = first or last
+
+            return merged
+
+        new_header = [h for n, h in enumerate(header) if n != drop]
+        new_header[keep] = MERGED_DATE_HEADER
+        new_sep = [s for n, s in enumerate(sep) if n != drop]
+
+        out.append(make_markdown_table_row(new_header))
+        out.append(make_markdown_table_row(new_sep))
+
+        j = i + 2
+        while j < len(lines) and split_markdown_table_row(lines[j]) is not None:
+            row = split_markdown_table_row(lines[j])
+            row += [""] * (len(header) - len(row))
+            out.append(make_markdown_table_row(collapse(row[:len(header)])))
+            j += 1
+
+        i = j
+
+    return "\n".join(out)
+
+
 def balance_markdown_table_widths(content):
     """Size pipe-table columns by how much text they actually carry.
 
@@ -648,6 +734,7 @@ def preprocess_markdown(content, meta=None):
         if keep_columns:
             content = filter_markdown_tables(content, keep_columns)
 
+        content = merge_date_columns(content)
         content = balance_markdown_table_widths(content)
 
     content = re.sub(r"!\[([^\]]*)\]\(/static/images/", r"![\1](", content)
@@ -660,7 +747,19 @@ def preprocess_markdown(content, meta=None):
     )
     content = re.sub(r"\s*\{\{%\s*/notice\s*%\}\}", r"\n:::\n", content)
 
-    content = content.replace("&emsp;", r"\qquad ")
+    # Pandoc drops <br> when writing LaTeX, which runs every "-" item and "+"
+    # sub-item of a worklog Task cell together into one block of prose. Emit a
+    # real line break instead (raw_tex carries \newline through untouched).
+    content = re.sub(r"[ \t]*<br\s*/?>[ \t]*", r" \\newline ", content)
+    # A \newline with no line to end is an error, so drop the ones that would
+    # land hard against a cell boundary.
+    content = re.sub(r"\\newline\s*(?=\|)", "", content)
+    content = re.sub(r"(?<=\|)\s*\\newline\s*", " ", content)
+
+    # \hspace* rather than \qquad: ordinary glue is discarded at the start of a
+    # line, so a \qquad straight after a \newline would leave the "+" sub-items
+    # of a Task cell flush with their parent "-" item.
+    content = content.replace("&emsp;", r"\hspace*{1.5em}")
     # These are math-mode symbols; \checkmark outside $...$ is a LaTeX error.
     content = content.replace("\u2705", r"$\checkmark$")
     content = content.replace("\u2610", r"$\square$")
@@ -766,12 +865,60 @@ def pin_figures(latex):
     return re.sub(r"\\begin\{figure\}(\[[^\]]*\])?", r"\\begin{figure}[H]", latex)
 
 
+HEADER_ROW_RE = re.compile(
+    r"(\\toprule\\noalign\{\})(.*?)(\\midrule\\noalign\{\})", re.DOTALL
+)
+
+
+def center_table_headings(latex):
+    """Centre the heading row of every generated longtable.
+
+    Pandoc left-aligns headings two different ways: wide tables wrap each
+    heading cell in a \\raggedright minipage, narrow ones emit bare text in an
+    "l" column. Each needs its own treatment, and neither may disturb the
+    column widths.
+    """
+    def fix_table(table_match):
+        table = table_match.group(0)
+        colspec = table.split(r"\toprule", 1)[0]
+        sized_columns = "p{" in colspec
+
+        def fix_header(header_match):
+            opening, head, closing = header_match.groups()
+
+            if r"\begin{minipage}" in head:
+                return opening + head.replace(r"\raggedright", r"\centering") + closing
+
+            row = head.strip()
+
+            # \multicolumn overrides the column spec, so it is only safe where
+            # the columns carry no width of their own.
+            if sized_columns or not row.endswith(r"\\"):
+                return header_match.group(0)
+
+            cells = re.split(r"(?<!\\)&", row[:-2])
+            centred = " & ".join(
+                r"\multicolumn{1}{c}{" + cell.strip() + "}" for cell in cells
+            )
+            return f"{opening}\n{centred} \\\\\n{closing}"
+
+        return HEADER_ROW_RE.sub(fix_header, table)
+
+    return re.sub(
+        r"\\begin\{longtable\}.*?\\end\{longtable\}",
+        fix_table,
+        latex,
+        flags=re.DOTALL,
+    )
+
+
 def postprocess_latex(latex):
     # Do NOT replace Pandoc table column specs by regex.
     latex = re.sub(r"\\label\{[^}]+\}", "", latex)
     latex = neutralize_body_headings(latex)
     latex = compact_longtables(latex)
     latex = pin_figures(latex)
+    latex = center_table_headings(latex)
     return latex
 
 

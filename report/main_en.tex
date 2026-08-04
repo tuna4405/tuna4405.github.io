@@ -193,10 +193,15 @@ captionpos=b,
     \item \cover \textbf{STUDENTS:}
     \\ \cover \textbf{FULL NAME: Pham Minh Tuan} \textbf{STUDENT ID: 2353265}
 \end{itemize}
-\vspace{0.3cm}
+% Push the place/date line down to the foot of the cover. \enlargethispage
+% reaches past the normal text block so the line can sit just inside the
+% border; \vfill collapses harmlessly if the cover ever grows.
+\enlargethispage{1.3cm}
+\vfill
 \begin{center}
 {\cover HO CHI MINH CITY, AUGUST 2026}
 \end{center}
+\vspace{0.5cm}
 \end{titlepage}
 
 \newpage
