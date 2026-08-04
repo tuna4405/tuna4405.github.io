@@ -1,0 +1,261 @@
+<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.134.3"><meta name=description content><meta name=author content="tuan.pham040405@hcmut.edu.vn"><link rel=icon href=/images/favicon.png type=image/png><title>Proposal :: Internship Report</title>
+<link href=/css/nucleus.css?1785829119 rel=stylesheet><link href=/css/fontawesome-all.min.css?1785829119 rel=stylesheet><link href=/css/hybrid.css?1785829119 rel=stylesheet><link href=/css/featherlight.min.css?1785829119 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1785829119 rel=stylesheet><link href=/css/auto-complete.css?1785829119 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1785829119 rel=stylesheet><link href=/css/theme.css?1785829119 rel=stylesheet><link href=/css/hugo-theme.css?1785829119 rel=stylesheet><link href=/css/theme-workshop.css?1785829119 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1785829119></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/2-proposal/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#fff;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1785829119></script><script type=text/javascript src=/js/auto-complete.js?1785829119></script><script type=text/javascript>var baseurl="https://tuna4405.github.io/"</script><script type=text/javascript src=/js/search.js?1785829119></script></div><div class=highlightable><ul class=topics><li data-nav-id=/1-worklog/ title=Worklog class=dd-item><a href=/1-worklog/><b>1. </b>Worklog
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/1-worklog/1.1-week1/ title="Week 1 Worklog" class=dd-item><a href=/1-worklog/1.1-week1/><b>1.1. </b>Week 1 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.2-week2/ title="Week 2 Worklog" class=dd-item><a href=/1-worklog/1.2-week2/><b>1.2. </b>Week 2 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.3-week3/ title="Week 3 Worklog" class=dd-item><a href=/1-worklog/1.3-week3/><b>1.3. </b>Week 3 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.4-week4/ title="Week 4 Worklog" class=dd-item><a href=/1-worklog/1.4-week4/><b>1.4. </b>Week 4 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.5-week5/ title="Week 5 Worklog" class=dd-item><a href=/1-worklog/1.5-week5/><b>1.5. </b>Week 5 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.6-week6/ title="Week 6 Worklog" class=dd-item><a href=/1-worklog/1.6-week6/><b>1.6. </b>Week 6 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/1-worklog/1.7-week7/ title="Week 7 Worklog" class=dd-item><a href=/1-worklog/1.7-week7/><b>1.7. </b>Week 7 Worklog
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/2-proposal/ title=Proposal class="dd-item
+active"><a href=/2-proposal/><b>2. </b>Proposal
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-blogsposted/ title="Blogs Posted" class=dd-item><a href=/3-blogsposted/><b>3. </b>Blogs Posted
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/3-blogsposted/3.1-blog1/ title="Blog 1" class=dd-item><a href=/3-blogsposted/3.1-blog1/><b>3.1. </b>Blog 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-blogsposted/3.2-blog2/ title="Blog 2" class=dd-item><a href=/3-blogsposted/3.2-blog2/><b>3.2. </b>Blog 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/3-blogsposted/3.3-blog3/ title="Blog 3" class=dd-item><a href=/3-blogsposted/3.3-blog3/><b>3.3. </b>Blog 3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/4-eventparticipated/ title="Events Participated" class=dd-item><a href=/4-eventparticipated/><b>4. </b>Events Participated
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/4-eventparticipated/4.1-event1/ title="Event 1" class=dd-item><a href=/4-eventparticipated/4.1-event1/><b>4.1. </b>Event 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/4-eventparticipated/4.2-event2/ title="Event 2" class=dd-item><a href=/4-eventparticipated/4.2-event2/><b>4.2. </b>Event 2
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/ title=Workshop class=dd-item><a href=/5-workshop/><b>5. </b>Workshop
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.1-overview/ title=Introduction class=dd-item><a href=/5-workshop/5.1-overview/><b>5.1. </b>Introduction
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.2-prerequisites/ title=Prerequisites class=dd-item><a href=/5-workshop/5.2-prerequisites/><b>5.2. </b>Prerequisites
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.3-design/ title="System Design" class=dd-item><a href=/5-workshop/5.3-design/><b>5.3. </b>System Design
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.3-design/5.3.1-api-spec/ title="API Specification" class=dd-item><a href=/5-workshop/5.3-design/5.3.1-api-spec/><b>5.3.1 </b>API Specification
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.3-design/5.3.2-database-schema/ title="Database Schema" class=dd-item><a href=/5-workshop/5.3-design/5.3.2-database-schema/><b>5.3.2 </b>Database Schema
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.3-design/5.3.3-screen-map/ title="Screens and User Flows" class=dd-item><a href=/5-workshop/5.3-design/5.3.3-screen-map/><b>5.3.3 </b>Screens and User Flows
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.4-local-build/ title="Local Development" class=dd-item><a href=/5-workshop/5.4-local-build/><b>5.4. </b>Local Development
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.4-local-build/5.4.1-backend/ title="Backend: Express and Dockerized PostgreSQL" class=dd-item><a href=/5-workshop/5.4-local-build/5.4.1-backend/><b>5.4.1 </b>Backend: Express and Dockerized PostgreSQL
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.4-local-build/5.4.2-frontend/ title="Frontend: React with Mock Data" class=dd-item><a href=/5-workshop/5.4-local-build/5.4.2-frontend/><b>5.4.2 </b>Frontend: React with Mock Data
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.4-local-build/5.4.3-integration/ title=Integration class=dd-item><a href=/5-workshop/5.4-local-build/5.4.3-integration/><b>5.4.3 </b>Integration
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.5-rds/ title="Amazon RDS for PostgreSQL" class=dd-item><a href=/5-workshop/5.5-rds/><b>5.5. </b>Amazon RDS for PostgreSQL
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.5-rds/5.5.1-launch-instance/ title="Launch the DB Instance" class=dd-item><a href=/5-workshop/5.5-rds/5.5.1-launch-instance/><b>5.5.1 </b>Launch the DB Instance
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.6-s3/ title="Amazon S3" class=dd-item><a href=/5-workshop/5.6-s3/><b>5.6. </b>Amazon S3
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.6-s3/5.6.1-create-buckets/ title="Create the Buckets" class=dd-item><a href=/5-workshop/5.6-s3/5.6.1-create-buckets/><b>5.6.1 </b>Create the Buckets
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.6-s3/5.6.2-cloudfront-for-frontend/ title="CloudFront for the Frontend" class=dd-item><a href=/5-workshop/5.6-s3/5.6.2-cloudfront-for-frontend/><b>5.6.2 </b>CloudFront for the Frontend
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.6-s3/5.6.3-iam-role/ title="IAM Role for Image Upload" class=dd-item><a href=/5-workshop/5.6-s3/5.6.3-iam-role/><b>5.6.3 </b>IAM Role for Image Upload
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.7-ec2/ title="Amazon EC2 and Deployment" class=dd-item><a href=/5-workshop/5.7-ec2/><b>5.7. </b>Amazon EC2 and Deployment
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.7-ec2/5.7.1-deploy-api/ title="Private Networking and the First Instance" class=dd-item><a href=/5-workshop/5.7-ec2/5.7.1-deploy-api/><b>5.7.1 </b>Private Networking and the First Instance
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.7-ec2/5.7.2-security-groups/ title="Lock Down Security Groups" class=dd-item><a href=/5-workshop/5.7-ec2/5.7.2-security-groups/><b>5.7.2 </b>Lock Down Security Groups
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.7-ec2/5.7.3-load-balancer/ title="Load Balancer and a Second Instance" class=dd-item><a href=/5-workshop/5.7-ec2/5.7.3-load-balancer/><b>5.7.3 </b>Load Balancer and a Second Instance
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.7-ec2/5.7.4-cloudfront/ title="CloudFront: Adding the API to the Same Domain" class=dd-item><a href=/5-workshop/5.7-ec2/5.7.4-cloudfront/><b>5.7.4 </b>CloudFront: Adding the API to the Same Domain
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.8-cloudwatch/ title="CloudWatch and SNS" class=dd-item><a href=/5-workshop/5.8-cloudwatch/><b>5.8. </b>CloudWatch and SNS
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.8-cloudwatch/5.8.1-dashboard/ title="Build the Dashboard" class=dd-item><a href=/5-workshop/5.8-cloudwatch/5.8.1-dashboard/><b>5.8.1 </b>Build the Dashboard
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.8-cloudwatch/5.8.2-alarms/ title="Alarms and Notifications" class=dd-item><a href=/5-workshop/5.8-cloudwatch/5.8.2-alarms/><b>5.8.2 </b>Alarms and Notifications
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.9-testing/ title=Testing class=dd-item><a href=/5-workshop/5.9-testing/><b>5.9. </b>Testing
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/5-workshop/5.9-testing/5.9.1-concurrency/ title="The Double-Booking Test" class=dd-item><a href=/5-workshop/5.9-testing/5.9.1-concurrency/><b>5.9.1 </b>The Double-Booking Test
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.9-testing/5.9.2-edge-cases/ title="Edge Cases" class=dd-item><a href=/5-workshop/5.9-testing/5.9.2-edge-cases/><b>5.9.2 </b>Edge Cases
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/5-workshop/5.10-cost/ title="Cost and Resource Management" class=dd-item><a href=/5-workshop/5.10-cost/><b>5.10. </b>Cost and Resource Management
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/5-workshop/5.11-cleanup/ title="Cleaning Up Resources" class=dd-item><a href=/5-workshop/5.11-cleanup/><b>5.11. </b>Cleaning Up Resources
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/6-self-evaluation/ title=Self-Assessment class=dd-item><a href=/6-self-evaluation/><b>6. </b>Self-Assessment
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/7-feedback/ title="Sharing and Feedback" class=dd-item><a href=/7-feedback/><b>7. </b>Sharing and Feedback
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=https://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/awsstudygroupfcj><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=https://tuna4405.github.io/2-proposal/ selected>English</option><option id=vi value=https://tuna4405.github.io/vi/2-proposal/>Tiếng Việt</option></select><svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><br><br><b>Last Updated</b><br><i><font color=orange>04-08-2026</font>
+</i></left><left><br><br><b>Team</b><br><i><a href=https://www.facebook.com/groups/660548818043427 style=color:orange>First Cloud AI Journey</a>
+</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
+</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/>Internship Report</a> > Proposal</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><a href=#guaranteeing-seat-integrity-under-concurrency-with-aws-managed-services>Guaranteeing Seat Integrity Under Concurrency with AWS Managed Services</a><ul><li><a href=#1-executive-summary>1. Executive Summary</a></li><li><a href=#2-problem-statement>2. Problem Statement</a></li><li><a href=#3-solution-architecture>3. Solution Architecture</a></li><li><a href=#4-technical-implementation>4. Technical Implementation</a></li><li><a href=#5-timeline--milestones>5. Timeline & Milestones</a></li><li><a href=#6-budget-estimation>6. Budget Estimation</a></li><li><a href=#7-risk-assessment>7. Risk Assessment</a></li><li><a href=#8-expected-outcomes>8. Expected Outcomes</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Proposal</h1><h1 id=caerus---a-cinema-seat-booking-platform>Caerus - A Cinema Seat Booking Platform</h1><h2 id=guaranteeing-seat-integrity-under-concurrency-with-aws-managed-services>Guaranteeing Seat Integrity Under Concurrency with AWS Managed Services</h2><h3 id=1-executive-summary>1. Executive Summary</h3><p>Caerus is a cinema seat booking web application built to demonstrate a complete
+AWS deployment across compute, storage, database, networking, and monitoring
+services. Customers browse screenings, pick seats from a live seat map, book up
+to six seats in a single transaction, view their bookings, cancel before
+showtime, and download a PDF ticket. Administrators create screenings and upload
+poster images.</p><p>The project&rsquo;s defining technical requirement is that <strong>a seat can never be sold
+twice</strong>, even when two customers select the same seat at the same instant. This
+single constraint drives the choice of a relational database, the row-level
+locking strategy in the booking transaction, and the testing plan. Everything
+else in the system exists to serve a correct booking.</p><p>The platform runs in the <code>ap-southeast-1</code> region and is built by a two-person
+team over four weeks, with the backend and frontend developed in parallel
+against a shared API contract agreed before any code was written. The compute
+and data layers run behind two independent load-balancing/failover boundaries -
+an Application Load Balancer across two EC2 instances, and a Multi-AZ RDS
+database - with both instances and the database sitting in private subnets with
+no direct route to the internet.</p><h3 id=2-problem-statement>2. Problem Statement</h3><h4 id=whats-the-problem>What&rsquo;s the Problem?</h4><p>Selling reserved seats is deceptively hard. The naive implementation - read the
+seat&rsquo;s availability, then write a booking - contains a race condition: two
+requests can both read &ldquo;available&rdquo; before either writes, and the cinema sells
+one chair twice. The failure is silent, intermittent, and only appears under the
+exact conditions that matter most, when a popular screening opens and many
+customers converge on the same few good seats.</p><p>A student project that ignores this produces a booking system that appears to
+work in a demo and is fundamentally broken in production. A project that
+addresses it has to reason about transactions, isolation, and locking - which is
+precisely the kind of problem cloud infrastructure is meant to support rather
+than solve on its own.</p><p>Beyond correctness, a small cinema operator has no infrastructure team. Any
+solution must tolerate a single instance failing without an outage, keep the
+database and the application servers off the public internet, and remain
+observable enough that a failure is noticed before customers report it.</p><h4 id=the-solution>The Solution</h4><p>Caerus stores seats, bookings, and users in Amazon RDS for PostgreSQL and
+performs booking inside a single database transaction that locks the requested
+seat rows with <code>SELECT ... FOR UPDATE</code> before verifying availability. Two
+concurrent requests for the same seat cannot both succeed: one acquires the row
+lock, the other blocks, and when the winner commits, the loser sees the updated
+status, rolls back, and receives a <code>409 SEAT_ALREADY_BOOKED</code> response naming the
+conflicting seats so the interface can highlight them. Either every requested
+seat is booked or none is.</p><p>The remaining components are chosen for genuine production-shaped guarantees
+rather than for the cheapest possible demo. The React frontend is a static
+build served through Amazon CloudFront from a private S3 bucket. The Express
+API runs on two Amazon EC2 instances, in private subnets behind an Application
+Load Balancer, so either instance can be lost without an outage; outbound
+package installs and OS patching reach the internet through a NAT gateway, and
+the instances are administered through AWS Systems Manager Session Manager
+rather than SSH, so no inbound port is open to the internet at all. RDS runs
+Multi-AZ, also in a private subnet with no route to the internet. Poster
+images and generated PDF tickets live in S3, rendered by the API itself and
+served through short-lived presigned URLs. CloudFront also fronts the API
+through the load balancer, so the whole application - site and API - is
+reachable over HTTPS on a single domain, with AWS WAF inspecting traffic at the
+edge before it reaches the load balancer at all. Amazon CloudWatch collects
+metrics and application logs, and alarms publish to Amazon SNS when a target
+becomes unhealthy or the database approaches its resource limits.</p><h4 id=benefits-and-return-on-investment>Benefits and Return on Investment</h4><p>The system replaces manual or spreadsheet-based seat allocation with an
+interface customers operate themselves, and it does so with a correctness
+guarantee that can be demonstrated rather than asserted. For the operator, the
+architecture is deliberately built to the same shape a production deployment
+would use rather than the cheapest shape that would pass a demo: no single
+instance failure takes the site down, the database fails over automatically,
+and neither the compute layer nor the data layer is directly reachable from
+the internet. Every resource is tagged by owner and tracked against a billing
+alarm, so the real running cost is a known, monitored number rather than a
+surprise.</p><p>For the team, the project produces transferable evidence of competence across
+eight AWS services, a concrete demonstration of defense-in-depth networking
+(private subnets at both the compute and data tiers, a NAT gateway for
+outbound-only access, a load balancer and a CDN with WAF as the only public
+entry points), and a concrete argument for relational over NoSQL storage
+grounded in an actual invariant rather than a textbook example.</p><h3 id=3-solution-architecture>3. Solution Architecture</h3><p>The architecture separates two concerns: static content delivery and
+transactional compute, both reachable through one CDN edge. The browser loads
+the React application and calls the Express API through the same Amazon
+CloudFront distribution, which routes by path - <code>/api/*</code> to the Application
+Load Balancer, everything else to the private S3 site bucket. The API handles
+every operation itself, including rendering the ticket PDF, and writes to S3
+and RDS from inside the VPC.</p><p><img alt="Caerus architecture" src=/images/2-Proposal/architecture.png></p><h4 id=aws-services-used>AWS Services Used</h4><ul><li><strong>Amazon EC2</strong>: Hosts the Express API server under <code>pm2</code>, two instances
+across two Availability Zones in private subnets, handling authentication,
+event listing, seat maps, booking, cancellation, and ticket PDF generation.</li><li><strong>Application Load Balancer</strong>: The only path into the EC2 instances,
+distributing traffic across both and health-checking each one continuously.</li><li><strong>NAT Gateway</strong>: Gives the private-subnet EC2 instances outbound-only
+internet access for package installs and OS patching, without ever accepting
+an inbound connection from the internet.</li><li><strong>Amazon RDS for PostgreSQL</strong>: Stores the five core tables - <code>users</code>,
+<code>events</code>, <code>seats</code>, <code>bookings</code>, and <code>booking_seats</code>. Chosen for ACID
+transactions and row-level locking; deployed Multi-AZ in a private subnet
+with automatic failover to a standby.</li><li><strong>Amazon S3</strong>: Four buckets - private static hosting for the React build
+(served only through CloudFront), storage for event posters, storage for
+generated PDF tickets, and a staging bucket for the backend deployment
+package.</li><li><strong>Amazon CloudFront</strong>: One distribution, one HTTPS domain, path-based
+routing between the S3 site bucket and the load balancer, with Origin
+Access Control keeping the site bucket private.</li><li><strong>AWS WAF</strong>: Bound to the CloudFront distribution, inspecting every request
+at the edge against managed rule groups before it reaches the load balancer
+or the S3 origin.</li><li><strong>Amazon CloudWatch</strong>: Dashboards for EC2 CPU, RDS connections/storage/CPU,
+and load balancer request count and target health; log groups for Express
+application logs; alarms on target health and database resource pressure.</li><li><strong>Amazon SNS</strong>: Delivers alarm notifications by email.</li><li><strong>AWS IAM</strong>: Two developer users in a shared group, an EC2 instance role
+granting scoped S3 access and Systems Manager management, without embedded
+credentials anywhere.</li><li><strong>AWS Systems Manager</strong>: Session Manager gives shell access to both EC2
+instances for deployment and debugging, entirely over the same outbound
+path the NAT gateway already provides - no SSH port is exposed.</li><li><strong>Amazon VPC</strong>: A public subnet pair for the load balancer and NAT gateway,
+a private subnet pair for the two EC2 instances, a separate private subnet
+pair for RDS, and a gateway endpoint so EC2-to-S3 traffic never leaves the
+AWS network.</li></ul><h4 id=component-design>Component Design</h4><ul><li><strong>Frontend</strong>: A Vite and React single-page application built to static
+assets and synchronised to the site bucket. All API calls pass through one
+client module, so redirecting the application from mock data to the local
+API and then to the deployed API is a single change.</li><li><strong>API layer</strong>: Express with routes, thin controllers, and services holding
+the actual logic. Authentication is stateless JSON Web Tokens; passwords are
+hashed with bcrypt. The booking transaction lives in one service function.</li><li><strong>Data layer</strong>: Seats belong to a screening rather than to a physical room,
+so availability is unambiguous per showing. Each screening generates a fixed
+layout of six rows by ten seats. Seat availability is stored as a column so
+there is a concrete row to lock; total and available seat counts are
+computed at query time so they cannot drift.</li><li><strong>Ticket generation</strong>: The API renders the PDF in-process, writes it to the
+tickets bucket, and returns a pre-signed URL with a short expiry rather than
+making the object public.</li><li><strong>Money and time</strong>: Prices are stored as integers in Vietnamese dong, never
+floats. The booking total is snapshotted at purchase so a later price change
+cannot rewrite history. Timestamps are stored and transmitted in UTC but
+represent showtimes in <code>Asia/Ho_Chi_Minh</code>, and date filtering is performed
+against the Vietnamese calendar date.</li></ul><h3 id=4-technical-implementation>4. Technical Implementation</h3><h4 id=implementation-phases>Implementation Phases</h4><p><strong>Phase 1 - Design the contract (2 days).</strong> Agree the API specification and the
+database schema in a single session before any code is written, and freeze both
+as documents that neither developer changes unilaterally. This is what allows
+the backend and frontend to be built simultaneously rather than sequentially.</p><p><strong>Phase 2 - Parallel local development (5 days).</strong> The backend implements the
+Express API against a Dockerised PostgreSQL container, including the booking
+transaction and PDF ticket rendering. The frontend builds the event list, seat
+picker, and bookings screens against mock JSON files shaped exactly like the
+agreed responses. Integration follows, connecting the interface to the live
+API and resolving mismatches.</p><p><strong>Phase 3 - Migrate to managed AWS services (7 days).</strong> The same migration and
+seed SQL files run against a Multi-AZ RDS instance in a private subnet. All
+four S3 buckets are created. The API is deployed to two EC2 instances in
+private subnets behind an Application Load Balancer, reachable outbound only
+through a NAT gateway and administered through Systems Manager Session
+Manager rather than SSH; security groups are narrowed so the database accepts
+traffic only from the application tier and the application tier accepts
+traffic only from the load balancer.</p><p><strong>Phase 4 - CDN, monitoring, and verification (7 days).</strong> Amazon CloudFront is
+placed in front of both the load balancer and the S3 site bucket for a single
+HTTPS domain, with AWS WAF enabled at the edge. CloudWatch dashboards, log
+shipping, and health/resource alarms are configured. The concurrency test is
+executed against the deployed system, followed by edge-case testing and
+polish.</p><h4 id=technical-requirements>Technical Requirements</h4><ul><li><strong>Local development</strong>: Node.js 20 or later, Docker Desktop running PostgreSQL
+16, and the AWS CLI. Local ports are fixed at 5173 for the development server,
+3000 for the API, and 5433 for the database container.</li><li><strong>Runtime</strong>: Amazon Linux on EC2, Node.js managed by <code>pm2</code> for
+restart-on-boot, administered exclusively through Systems Manager Session
+Manager (no SSH), and a Multi-AZ RDS instance running PostgreSQL in a
+private subnet.</li><li><strong>Access control</strong>: Every IAM role created for the project carries a
+<code>caerus-</code> name prefix, enforced by the account&rsquo;s permission boundary. Every
+resource is tagged with an <code>Owner</code> value identifying which developer created
+it, so costs can be attributed in Cost Explorer.</li><li><strong>Cross-origin access</strong>: In production, the frontend and the API are served
+from the same CloudFront domain, so no cross-origin request ever leaves the
+browser. CORS only needs to permit the local Vite dev server talking to a
+local or deployed API during development.</li></ul><h3 id=5-timeline--milestones>5. Timeline & Milestones</h3><p>The project runs for four weeks inside the wider internship period.</p><ul><li><strong>Week 1 - Fundamentals and local build.</strong> AWS core concepts, account and IAM
+setup, the design session, parallel development, and local integration.
+<em>Milestone: the complete application running on localhost.</em></li><li><strong>Week 2 - Managed services and deployment.</strong> RDS, S3, and EC2 studied and
+then used; the application deployed behind a load balancer and reachable on
+a public address.
+<em>Milestone: live on AWS.</em></li><li><strong>Week 3 - Networking, CDN, and observability.</strong> Private subnets and NAT for
+the compute tier, CloudFront and WAF for a single HTTPS domain, CloudWatch
+dashboards and alarms, then concurrency and edge-case testing.
+<em>Milestone: feature-complete and verified.</em></li><li><strong>Week 4 - Report and demonstration.</strong> Written report, screenshots assembled,
+demonstration script and backup recording prepared.
+<em>Milestone: submitted.</em></li></ul><p>Two buffer days are reserved at the end of Week 2 and two more at the end of
+Week 3, on the assumption that networking and CDN configuration will consume
+more time than planned.</p><h3 id=6-budget-estimation>6. Budget Estimation</h3><p>This architecture is intentionally not optimised to stay inside the Free
+Tier - a load balancer, a NAT gateway, and a Multi-AZ database are all real,
+by-the-hour costs regardless of traffic, taken on deliberately for the
+production-shaped guarantees described in Section 3.</p><h4 id=infrastructure-costs>Infrastructure Costs</h4><table><thead><tr><th style=text-align:left>Component</th><th style=text-align:left>Why it costs</th><th style=text-align:left>Rough cost</th></tr></thead><tbody><tr><td style=text-align:left>Application Load Balancer</td><td style=text-align:left>Billed hourly regardless of traffic, plus LCU-hours under load</td><td style=text-align:left>~US$16/month baseline</td></tr><tr><td style=text-align:left>NAT Gateway</td><td style=text-align:left>Billed hourly plus per-GB data processing</td><td style=text-align:left>~US$32-35/month baseline</td></tr><tr><td style=text-align:left>RDS Multi-AZ</td><td style=text-align:left>Standby instance billed identically to the primary</td><td style=text-align:left>roughly double a single-AZ instance of the same class</td></tr><tr><td style=text-align:left>Amazon EC2 (×2)</td><td style=text-align:left>Two instances running continuously; combined hours exceed the Free Tier&rsquo;s 750-hour allowance once both run a full month</td><td style=text-align:left>modest, instance-class dependent</td></tr><tr><td style=text-align:left>Amazon CloudFront + WAF</td><td style=text-align:left>Usage-based (per GB, per 10,000 HTTPS requests, per WAF rule evaluated)</td><td style=text-align:left>a few dollars at demonstration traffic</td></tr><tr><td style=text-align:left>Amazon S3</td><td style=text-align:left>Well under the Free Tier allowance at this data volume</td><td style=text-align:left>negligible</td></tr><tr><td style=text-align:left>Data transfer</td><td style=text-align:left>Nominal at demonstration traffic levels</td><td style=text-align:left>negligible</td></tr></tbody></table><p><strong>Estimated total: roughly US$90-110 per month</strong> at demonstration traffic
+levels, dominated by the NAT gateway and the load balancer&rsquo;s hourly charges
+rather than by actual usage - both continue billing at the same rate whether
+the application serves one request a day or one thousand. Replace this figure
+with the AWS Pricing Calculator link noted above once generated against the
+exact instance classes chosen.</p><p>The billing alarm is set well above this expected run-rate (around US$150)
+rather than at a token guardrail value - at this architecture&rsquo;s cost profile,
+a low threshold would fire on ordinary operation rather than only on a
+genuine mistake. Every resource still carries the <code>Owner</code> tag, so Cost
+Explorer grouped by owner attributes any spike to a specific developer within
+seconds regardless of what the alarm threshold is set to.</p><h3 id=7-risk-assessment>7. Risk Assessment</h3><h4 id=risk-matrix>Risk Matrix</h4><table><thead><tr><th style=text-align:left>Risk</th><th style=text-align:left>Impact</th><th style=text-align:left>Probability</th></tr></thead><tbody><tr><td style=text-align:left>Double-booked seat under concurrent requests</td><td style=text-align:left>High</td><td style=text-align:left>Medium</td></tr><tr><td style=text-align:left>Cross-origin request failures during local development</td><td style=text-align:left>Low</td><td style=text-align:left>Medium</td></tr><tr><td style=text-align:left>Monthly cost exceeds the estimate (idle NAT/ALB hours add up even at zero traffic)</td><td style=text-align:left>Medium</td><td style=text-align:left>Medium</td></tr><tr><td style=text-align:left>A misconfigured edge rule (CDN cache policy, WAF managed rule) silently breaks a legitimate request</td><td style=text-align:left>Medium</td><td style=text-align:left>Medium</td></tr><tr><td style=text-align:left>Losing administrative access to a private-subnet EC2 instance</td><td style=text-align:left>Medium</td><td style=text-align:left>Low</td></tr><tr><td style=text-align:left>Deployment consumes time reserved for later phases</td><td style=text-align:left>Medium</td><td style=text-align:left>Medium</td></tr></tbody></table><h4 id=mitigation-strategies>Mitigation Strategies</h4><ul><li><strong>Concurrency</strong>: Lock seat rows with <code>SELECT ... FOR UPDATE</code> ordered by
+primary key, so every concurrent transaction acquires locks in the same
+sequence and cannot deadlock. Verify by conditional update and assert the
+affected row count, so a code path that bypasses the lock is detected rather
+than silently tolerated.</li><li><strong>Cross-origin requests</strong>: Treat CORS as a local-development-only concern,
+since production traffic is same-origin through CloudFront; configure the
+permitted local origins on the API explicitly rather than working around
+the browser.</li><li><strong>Cost</strong>: A billing alarm set against the realistic run-rate (not a token
+value), an owner tag on every resource, and read-only billing access for
+developer users so the alarm configuration cannot be disabled accidentally.</li><li><strong>Edge misconfiguration</strong>: Treat the CDN cache policy and WAF as things that
+can silently break a legitimate request rather than only ever blocking
+attackers - verify a real request/response round trip through the edge for
+every content type (JSON API responses, file uploads) before considering
+that layer done, not just for static assets.</li><li><strong>Administrative access</strong>: Systems Manager Session Manager depends on the
+instance reaching AWS&rsquo;s SSM endpoints outbound, which in turn depends on
+the NAT gateway; if that path is ever broken, the fallback is a temporary
+bastion host in a public subnet rather than reopening SSH on the private
+instances.</li><li><strong>Schedule</strong>: Buffer days at the end of the two heaviest weeks, and a
+frontend that works against mock data so it is never blocked waiting for the
+backend.</li></ul><h4 id=contingency-plans>Contingency Plans</h4><ul><li>If the deployed environment fails during the demonstration, present against
+the local Docker environment, which runs the identical schema and code.</li><li>If CloudFront/WAF configuration is not completed in time, the Application
+Load Balancer&rsquo;s own HTTP endpoint remains directly reachable as a fallback,
+since the API&rsquo;s behavior does not depend on which layer fronts it.</li><li>Record a demonstration video in advance so a live failure does not prevent
+the work from being shown.</li></ul><h3 id=8-expected-outcomes>8. Expected Outcomes</h3><h4 id=technical-improvements>Technical Improvements</h4><p>A publicly reachable booking application in which seat availability is accurate
+under concurrent load, verified by a deliberate two-client race for the same
+seat producing exactly one successful booking and one conflict response.
+Operational visibility through dashboards covering every service category,
+with an alarm proven to fire and notify rather than merely configured, and a
+compute and data layer that are both unreachable from the internet by network
+design rather than by security-group discipline alone.</p><h4 id=long-term-value>Long-term Value</h4><p>The project produces a working demonstration of defense-in-depth
+infrastructure design: a public edge (CDN plus WAF) as the only entry point,
+a load-balanced private compute tier reachable by nothing but that edge, and
+a private, Multi-AZ data tier reachable by nothing but the compute tier -
+each layer failing closed rather than open if a layer above it is
+misconfigured. It also produces an evidence-based argument for relational
+storage: the booking invariant cannot be expressed as cheaply without
+transactions, while an auxiliary feature such as recently viewed events would
+sit naturally in a key-value store. Both arguments are grounded in this
+system rather than in a general comparison, and both are reusable in future
+design work.</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/1-worklog/1.7-week7/ title="Week 7 Worklog"><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/3-blogsposted/ title="Blogs Posted" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1785829119></script><script src=/js/perfect-scrollbar.min.js?1785829119></script><script src=/js/perfect-scrollbar.jquery.min.js?1785829119></script><script src=/js/jquery.sticky.js?1785829119></script><script src=/js/featherlight.min.js?1785829119></script><script src=/js/highlight.pack.js?1785829119></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1785829119></script><script src=/js/learn.js?1785829119></script><script src=/js/hugo-learn.js?1785829119></script><link href=/mermaid/mermaid.css?1785829119 rel=stylesheet><script src=/mermaid/mermaid.js?1785829119></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,(e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date),(i=t.createElement(n),a=t.getElementsByTagName(n)[0]),i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
