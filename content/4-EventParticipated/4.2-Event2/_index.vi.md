@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-# Báo cáo tổng hợp: FCAJ Agentic AI Build Week — Community Day
+# Báo cáo tổng hợp: FCAJ Agentic AI Build Week - Community Day
 
 ### Mục tiêu của sự kiện
 
@@ -20,20 +20,20 @@ pre: " <b> 4.2. </b> "
 
 ### Các đội trình bày
 
-- **Plan V** — *Solution Architect Professional Native App*
+- **Plan V** - *Solution Architect Professional Native App*
   (Phạm Tiến Thuận Phát, Huỳnh Hoàng Long, Lê Minh Nghĩa, Trần Đại Vĩ, Nguyễn An)
-- **Signal Scout** — *Nền tảng phát hiện tín hiệu doanh nghiệp*
+- **Signal Scout** - *Nền tảng phát hiện tín hiệu doanh nghiệp*
   (Lê Tấn Lực, Đỗ Hoàng Hiếu, Triệu Quốc Hào, Nguyễn Duy Khiêm, Nguyễn Công Minh, Nguyễn Trần Minh Quân)
-- **One Team** — *KFC Bot Agent*, đội vô địch AABW Hackathon
+- **One Team** - *KFC Bot Agent*, đội vô địch AABW Hackathon
   (Anh Duy, Trần Đông, Đoàn Trung, Minh Việt, Anshul Roy)
-- **3KA** — *S.H.E.P.H.E.R.D* và hành trình hackathon
+- **3KA** - *S.H.E.P.H.E.R.D* và hành trình hackathon
   (Huỳnh An Khương, Nguyễn Quốc Huy, Ngô Quang Khôi, Hoàng Lê Thành Đức, Đặng Nguyễn Phước Lộc, Đặng Trường Hưng)
 
 ---
 
 ### Những điểm nổi bật
 
-#### Plan V — Solution Architect Professional Native App
+#### Plan V - Solution Architect Professional Native App
 
 Bài toán được đóng khung bằng một đoạn hội thoại mà bất kỳ ai làm tư vấn cũng nhận
 ra ngay: khách hàng yêu cầu một thiết kế hệ thống AI cho bộ tài liệu quy trình vận
@@ -53,7 +53,7 @@ Phần so sánh trước-và-sau là phần rõ ràng nhất của bài trình b
 
 | Trước | Sau |
 |---|---|
-| Đọc tài liệu yêu cầu từng dòng một, thủ công | Tải lên và trò chuyện tự nhiên — có danh mục yêu cầu trong vài phút |
+| Đọc tài liệu yêu cầu từng dòng một, thủ công | Tải lên và trò chuyện tự nhiên - có danh mục yêu cầu trong vài phút |
 | Lần nào cũng bắt đầu từ trang giấy trắng | Có sẵn một bản nháp có cơ sở để phản biện lại |
 | Viết infrastructure as code thủ công | Infrastructure as code được sinh ra |
 | Ước lượng chi phí bằng cảm tính phụ thuộc kinh nghiệm | Một ước lượng định hướng được tạo ra cùng lúc với kiến trúc |
@@ -62,7 +62,7 @@ Phần so sánh trước-và-sau là phần rõ ràng nhất của bài trình b
 phản biện lại* chứ không phải một sản phẩm hoàn chỉnh. Công cụ được đặt vào vai trò
 xóa bỏ trang giấy trắng, chứ không phải xóa bỏ người kiến trúc sư.
 
-#### Signal Scout — phát hiện sớm thay đổi chiến lược của doanh nghiệp
+#### Signal Scout - phát hiện sớm thay đổi chiến lược của doanh nghiệp
 
 Đội này xây một nền tảng phát hiện sớm các tín hiệu tái cấu trúc và thay đổi chiến
 lược ở các công ty, hướng tới các đội chiến lược doanh nghiệp, quản trị rủi ro,
@@ -82,7 +82,7 @@ người kiểm soát* một cách rõ ràng. Hệ thống được thiết kế
 một quyết định Maintain, Adapt, hay Accelerate, chứ không phải để tự đưa ra quyết
 định đó.
 
-Phần tôi tâm đắc nhất là **slide chi phí** — một bảng bóc tách đầy đủ từng khoản
+Phần tôi tâm đắc nhất là **slide chi phí** - một bảng bóc tách đầy đủ từng khoản
 theo ba mức sử dụng tối thiểu, trung bình, và tối đa, phủ mọi dịch vụ kể cả các phụ
 thuộc ngoài AWS:
 
@@ -93,16 +93,16 @@ thuộc ngoài AWS:
 | Công cụ observability | $0–29 | $29 | $29 |
 | **Tổng cộng** | **~ $81** | **~ $94** | **~ $359** |
 
-Sau đó họ trình bày một kiến trúc đã chỉnh lại theo hướng tiết kiệm chi phí hơn —
+Sau đó họ trình bày một kiến trúc đã chỉnh lại theo hướng tiết kiệm chi phí hơn -
 cho thấy phần phân tích chi phí thực sự đã quay ngược lại tác động đến thiết kế,
 chứ không phải được làm ra sau cùng cho đủ một slide theo yêu cầu.
 
-#### One Team — KFC Bot Agent (đội vô địch)
+#### One Team - KFC Bot Agent (đội vô địch)
 
 Đội thắng cuộc mở đầu bằng một thất bại có thật trong ngành chứ không phải bằng ý
 tưởng của chính họ: McDonald's đã dừng một thử nghiệm AI cho drive-thru sau khi thử
 đặt món tự động ở hơn một trăm cửa hàng tại Mỹ. Cách họ đọc câu chuyện ấy rất chính
-xác — bài học không phải là đặt món bằng AI là một ý tưởng tồi, mà là **đặt món là
+xác - bài học không phải là đặt món bằng AI là một ý tưởng tồi, mà là **đặt món là
 một bài toán hệ thống**. Một agent đặt món phải xử lý món, số lượng, biến thể, quy
 tắc voucher, trạng thái giỏ hàng, và lỗi, trong khi ngôn ngữ tự nhiên thì lộn xộn,
 quy tắc kinh doanh thì nghiêm ngặt, đơn hàng phải được kiểm chứng, và sai sót thì
@@ -110,7 +110,7 @@ quy thẳng ra tiền.
 
 Vấn đề họ nhắm tới là khoảnh khắc một thương hiệu đánh mất đơn hàng: khách đang
 đói và ý định mua xuất hiện ngay giữa cuộc trò chuyện, nhưng việc đặt món lại buộc
-họ chuyển sang ứng dụng khác, tạo tài khoản, và dò menu — thế là cái đà ấy biến
+họ chuyển sang ứng dụng khác, tạo tài khoản, và dò menu - thế là cái đà ấy biến
 mất. Hỗ trợ chat thuần con người thì không mở rộng nổi qua nhiều kênh, nhiều ca
 trực, và những đợt tăng đột biến lưu lượng.
 
@@ -122,21 +122,21 @@ Luận điểm kiến trúc họ đưa ra là điều tôi nghĩ tới nhiều n
 
 > **Một chatbot trả lời. Một agent hành động.**
 
-Họ mô tả một vòng lặp năm bước — hiểu ý định đặt món, lập kế hoạch các bước cần
+Họ mô tả một vòng lặp năm bước - hiểu ý định đặt món, lập kế hoạch các bước cần
 làm, gọi tool để tra cứu dữ liệu kinh doanh đáng tin cậy, hành động bằng cách cập
 nhật giỏ hàng và áp khuyến mãi, rồi kiểm chứng lại với trạng thái giỏ hàng thật.
 Câu tóm tắt của họ: *mô hình hiểu, còn tool mới quyết định cái gì là thật*. Mô hình
 ngôn ngữ không được tin cậy để giữ trạng thái của đơn hàng; nó chỉ được tin cậy để
 diễn giải yêu cầu.
 
-#### 3KA — S.H.E.P.H.E.R.D và hành trình hackathon
+#### 3KA - S.H.E.P.H.E.R.D và hành trình hackathon
 
 Bài trình bày này được dựng như một câu chuyện chứ không phải một màn demo sản
 phẩm, đi qua bốn chặng: đăng ký và chọn hướng thi, xây dựng dưới áp lực, ngày demo
 và chấm giải, và những chiêm nghiệm sau đó.
 
-Hệ thống S.H.E.P.H.E.R.D — Smart Human-flow Evaluation, Prediction, Hazard
-Detection, Response, and Dispatch — phân tích hình ảnh camera trực tiếp tại các địa
+Hệ thống S.H.E.P.H.E.R.D - Smart Human-flow Evaluation, Prediction, Hazard
+Detection, Response, and Dispatch - phân tích hình ảnh camera trực tiếp tại các địa
 điểm tổ chức để phát hiện và bám theo người, đo mật độ đám đông, ước lượng tình
 trạng hàng chờ, nhận ra dấu hiệu sớm của ùn tắc, dự báo quá tải, phát cảnh báo chủ
 động, và gợi ý hành động cho nhân viên. Nó được xây bằng YOLO và ByteTrack cho phần
@@ -146,7 +146,7 @@ cho tầng agentic, và một dashboard React.
 Tầng agentic có hai vai trò tách bạch: một **autonomous monitor** theo dõi các chỉ
 số trực tiếp và phát cảnh báo mà không cần ai hỏi, và một **operator copilot** cho
 phép nhân viên đặt câu hỏi bằng ngôn ngữ tự nhiên và nhận câu trả lời có chỉ số
-trực tiếp cùng các công cụ dự báo chống lưng. Cách đóng khung vấn đề rất cụ thể —
+trực tiếp cùng các công cụ dự báo chống lưng. Cách đóng khung vấn đề rất cụ thể -
 nhân viên tại địa điểm phải cùng lúc trông chừng lối vào, hàng chờ, các gian hàng,
 và dòng di chuyển, trong khi giám sát thủ công thì chậm, bị động, khó mở rộng, và
 dễ bỏ sót sự cố.
@@ -160,10 +160,10 @@ hào vì đã thực sự làm ra được một thứ gì đó.
 
 Lời khuyên của họ cho những người lần đầu tham gia:
 
-- **Cứ đăng ký đi** — đừng đợi đến khi thấy mình đã sẵn sàng
-- **Tìm đội sớm** — kỹ năng khác nhau tốt hơn kỹ năng giống hệt nhau
-- **Thu phạm vi thật nhỏ** — một tính năng, làm cho tốt
-- **Nói chuyện với tất cả mọi người** — mentor và các đội khác chính là lý do bạn có mặt ở đó
+- **Cứ đăng ký đi** - đừng đợi đến khi thấy mình đã sẵn sàng
+- **Tìm đội sớm** - kỹ năng khác nhau tốt hơn kỹ năng giống hệt nhau
+- **Thu phạm vi thật nhỏ** - một tính năng, làm cho tốt
+- **Nói chuyện với tất cả mọi người** - mentor và các đội khác chính là lý do bạn có mặt ở đó
 
 ---
 
@@ -171,8 +171,8 @@ Lời khuyên của họ cho những người lần đầu tham gia:
 
 **Agent được định nghĩa bởi tool của nó, không phải bởi mô hình.** Đội nào cũng vạch
 đúng một ranh giới ấy: mô hình ngôn ngữ diễn giải ý định, còn tool thực thi và kiểm
-chứng hành động trên trạng thái thật. Cách diễn đạt của One Team — mô hình hiểu,
-tool quyết định cái gì là thật — là câu phát biểu rõ ràng nhất về điều này mà tôi
+chứng hành động trên trạng thái thật. Cách diễn đạt của One Team - mô hình hiểu,
+tool quyết định cái gì là thật - là câu phát biểu rõ ràng nhất về điều này mà tôi
 từng nghe, và về bản chất đó là một lập luận về tính đúng đắn chứ không phải một
 lập luận về AI.
 
@@ -186,7 +186,7 @@ của họ là thứ tạo ra cái để phản biện lại chứ không phải
 tả trung thực hơn về công dụng thật của những hệ thống này so với phần lớn tuyên bố
 sản phẩm.
 
-**Ràng buộc tạo ra phạm vi tốt hơn tham vọng.** "Thu phạm vi thật nhỏ — một tính
+**Ràng buộc tạo ra phạm vi tốt hơn tham vọng.** "Thu phạm vi thật nhỏ - một tính
 năng, làm cho tốt" đến từ một đội chỉ có 24 giờ; nó đúng không kém với một dự án
 kéo dài bốn tuần.
 
@@ -196,7 +196,7 @@ kéo dài bốn tuần.
 
 Ý tưởng chuyển giao được nhiều nhất là ranh giới kiểm chứng bằng tool. Trong dự án
 của tôi, thứ tương đương là tầng ứng dụng đề xuất một booking, còn giao dịch cơ sở
-dữ liệu mới quyết định nó có thật hay không — các dòng ghế bị khóa và kiểm tra lại
+dữ liệu mới quyết định nó có thật hay không - các dòng ghế bị khóa và kiểm tra lại
 trước khi bất cứ thứ gì được commit, và mọi sự tự tin ở tầng ứng dụng cũng không
 thể lấn át trạng thái trong cơ sở dữ liệu. Nghe bốn đội đi tới cùng một nguyên tắc
 trong một lĩnh vực khác hẳn khiến tôi tự tin hơn rằng việc đặt cam kết ấy ở tầng dữ
@@ -205,14 +205,14 @@ liệu là lựa chọn đúng chứ không phải một cách làm gượng g�
 Bảng chi phí của Signal Scout đã thay đổi cách tôi tiếp cận phần chi phí trong báo
 cáo của mình. Thay vì khẳng định dự án nằm gọn trong Free Tier, tôi cấu trúc nó
 thành từng khoản mục với những thành phần sẽ chiếm phần lớn hóa đơn được chỉ ra rõ
-ràng — và chính điều đó mới làm cho ước lượng có ích với người đọc.
+ràng - và chính điều đó mới làm cho ước lượng có ích với người đọc.
 
 Việc region `ap-southeast-1` xuất hiện trong phần ước lượng chi phí của Plan V là
 một chi tiết nhỏ nhưng đáng yên tâm: đúng lựa chọn region mà tôi đã đưa ra vì lý do
 độ trễ, được một đội khác đưa ra một cách độc lập vì lý do chi phí.
 
-Cuối cùng, danh sách nỗi sợ của 3KA — chưa đủ giỏi, mù mờ không biết gì, quá ít
-thời gian — gần như đúng y những gì tôi cảm thấy lúc mới bắt đầu chương trình. Được
+Cuối cùng, danh sách nỗi sợ của 3KA - chưa đủ giỏi, mù mờ không biết gì, quá ít
+thời gian - gần như đúng y những gì tôi cảm thấy lúc mới bắt đầu chương trình. Được
 thấy một đội nói thẳng điều đó trên sân khấu, sau khi họ đã xây và trình diễn một hệ
 thống chạy được, có lẽ là thứ hữu ích nhất tôi mang về từ ngày hôm đó.
 

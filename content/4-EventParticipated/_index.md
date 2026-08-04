@@ -15,7 +15,7 @@ systems built under hackathon conditions.
 
 ### [Event 1](4.1-Event1/)
 
-&emsp;**Event Name:** FCAJ Saturday Meetup — Career Paths, Architecture, and Industry Practice
+&emsp;**Event Name:** FCAJ Saturday Meetup - Career Paths, Architecture, and Industry Practice
 
 &emsp;**Date & Time:** 09:00, June 13, 2026
 
@@ -27,7 +27,7 @@ systems built under hackathon conditions.
 
 ### [Event 2](4.2-Event2/)
 
-&emsp;**Event Name:** FCAJ Agentic AI Build Week (AABW) — Community Day
+&emsp;**Event Name:** FCAJ Agentic AI Build Week (AABW) - Community Day
 
 &emsp;**Date & Time:** 09:00, July 25, 2026
 

@@ -10,7 +10,7 @@ Trong kỳ thực tập, tôi đã tham dự hai sự kiện cộng đồng đư
 
 ### [Sự kiện 1](4.1-Event1/)
 
-&emsp;**Tên sự kiện:** FCAJ Saturday Meetup — Con đường nghề nghiệp, Kiến trúc, và Thực tế trong ngành
+&emsp;**Tên sự kiện:** FCAJ Saturday Meetup - Con đường nghề nghiệp, Kiến trúc, và Thực tế trong ngành
 
 &emsp;**Thời gian:** 09:00, ngày 13 tháng 6 năm 2026
 
@@ -22,7 +22,7 @@ Trong kỳ thực tập, tôi đã tham dự hai sự kiện cộng đồng đư
 
 ### [Sự kiện 2](4.2-Event2/)
 
-&emsp;**Tên sự kiện:** FCAJ Agentic AI Build Week (AABW) — Community Day
+&emsp;**Tên sự kiện:** FCAJ Agentic AI Build Week (AABW) - Community Day
 
 &emsp;**Thời gian:** 09:00, ngày 25 tháng 7 năm 2026
 

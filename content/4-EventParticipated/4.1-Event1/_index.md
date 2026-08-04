@@ -21,20 +21,20 @@ pre: " <b> 4.1. </b> "
 
 ### Speakers
 
-- **Mr. Dat Pham** — Data Analytics Engineer, and **Mr. Cuong Nguyen** — Process
+- **Mr. Dat Pham** - Data Analytics Engineer, and **Mr. Cuong Nguyen** - Process
   Engineer: *From real practice to culture at multinational corporations*
-- **Dinh Trung Kien** — Lead developer at a startup, and **Nguyen Minh Tho** —
+- **Dinh Trung Kien** - Lead developer at a startup, and **Nguyen Minh Tho** -
   Student: *A scalable URL shortening service on AWS*
-- **Danh Hoang Hieu Nghi** — AI Engineer, AWS Community Builder, AWS Student
+- **Danh Hoang Hieu Nghi** - AI Engineer, AWS Community Builder, AWS Student
   Builder Group Leader: *From First Cloud AI Journey to AWS Partner*
-- **Trong H. Truong** — DevOps Engineer at Endava Vietnam: *What does a DevOps
+- **Trong H. Truong** - DevOps Engineer at Endava Vietnam: *What does a DevOps
   Engineer really do?*
 
 ---
 
 ### Key Highlights
 
-#### Talk 1 — What a Data Analytics Engineer really does, and how MNCs work
+#### Talk 1 - What a Data Analytics Engineer really does, and how MNCs work
 
 The first half made a point that applies well beyond analytics: the same job
 title means different work depending on the industry, the business model, and
@@ -47,7 +47,7 @@ transformation initiatives.
 
 Four skills were identified as the ones that actually differentiate: critical
 thinking, communication, storytelling with data, and problem solving. The
-emphasis was that a report which only presents numbers is incomplete — the
+emphasis was that a report which only presents numbers is incomplete - the
 value comes from explaining *why* a metric moved and proposing what to do about
 it.
 
@@ -64,12 +64,12 @@ A career progression model was presented that avoids fixating on job titles:
 The second half covered hiring and culture at multinational corporations. The
 standard recruitment pipeline was described as four stages: applicant tracking
 system screening followed by a short English conversation with a recruiter; an
-aptitude test — logic and algorithms for technical roles, situational judgement
+aptitude test - logic and algorithms for technical roles, situational judgement
 for supply chain; a technical interview with a tech lead or manager working
 through real problems using the STAR structure; and finally a culture-fit
 interview with leadership assessing alignment with core values.
 
-On culture itself, the talk quoted Dr. Gian Tu Trung's definition — that
+On culture itself, the talk quoted Dr. Gian Tu Trung's definition - that
 corporate culture is how a business thinks, lives, and works, or more concretely
 how each individual within it does so. Two contrasting cultures were given as
 examples: **no-blame post-mortem** in technology firms, where a serious incident
@@ -77,17 +77,17 @@ triggers a search for the root cause and a system fix rather than an individual
 to blame; and **caring and inclusive** in consumer goods firms, centred on
 people and diversity.
 
-The session closed with a historical arc — Japan's *Wakon Yōsai* principle of
+The session closed with a historical arc - Japan's *Wakon Yōsai* principle of
 retaining national identity while mastering Western technique, culminating in
 the Toyota Production System; Korea's Han River miracle and its export-driven
 conglomerates forced to meet strict international standards; and Vietnam's own
 path from isolation through Doi Moi to connecting to the global internet on 19
 November 1997, and from there to FDI, manufacturing, and cloud.
 
-#### Talk 2 — A scalable URL shortening service on AWS
+#### Talk 2 - A scalable URL shortening service on AWS
 
 This was the most directly technical session, and the most useful one for my own
-project. It began with the naive design — user, frontend, backend, database —
+project. It began with the naive design - user, frontend, backend, database -
 and was honest about its trade-offs: easy to deploy and cheap, but vulnerable,
 slow on reads, a single point of failure, and hard to scale.
 
@@ -110,31 +110,31 @@ collision checking under load, no retry loop, no guessing under pressure.
 Reads use the cache-aside pattern: look up Redis first, return on a hit, and
 only query DynamoDB on a miss.
 
-The summary distilled four principles: **separation of concerns** — read and
+The summary distilled four principles: **separation of concerns** - read and
 write paths are optimised independently rather than sharing a bottleneck;
-**defense at the edge** — security and caching are pushed as close to the user
+**defense at the edge** - security and caching are pushed as close to the user
 as possible so load never reaches the core; **pre-computation over on-demand**;
 and the **cache-aside pattern** for keeping read latency low and database
 pressure minimal.
 
-#### Talk 3 — From First Cloud AI Journey to AWS Partner
+#### Talk 3 - From First Cloud AI Journey to AWS Partner
 
 A talk about what comes after the programme. The speaker traced his own path
 from the First Cloud Journey programme through the AWS Student Builder Group
 programme (formerly AWS Cloud Clubs) and the AWS Community Builder programme, to
 working at an AWS partner company.
 
-The line that stuck was *getting the job is just a beginning* — followed by the
+The line that stuck was *getting the job is just a beginning* - followed by the
 roles the programme's alumni have moved into: Solutions Architect, Head of
 Solutions Architect, DevOps Engineer, Platform Engineer, Software Engineer. The
 point was not that any single path is correct, but that the programme is an
 entry point rather than a destination, and that community involvement is what
 tends to keep the momentum going afterwards.
 
-#### Talk 4 — What does a DevOps Engineer really do?
+#### Talk 4 - What does a DevOps Engineer really do?
 
 The most candid session of the day, and the funniest. Asked why he chose DevOps,
-the speaker's answer was: he didn't — it happened.
+the speaker's answer was: he didn't - it happened.
 
 He contrasted what job descriptions ask for with what people actually assume the
 role is:
@@ -149,7 +149,7 @@ role is:
 
 His advice on where to start was deliberately unglamorous: Linux, networking
 basics, a programming language such as Python or Go, Git and CI/CD, and
-containers. Then understand how applications actually run — build, test, deploy,
+containers. Then understand how applications actually run - build, test, deploy,
 logs, configuration, environment variables. Then build small projects: deploy a
 simple application, automate something, monitor it, break it, and fix it.
 
@@ -177,7 +177,7 @@ analytics talk and the DevOps talk made the same point from opposite directions:
 the work is defined by the domain and the organisation, not by the title on the
 offer letter.
 
-**On learning.** Two speakers independently warned against surface knowledge —
+**On learning.** Two speakers independently warned against surface knowledge -
 "copying commands is not the same as understanding" and the Learner stage's
 requirement to ask questions with depth. Both framed genuine understanding as
 the thing that separates someone who follows instructions from someone who can
@@ -197,7 +197,7 @@ how I described it:
 - **Single point of failure.** Caerus runs on one EC2 instance in one
   Availability Zone. Hearing the same weakness named and answered gave me the
   vocabulary to state it explicitly in my report as an accepted trade-off, along
-  with what a production deployment would add — a load balancer, an auto scaling
+  with what a production deployment would add - a load balancer, an auto scaling
   group, and a multi-AZ database.
 - **Separation of read and write paths.** In Caerus the seat map is read far
   more often than bookings are written. Recognising that as a read/write
@@ -205,7 +205,7 @@ how I described it:
   toward caching the seat map without weakening the booking transaction.
 - **Pre-computation over on-demand.** The Key Generation Service is the same
   instinct as generating a screening's sixty seats when the event is created
-  rather than on first request — do the predictable work early so the
+  rather than on first request - do the predictable work early so the
   latency-sensitive path stays short.
 
 From the DevOps talk, "break it, then fix it" is essentially what the
@@ -222,7 +222,7 @@ but proposing the plan is where I still need to grow.
 
 What made the day useful was that none of the four talks was a product pitch.
 Each speaker described work they had actually done, including the parts that had
-gone badly — a lead developer explaining why the simple version of his system
+gone badly - a lead developer explaining why the simple version of his system
 did not survive contact with traffic, a DevOps engineer admitting he had never
 chosen the specialisation at all.
 
@@ -234,7 +234,7 @@ rather than a list of services.
 
 The session on multinational corporate culture was the one I expected least from
 and got the most unexpected value out of. The recruitment pipeline in particular
-was concrete in a way careers advice usually is not — four defined stages, each
+was concrete in a way careers advice usually is not - four defined stages, each
 testing something different, with the final one testing values rather than skill.
 
 <!-- Add photos to static/images/4-EventParticipated/4.1-Event1/ and reference them here, e.g.
