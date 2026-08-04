@@ -244,6 +244,83 @@ def filter_markdown_tables(content, keep_columns):
 
     return "\n".join(out)
 
+def balance_markdown_table_widths(content):
+    """Size pipe-table columns by how much text they actually carry.
+
+    Pandoc gives every column an equal share of \\columnwidth unless the
+    separator row's dashes are proportional. Equal shares are unusable for the
+    worklog tables, where a prose column sits next to two date columns: at the
+    report's 12pt body size a single Task cell runs longer than a page, and
+    longtable cannot split a row. Rewriting the separator row lets Pandoc size
+    the columns itself.
+    """
+    lines = content.splitlines()
+    out = []
+    i = 0
+
+    while i < len(lines):
+        is_table_start = (
+            i + 1 < len(lines)
+            and split_markdown_table_row(lines[i]) is not None
+            and is_markdown_table_separator(lines[i + 1])
+        )
+
+        if not is_table_start:
+            out.append(lines[i])
+            i += 1
+            continue
+
+        header = split_markdown_table_row(lines[i])
+        sep = split_markdown_table_row(lines[i + 1])
+        ncols = len(header)
+
+        j = i + 2
+        body = []
+        while j < len(lines) and split_markdown_table_row(lines[j]) is not None:
+            row = split_markdown_table_row(lines[j])
+            row += [""] * (ncols - len(row))
+            body.append(row[:ncols])
+            j += 1
+
+        # A 12pt Times line in this layout holds roughly 72 characters, so a
+        # budget of 72 dashes makes one dash ~= one character of column width.
+        budget = 72
+
+        floors = []
+        means = []
+        for col in range(ncols):
+            cells = [row[col] for row in body] or [""]
+            tokens = " ".join(cells + [header[col]]).split()
+            longest = max((len(t) for t in tokens), default=1)
+            # Cap the floor: URLs are breakable (see \UrlBreaks in
+            # pandoc-preamble.tex), so they must not claim a whole column.
+            floors.append(max(3, min(longest, 12)))
+            means.append(sum(len(c) for c in cells) / len(cells))
+
+        spare = max(0, budget - sum(floors))
+        mean_total = sum(means) or 1
+        widths = [
+            floors[col] + round(spare * means[col] / mean_total)
+            for col in range(ncols)
+        ]
+
+        new_sep = []
+        for col in range(ncols):
+            cell = sep[col].strip() if col < len(sep) else "---"
+            left = cell.startswith(":")
+            right = cell.endswith(":")
+            new_sep.append(
+                (":" if left else "") + ("-" * widths[col]) + (":" if right else "")
+            )
+
+        out.append(lines[i])
+        out.append(make_markdown_table_row(new_sep))
+        out.extend(lines[i + 2:j])
+        i = j
+
+    return "\n".join(out)
+
+
 def normalize_col_name(name):
     return re.sub(r"\s+", " ", str(name).strip()).lower()
 
@@ -422,7 +499,8 @@ def render_worklog_table_latex(header, rows, keep_columns):
 
     latex = []
     latex.append(r"\begingroup")
-    latex.append(r"\small")
+    # No \small here: table text is report content and must stay at the
+    # document's 12pt Times body size.
     latex.append(r"\setlength{\tabcolsep}{5pt}")
     latex.append(r"\renewcommand{\arraystretch}{1.2}")
     latex.append(r"\begin{longtable}{@{}p{0.07\linewidth}p{0.72\linewidth}p{0.17\linewidth}@{}}")
@@ -570,6 +648,8 @@ def preprocess_markdown(content, meta=None):
         if keep_columns:
             content = filter_markdown_tables(content, keep_columns)
 
+        content = balance_markdown_table_widths(content)
+
     content = re.sub(r"!\[([^\]]*)\]\(/static/images/", r"![\1](", content)
     content = re.sub(r"!\[([^\]]*)\]\(/images/",      r"![\1](", content)
 
@@ -656,10 +736,11 @@ def compact_longtables(latex):
     if r"\begin{longtable}" not in latex:
         return latex
 
+    # No \small: table text is report content and must stay at the document's
+    # 12pt Times body size.
     latex = latex.replace(
         r"\begin{longtable}",
         r"""\begingroup
-\small
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.15}
 \begin{longtable}"""
@@ -674,11 +755,23 @@ def compact_longtables(latex):
     return latex
 
 
+def pin_figures(latex):
+    """Place Pandoc's figures exactly where they appear, via float's [H].
+
+    Pandoc emits plain floating figures. longtable does its own page breaking
+    and does not account for floats, so any page that ends up holding both a
+    deferred float and a longtable overflows into the footer. Pinning the
+    figures removes deferred floats entirely.
+    """
+    return re.sub(r"\\begin\{figure\}(\[[^\]]*\])?", r"\\begin{figure}[H]", latex)
+
+
 def postprocess_latex(latex):
     # Do NOT replace Pandoc table column specs by regex.
     latex = re.sub(r"\\label\{[^}]+\}", "", latex)
     latex = neutralize_body_headings(latex)
     latex = compact_longtables(latex)
+    latex = pin_figures(latex)
     return latex
 
 
@@ -695,7 +788,9 @@ def convert_to_latex(md_text, source_path=None):
                 [
                     "pandoc",
                     tmp_in,
-                    "-f", "markdown+raw_tex+fenced_divs+bracketed_spans",
+                    # autolink_bare_uris: bare URLs become \url{}, which can be
+                    # broken across lines instead of overflowing the text block.
+                    "-f", "markdown+raw_tex+fenced_divs+bracketed_spans+autolink_bare_uris",
                     "-t", "latex",
                     "--top-level-division=section",
                     "--lua-filter", LUA_FILTER,

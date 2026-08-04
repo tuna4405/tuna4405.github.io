@@ -1,4 +1,6 @@
-\documentclass[a4paper]{article}
+% 12pt base: the report body must be Times New Roman at 12pt.
+% mathptmx supplies Times (Nimbus Roman, metrically identical to Times New Roman).
+\documentclass[a4paper,12pt]{article}
 \usepackage{vntex}
 \usepackage{mathptmx}[ptm]
 \usepackage{a4wide,amssymb,epsfig,latexsym,array,hhline,fancyhdr}
@@ -132,6 +134,16 @@ captionpos=b,
 
 \thesislayout
 
+% Cỡ chữ trang bìa theo đúng mẫu của khoa:
+% 18pt cho khối tên báo cáo, 15pt cho tất cả phần còn lại trên bìa.
+\newcommand{\coverbig}{\fontsize{18}{22}\selectfont}
+\newcommand{\cover}{\fontsize{15}{19}\selectfont}
+% Bìa ở cỡ 15pt rất chật; siết khoảng cách danh sách để trang bìa vừa một trang.
+\newcommand{\coverlistspacing}{%
+  \setlength{\topsep}{0pt}\setlength{\parskip}{0pt}%
+  \setlength{\itemsep}{3pt}\setlength{\parsep}{0pt}%
+}
+
 \begin{document}
 
 \begin{titlepage}
@@ -144,52 +156,54 @@ captionpos=b,
 \end{tikzpicture}
 
 \begin{center}
-\Large \textbf{ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH} \\
+\cover \textbf{ĐẠI HỌC QUỐC GIA THÀNH PHỐ HỒ CHÍ MINH} \\
 \vspace{0.2cm}
-\Large \textbf{TRƯỜNG ĐẠI HỌC BÁCH KHOA} \\
+\cover \textbf{TRƯỜNG ĐẠI HỌC BÁCH KHOA} \\
 \vspace{0.2cm}
-\Large \textbf{KHOA KHOA HỌC VÀ KĨ THUẬT MÁY TÍNH}
+\cover \textbf{KHOA KHOA HỌC VÀ KĨ THUẬT MÁY TÍNH}
 \end{center}
 
 \vspace{0.3cm}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=4cm]{Images/hcmut.png}
+\includegraphics[width=3cm]{Images/hcmut.png}
 \end{center}
 \end{figure}
 
 \begin{center}
 \begin{tabular}{c}
-\multicolumn{1}{c}{\textbf{{\LARGE BÁO CÁO}}}\\
-\\{\textbf{{\LARGE THỰC TẬP NGOÀI TRƯỜNG}}}
+\multicolumn{1}{c}{\textbf{{\coverbig BÁO CÁO MÔN HỌC}}}\\
+\\{\textbf{{\coverbig THỰC TẬP NGOÀI TRƯỜNG}}}
+\\{\textbf{{\coverbig (Mã số môn học: CO3335)}}}
 \\
 \\
-\textbf{\Large HỌC KỲ 253 NĂM HỌC 2025-2026} \\
+\textbf{\cover HỌC KỲ 252 NĂM HỌC 2025-2026} \\
 \end{tabular}
 \end{center}
-\vspace{0.5cm}
+\vspace{0.2cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
-    \item \Large \textbf{NGÀNH: Khoa học Máy tính}
-    \item \Large \textbf{CHƯƠNG TRÌNH ĐÀO TẠO: OISP}
+\coverlistspacing
+    \item \cover \textbf{NGÀNH: Khoa học Máy tính}
+    \item \cover \textbf{CHƯƠNG TRÌNH ĐÀO TẠO: OISP}
 \end{itemize}
-\vspace{0.7cm}
+\vspace{0.35cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
-    \item \Large \textbf{ĐƠN VỊ/ DOANH NGHIỆP NHẬN THỰC TẬP:}
-    \\ \Large \textbf{Công ty TNHH Amazon Web Services Việt Nam}
-    \item \Large \textbf{CÁN BỘ HƯỚNG DẪN CHUYÊN MÔN TRỰC TIẾP CỦA ĐƠN VỊ/ DOANH NGHIỆP:}
-    \\ \Large \textbf{Lữ Hoàn Thiện}
-    \item \Large \textbf{CÁN BỘ HƯỚNG DẪN/ GIÁM SÁT/ CHẤM ĐIỂM BÁO CÁO CỦA KHOA (CBHD/CBGS/CĐBC):}
-    \\ \Large \textbf{Vũ Ngọc Tú}
-    \item \Large \textbf{SINH VIÊN THỰC HIỆN (SVTH):}
-    \\ \Large \textbf{HỌ VÀ TÊN: PHẠM MINH TUẤN} \textbf{MSSV: 2353265}
-    \\ \Large \textbf{HỌ VÀ TÊN: NGUYỄN THÀNH TÀI} \textbf{MSSV: 2353062}
+\coverlistspacing
+    \item \cover \textbf{ĐƠN VỊ/ DOANH NGHIỆP NHẬN THỰC TẬP:}
+    \\ \cover \textbf{Công ty TNHH Amazon Web Services Việt Nam}
+    \item \cover \textbf{CÁN BỘ HƯỚNG DẪN CHUYÊN MÔN TRỰC TIẾP CỦA ĐƠN VỊ/ DOANH NGHIỆP:}
+    \\ \cover \textbf{Lữ Hoàn Thiện}
+    \item \cover \textbf{CÁN BỘ HỖ TRỢ HƯỚNG DẪN/ GIÁM SÁT/ CHẤM ĐIỂM BÁO CÁO CỦA KHOA (CBHT HD/GS/CĐBC):}
+    \\ \cover \textbf{Trần Huy}
+    \item \cover \textbf{SINH VIÊN THỰC HIỆN (SVTH):}
+    \\ \cover \textbf{HỌ VÀ TÊN: Phạm Minh Tuấn} \textbf{MSSV: 2353265}
 \end{itemize}
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{center}
-{\Large TP. Hồ Chí Minh, Tháng 08/2026}
+{\cover TP. HỒ CHÍ MINH, THÁNG 08/2026}
 \end{center}
 \end{titlepage}
 

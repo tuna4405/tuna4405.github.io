@@ -77,4 +77,10 @@
 \providecommand{\pandocbounded}[1]{#1}
 \providecommand{\passthrough}[1]{#1}
 
+% Reference links from the Hugo content land in narrow table columns. Let \url
+% break after any character instead of overflowing the column.
+\makeatletter
+\g@addto@macro\UrlBreaks{\UrlOrds}
+\makeatother
+
 \endinput

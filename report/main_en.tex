@@ -1,4 +1,6 @@
-\documentclass[a4paper]{article}
+% 12pt base: the report body must be Times New Roman at 12pt.
+% mathptmx supplies Times (Nimbus Roman, metrically identical to Times New Roman).
+\documentclass[a4paper,12pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage{vntex}
 \usepackage{textcomp}
@@ -124,6 +126,16 @@ captionpos=b,
 
 \thesislayout
 
+% Exact title-page sizes required by the faculty cover template:
+% 18pt for the report title block, 15pt for everything else on the cover.
+\newcommand{\coverbig}{\fontsize{18}{22}\selectfont}
+\newcommand{\cover}{\fontsize{15}{19}\selectfont}
+% The cover is tight at 15pt; tighten list spacing so it stays on one page.
+\newcommand{\coverlistspacing}{%
+  \setlength{\topsep}{0pt}\setlength{\parskip}{0pt}%
+  \setlength{\itemsep}{3pt}\setlength{\parsep}{0pt}%
+}
+
 \begin{document}
 
 \begin{titlepage}
@@ -136,51 +148,54 @@ captionpos=b,
 \end{tikzpicture}
 
 \begin{center}
-\Large \textbf{VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY} \\
+\cover \textbf{VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY} \\
 \vspace{0.2cm}
-\Large \textbf{HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY} \\
+\cover \textbf{HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY} \\
 \vspace{0.2cm}
-\Large \textbf{FACULTY OF COMPUTER SCIENCE AND ENGINEERING}
+\cover \textbf{FACULTY OF COMPUTER SCIENCE AND ENGINEERING}
 \end{center}
 
 \vspace{0.3cm}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=4cm]{Images/hcmut.png}
+\includegraphics[width=3cm]{Images/hcmut.png}
 \end{center}
 \end{figure}
 
 \begin{center}
 \begin{tabular}{c}
-\multicolumn{1}{c}{\textbf{{\LARGE REPORT}}}\\
-\\{\textbf{{\LARGE INTERNSHIP}}}
+\multicolumn{1}{c}{\textbf{{\coverbig COURSE REPORT}}}\\
+\\{\textbf{{\coverbig INTERNSHIP}}}
+\\{\textbf{{\coverbig (Course ID: CO3335)}}}
 \\
 \\
-\textbf{\Large SEMESTER 253 ACADEMIC YEAR 2025-2026} \\
+\textbf{\cover SEMESTER 252 ACADEMIC YEAR 2025-2026} \\
 \end{tabular}
 \end{center}
-\vspace{0.5cm}
+\vspace{0.2cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
-    \item \Large \textbf{MAJOR: Computer Science}
-    \item \Large \textbf{TRAINING PROGRAM: OISP}
+\coverlistspacing
+    \item \cover \textbf{MAJOR: Computer Science}
+    \item \cover \textbf{TRAINING PROGRAM: OISP}
 \end{itemize}
-\vspace{0.7cm}
+\vspace{0.35cm}
 \begin{itemize}
 \renewcommand\labelitemi{--}
-    \item \Large \textbf{COMPANY / INTERNSHIP UNIT:}
-    \\ \Large \textbf{Công ty TNHH Amazon Web Services Việt Nam}
-    \item \Large \textbf{DIRECT SUPERVISOR AT THE COMPANY:}
-    \\ \Large \textbf{Lu Hoan Thien}
-    \item \Large \textbf{FACULTY SUPERVISOR / GRADER:}
-    \\ \Large \textbf{Tran Huy}
-    \item \Large \textbf{STUDENTS:}
-    \\ \Large \textbf{FULL NAME: Pham Minh Tuan} \textbf{STUDENT ID: 2353265}
+\coverlistspacing
+    \item \cover \textbf{COMPANY / INTERNSHIP UNIT:}
+    \\ \cover \textbf{Amazon Web Services Viet Nam Company Limited}
+    \item \cover \textbf{DIRECT SUPERVISOR AT THE COMPANY:}
+    \\ \cover \textbf{Lu Hoan Thien}
+    \item \cover \textbf{FACULTY SUPERVISOR / GRADER:}
+    \\ \cover \textbf{Tran Huy}
+    \item \cover \textbf{STUDENTS:}
+    \\ \cover \textbf{FULL NAME: Pham Minh Tuan} \textbf{STUDENT ID: 2353265}
 \end{itemize}
-\vspace{0.5cm}
+\vspace{0.3cm}
 \begin{center}
-{\Large Ho Chi Minh City, August 2026}
+{\cover HO CHI MINH CITY, AUGUST 2026}
 \end{center}
 \end{titlepage}
 
